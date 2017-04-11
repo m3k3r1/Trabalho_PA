@@ -1,0 +1,21 @@
+package gameLogic;
+
+public interface Constants {
+	static final int CASUAL_ARMOR = 1;
+	static final int CASUAL_HP = 5;
+	static final int CASUAL_GOLD = 5;
+	static final int CASUAL_FOOD = 6;
+	
+	static final int NORMAL_HP = 5;
+	static final int NORMAL_GOLD = 3;
+	static final int NORMAL_FOOD = 6;
+	
+	static final int HARD_HP = 4;
+	static final int HARD_GOLD = 2;
+	static final int HARD_FOOD = 5;
+	
+	static final int IMPOSSIBLE_HP = 4;
+	static final int IMPOSSIBLE_GOLD = 2;
+	static final int IMPOSSIBLE_FOOD = 5;
+	
+}
