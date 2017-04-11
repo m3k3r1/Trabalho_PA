@@ -18,4 +18,8 @@ public interface Constants {
 	static final int IMPOSSIBLE_GOLD = 2;
 	static final int IMPOSSIBLE_FOOD = 5;
 	
+	static final String LOGO_TXT = "img/consoleElements/logo.txt"; 
+	static final String ABOUT_TXT = "img/consoleElements/about.txt"; 
+	static final String MENU_TXT = "img/consoleElements/menu.txt"; 
+	
 }
