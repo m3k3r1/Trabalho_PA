@@ -16,9 +16,9 @@ public class Game implements Constants {
 	public void setDificulty(int d){
 			switch(d){
 				case 1 : user.addArmor(CASUAL_ARMOR);
-					 	 user.addHp(CASUAL_HP);
-					 	 user.addGold(CASUAL_GOLD);
-					 	 user.addFood(CASUAL_FOOD);
+						 user.addHp(CASUAL_HP);
+						 user.addGold(CASUAL_GOLD);
+						 user.addFood(CASUAL_FOOD);
 					 	 break;
 				case 2 : user.addHp(NORMAL_HP);
 			 	     	 user.addGold(NORMAL_GOLD);
@@ -33,6 +33,10 @@ public class Game implements Constants {
 			         	 user.addFood(IMPOSSIBLE_FOOD);
 			         	 break;
 			}
+	}
+	
+	public void run(){
+		
 	}
 	
 	
