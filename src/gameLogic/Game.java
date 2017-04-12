@@ -33,11 +33,5 @@ public class Game implements Constants {
 			         	 user.addFood(IMPOSSIBLE_FOOD);
 			         	 break;
 			}
-	}
-	
-	public void run(){
-		
-	}
-	
-	
+	}	
 }

@@ -22,4 +22,6 @@ public interface Constants {
 	static final String ABOUT_TXT = "img/consoleElements/about.txt"; 
 	static final String MENU_TXT = "img/consoleElements/menu.txt"; 
 	
+	static final String LOAD_FILE = "res/saves/save.bin";
+	 
 }
