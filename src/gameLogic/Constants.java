@@ -21,7 +21,8 @@ public interface Constants {
 	static final String LOGO_TXT = "img/consoleElements/logo.txt"; 
 	static final String ABOUT_TXT = "img/consoleElements/about.txt"; 
 	static final String MENU_TXT = "img/consoleElements/menu.txt"; 
+	static final String DIF_MENU_TXT = "img/consoleElements/difMenu.txt";
 	
 	static final String LOAD_FILE = "res/saves/save.bin";
-	 
+	static final String CARD_STACK_FILE = "img/consoleElements/cardStack.txt"; 
 }

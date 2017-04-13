@@ -23,7 +23,11 @@ public class TextUi implements Constants {
 	}
 	
 	public void startGameInterface(){
+		int d = difficultyMenu();
 		
+		game.setDificulty(d);
+		
+		showCardStack();
 	}
 	
 	public void loadGameInterface(String savefile){
@@ -34,7 +38,51 @@ public class TextUi implements Constants {
 
 	}
 	
+
+	void showCardStack(){
+		@SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+		try{
+			//clearScreen();
+			printTxt(LOGO_TXT);
+			printTxt(CARD_STACK_FILE);
+			sc.nextLine();
+		}
+		catch(IOException e){
+	        System.out.println (e.toString());
+	        System.out.println("Could not find menu elements");
+		}
+	}
+	int difficultyMenu(){
+		int menu_op = 0;
+		@SuppressWarnings("resource")
+	    Scanner sc = new Scanner(System.in);
+
+	    	do{
+	    		try{
+	    			//clearScreen();
+	    			printTxt(LOGO_TXT);
+	    			printTxt(DIF_MENU_TXT);
+	    			
+	    			System.out.print("Opção >> ");
+	    			menu_op = sc.nextInt();
+				
+	    			if(menu_op < 0 || menu_op > 4){
+	    				System.out.print("\n\tOpção Inválida :: Prima ENTER para tentar outra vez");
+	    				sc.nextLine();
+	    			}
+	    		}
+	    		catch(IOException e){
+	    			System.out.println (e.toString());
+	    			System.out.println("Could not find menu elements");
+	    		}
+	    	}while (menu_op < 0 || menu_op > 5);
+	  
+		
+		return menu_op;
+	}
 	void aboutGame(){
+		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		
 		try{
@@ -44,7 +92,7 @@ public class TextUi implements Constants {
 		}
 		catch(IOException e){
 	        System.out.println (e.toString());
-	        System.out.println("Could not find menu elements");
+	        System.out.println("Could not find game elements");
 		}
 	}
 	void printTxt(String filename) throws IOException {
@@ -83,7 +131,7 @@ public class TextUi implements Constants {
 	    			System.out.println (e.toString());
 	    			System.out.println("Could not find menu elements");
 	    		}
-	    	}while (menu_op < 0 || menu_op > 5);
+	    	}while (menu_op < 0 || menu_op > 4);
 	    	
 			switch (menu_op){
 				case 1: startGameInterface();

@@ -5,8 +5,8 @@ public class Game implements Constants {
 	Player user;
 	
 
-	public Game() {
-		user = new Player();		
+	public Game(Player p) {
+		user = p;		
 	}
 	
 	public int throwDice(){
