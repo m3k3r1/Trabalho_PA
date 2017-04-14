@@ -1,5 +1,5 @@
 package gameLogic.states;
 
-public class RogueState {
+public interface RogueState {
 
 }

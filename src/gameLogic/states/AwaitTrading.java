@@ -1,5 +1,7 @@
 package gameLogic.states;
 
-public class AwaitTrading {
+import gameLogic.GameData;
+
+public class AwaitTrading implements RogueState , gameLogic.Constants {
 
 }

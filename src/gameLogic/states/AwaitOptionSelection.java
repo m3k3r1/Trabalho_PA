@@ -1,5 +1,7 @@
 package gameLogic.states;
 
-public class AwaitOptionSelection {
+import gameLogic.GameData;
+
+public class AwaitOptionSelection implements RogueState , gameLogic.Constants{
 
 }

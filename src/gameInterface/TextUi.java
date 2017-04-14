@@ -30,7 +30,7 @@ public class TextUi implements Constants {
 		showCardStack();
 	}
 	
-	public void loadGameInterface(String savefile){
+	public void loadPreviousGameInterface(String savefile){
 		
 	}
 	
@@ -136,7 +136,7 @@ public class TextUi implements Constants {
 			switch (menu_op){
 				case 1: startGameInterface();
 						break;
-				case 2: loadGameInterface(LOAD_FILE);
+				case 2: loadPreviousGameInterface(LOAD_FILE);
 						break;
 				case 3: aboutGame();
 						break;
