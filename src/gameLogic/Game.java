@@ -11,17 +11,33 @@ public class Game implements Constants {
 		setState(new AwaitBeginning(data));
 	}
 	
-	private void setState(RogueState s){
-		this.state = s; 
+	//
+	public GameData getGameData(){
+		return data;
+	}
+	public void setGameData(GameData d){
+		this.data = d;
 	}
 	public RogueState getState(){
 		return state;
 	}
-		
+	private void setState(RogueState s){
+		this.state = s; 
+	}
+	
+	
+	//
 	public int throwDice(){
 		return (int)(Math. random() * 6 + 1);
 	}
+	
+	
+	
+	//Methods to be used for UI's
 	public void setDificulty(int d){
-		data.setDificulty(d);
-	}	
+		setState(getState().setDificulty(d));
+	}
+	public void setStartingArea(RogueState s){
+		setState(getState().setStartingArea(s));
+	}
 }
