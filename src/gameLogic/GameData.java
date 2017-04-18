@@ -1,16 +1,55 @@
 package gameLogic;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import gameLogic.cards.Card;
+import gameLogic.cards.*;
 
 public class GameData implements Constants {
 	private Player user;
+	private ArrayList<Card> gameCardStack;
 	private HashMap<Integer, Card> cardStack;
+	private ArrayList<Integer > posChoosen;
 	
 	public GameData(Player p){
 		user = p;
 		cardStack = null;
+		gameCardStack = null;
+		posChoosen = null;
+		
+		initializeCardStack();
+		shuffleStack();
 	}
+	
+	private void initializeCardStack(){
+		cardStack.put(1 , new Boss());
+		cardStack.put(2 , new Event());
+		cardStack.put(3, new Merchant());
+		cardStack.put(4, new Resting());
+		cardStack.put(5, new Trap());
+		cardStack.put(6, new Treasure());
+	}
+	
+	private boolean isPosAlreadyChoosen(int cardId){
+		
+		for(int a: posChoosen){
+			if(cardId == a)
+				return true;
+		}
+		return false;
+			
+	}
+	
+	private void shuffleStack(){
+		int card = 0;
+		
+		do{
+			card = (int)(Math. random() * 6 + 1);
+		}while(!isPosAlreadyChoosen(card));
+		
+		gameCardStack.add(cardStack.get(card));
+		
+	}
+
 	public void setDificulty(int d){
 		switch(d){
 			case 1 : user.addArmor(CASUAL_ARMOR);
