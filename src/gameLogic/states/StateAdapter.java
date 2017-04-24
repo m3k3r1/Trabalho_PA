@@ -19,11 +19,12 @@ public class StateAdapter implements RogueState , gameLogic.Constants{
 	@Override
 	public RogueState setStartingArea(RogueState state) {return this;}
 	@Override
-	public RogueState setCard(Card chosenCard) {return this;}
+	public RogueState setCard(int pos) {return this;}
 	@Override
 	public RogueState startGame() {return this;}
 	@Override
 	public RogueState quit() {return this;}
+
 
 }
  

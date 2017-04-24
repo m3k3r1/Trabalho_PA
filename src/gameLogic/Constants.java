@@ -18,6 +18,24 @@ public interface Constants {
 	static final int IMPOSSIBLE_GOLD = 2;
 	static final int IMPOSSIBLE_FOOD = 5;
 	
+	static final int BOSS_DAMAGE_1 = 3;
+	static final int BOSS_DAMAGE_2 = 5;
+	static final int BOSS_DAMAGE_3 = 7;
+	static final int BOSS_DAMAGE_4 = 9;
+	static final int BOSS_DAMAGE_5 = 9;
+	
+	static final int MONSTER_DAMAGE_1 = 2;
+	static final int MONSTER_DAMAGE_2 = 4;
+	static final int MONSTER_DAMAGE_3 = 6;
+	static final int MONSTER_DAMAGE_4 = 8;
+	static final int MONSTER_DAMAGE_5 = 10;
+	
+	static final int MONSTER_REWARD_1 = 1;
+	static final int MONSTER_REWARD_2 = 1;
+	static final int MONSTER_REWARD_3 = 2;
+	static final int MONSTER_REWARD_4 = 2;
+	static final int MONSTER_REWARD_5 = 3;
+	
 	static final String LOGO_TXT = "img/consoleElements/logo.txt"; 
 	static final String ABOUT_TXT = "img/consoleElements/about.txt"; 
 	static final String MENU_TXT = "img/consoleElements/menu.txt"; 

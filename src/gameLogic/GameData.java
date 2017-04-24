@@ -1,55 +1,46 @@
 package gameLogic;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import gameLogic.cards.*;
 
 public class GameData implements Constants {
+	int level;
 	private Player user;
-	private ArrayList<Card> gameCardStack;
-	private HashMap<Integer, Card> cardStack;
-	private ArrayList<Integer > posChoosen;
+	private ArrayList<Card> cardStack;
 	
 	public GameData(Player p){
 		user = p;
-		cardStack = null;
-		gameCardStack = null;
-		posChoosen = null;
+		level = 1;
+	
+		cardStack = new ArrayList<Card>();
 		
 		initializeCardStack();
-		shuffleStack();
 	}
 	
-	private void initializeCardStack(){
-		cardStack.put(1 , new Boss());
-		cardStack.put(2 , new Event());
-		cardStack.put(3, new Merchant());
-		cardStack.put(4, new Resting());
-		cardStack.put(5, new Trap());
-		cardStack.put(6, new Treasure());
+	public int getLevel(int l){
+		return l;
 	}
 	
-	private boolean isPosAlreadyChoosen(int cardId){
-		
-		for(int a: posChoosen){
-			if(cardId == a)
-				return true;
-		}
-		return false;
-			
+	public void setLevel(int l){
+		level = l;
 	}
 	
-	private void shuffleStack(){
-		int card = 0;
-		
-		do{
-			card = (int)(Math. random() * 6 + 1);
-		}while(!isPosAlreadyChoosen(card));
-		
-		gameCardStack.add(cardStack.get(card));
-		
+	//
+	public void initializeCardStack(){
+		cardStack.add(new Boss(level));
+		cardStack.add(new Event(level));
+		cardStack.add(new Merchant(level));
+		cardStack.add(new Monster(level));
+		cardStack.add(new Resting(level));
+		cardStack.add(new Trap(level));
+		cardStack.add(new Treasure(level));
+	
+		Collections.shuffle(cardStack);	
 	}
 
+	//
 	public void setDificulty(int d){
 		switch(d){
 			case 1 : user.addArmor(CASUAL_ARMOR);
@@ -70,5 +61,12 @@ public class GameData implements Constants {
 		         	 user.addFood(IMPOSSIBLE_FOOD);
 		         	 break;
 		}
+	}
+	//Final so card info is not changed
+	public final Card getCard(int pos){ 
+		if(pos < 6){
+			return cardStack.get(pos);
+		}
+		return null;
 	}
 }
