@@ -1,7 +1,6 @@
 package gameLogic.states;
 
 import gameLogic.GameData;
-import gameLogic.cards.Card;
 
 public class StateAdapter implements RogueState , gameLogic.Constants{
 	private GameData data;
@@ -17,13 +16,15 @@ public class StateAdapter implements RogueState , gameLogic.Constants{
 	@Override
 	public RogueState setDificulty(int d) {return this;}
 	@Override
-	public RogueState setStartingArea(RogueState state) {return this;}
+	public RogueState setStartingArea(int a) {return this;}
 	@Override
 	public RogueState setCard(int pos) {return this;}
 	@Override
 	public RogueState startGame() {return this;}
 	@Override
 	public RogueState quit() {return this;}
+	@Override
+	public RogueState skip() {return this;}
 
 
 }

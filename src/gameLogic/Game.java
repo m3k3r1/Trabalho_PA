@@ -25,7 +25,6 @@ public class Game implements Constants {
 		this.state = s; 
 	}
 	
-	
 	//
 	public int throwDice(){
 		return (int)(Math. random() * 6 + 1);
@@ -37,7 +36,10 @@ public class Game implements Constants {
 	public void setDificulty(int d){
 		setState(getState().setDificulty(d));
 	}
-	public void setStartingArea(RogueState s){
-		setState(getState().setStartingArea(s));
+	public void setStartingArea(int a){
+		setState(getState().setStartingArea(a));
+	}
+	public void chooseCard(int pos){
+		setState(getState().setCard(pos));
 	}
 }

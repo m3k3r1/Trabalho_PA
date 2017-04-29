@@ -17,7 +17,7 @@ public abstract class Card {
 		level = l;
 	}
 	
-	//
+	//Getter's
 	public int getHp(){
 		return hp;
 	}
@@ -28,7 +28,7 @@ public abstract class Card {
 		return reward;
 	}
 	
-	//
+	//Setter's
 	protected void setHp(int h){
 		hp = h;
 	}
@@ -40,7 +40,16 @@ public abstract class Card {
 	}
 	
 	//
-	public void cardDiceEffect( Player p, int d){
-
+	public boolean isMerchant(){
+		return false;
 	}
+	public boolean isEvent(){
+		return false;
+	}
+	public boolean isTreasure(){
+		return false;
+	}
+	
+	//
+	public void cardDiceEffect( Player p, int d){}
 }

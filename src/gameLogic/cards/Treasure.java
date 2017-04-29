@@ -24,4 +24,10 @@ public class Treasure extends Card{
 				break;
 		}
 	}
+	
+	@Override
+	public boolean isTreasure(){
+		return true;
+	}
+	
 }

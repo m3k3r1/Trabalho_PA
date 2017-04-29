@@ -6,4 +6,9 @@ public class Event extends Card{
 		super(l);
 	}
 	
+	@Override
+	public boolean isEvent(){
+		return true;
+	}
+	
 }

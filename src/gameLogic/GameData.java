@@ -2,11 +2,13 @@ package gameLogic;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import gameLogic.cards.*;
 
 public class GameData implements Constants {
-	int level;
+	
+	private int level;
+	private int area;
+	
 	private Player user;
 	private ArrayList<Card> cardStack;
 	
@@ -19,12 +21,17 @@ public class GameData implements Constants {
 		initializeCardStack();
 	}
 	
-	public int getLevel(int l){
-		return l;
+	public int getLevel(){
+		return level;
 	}
-	
+	public int getArea(){
+		return area;
+	}
 	public void setLevel(int l){
 		level = l;
+	}
+	public void setArea(int a){
+		area = a;
 	}
 	
 	//
@@ -62,11 +69,20 @@ public class GameData implements Constants {
 		         	 break;
 		}
 	}
-	//Final so card info is not changed
+
 	public final Card getCard(int pos){ 
 		if(pos < 6){
 			return cardStack.get(pos);
 		}
 		return null;
+	}
+	public boolean cardIsMerchant(Card c){
+		return c.isMerchant();
+	}
+	public boolean cardIsEvent(Card c){
+		return c.isEvent();
+	}
+	public boolean cardIsTreasure(Card c){
+		return c.isTreasure();
 	}
 }

@@ -17,8 +17,9 @@ public class AwaitBeginning extends StateAdapter  {
 	}
 	
 	@Override
-	public RogueState setStartingArea(RogueState state){
-		return state;
+	public RogueState setStartingArea(int a){
+		getGameData().setArea(a);
+		return this;
 	}
 	
 	@Override

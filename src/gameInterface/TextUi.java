@@ -39,7 +39,7 @@ public class TextUi implements Constants {
 	}
 	
 
-	void showCardStack(){
+	private void showCardStack(){
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		try{
@@ -53,6 +53,14 @@ public class TextUi implements Constants {
 	        System.out.println("Could not find menu elements");
 		}
 	}
+	
+	private void chooseCard(){
+		@SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+		
+		int card = -1;
+	}
+	
 	int difficultyMenu(){
 		int menu_op = 0;
 		@SuppressWarnings("resource")
