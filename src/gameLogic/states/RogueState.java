@@ -8,4 +8,7 @@ public interface RogueState {
 	RogueState skip();
 	RogueState startGame();
 	RogueState quit();
+	
+	// COMBAT METHODS
+	RogueState rerollDice(int dice);
 }

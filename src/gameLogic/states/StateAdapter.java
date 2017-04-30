@@ -25,6 +25,8 @@ public class StateAdapter implements RogueState , gameLogic.Constants{
 	public RogueState quit() {return this;}
 	@Override
 	public RogueState skip() {return this;}
+	@Override
+	public RogueState rerollDice(int dice) {return this;}
 
 
 }

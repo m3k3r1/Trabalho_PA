@@ -11,11 +11,13 @@ public class GameData implements Constants {
 	
 	private Player user;
 	private ArrayList<Card> cardStack;
+	private ArrayList<Integer> diceStack;
 	
 	public GameData(Player p){
 		user = p;
 		level = 1;
 	
+		diceStack = new ArrayList<Integer>();
 		cardStack = new ArrayList<Card>();
 		
 		initializeCardStack();
@@ -69,6 +71,10 @@ public class GameData implements Constants {
 		         	 break;
 		}
 	}
+	
+	private int throwDice(){
+		return (int)(Math. random() * 6 + 1);
+	}
 
 	public final Card getCard(int pos){ 
 		if(pos < 6){
@@ -84,5 +90,14 @@ public class GameData implements Constants {
 	}
 	public boolean cardIsTreasure(Card c){
 		return c.isTreasure();
+	}
+	
+	public void generateDiceValues(){
+		for(int i = 0; i < 3; i++)
+			diceStack.add(throwDice());
+	}
+	
+	public void rerollDice(int dice){
+		diceStack.set(dice, throwDice());
 	}
 }

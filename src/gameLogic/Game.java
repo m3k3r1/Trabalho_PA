@@ -26,9 +26,7 @@ public class Game implements Constants {
 	}
 	
 	//
-	public int throwDice(){
-		return (int)(Math. random() * 6 + 1);
-	}
+
 	
 	
 	
@@ -42,4 +40,8 @@ public class Game implements Constants {
 	public void chooseCard(int pos){
 		setState(getState().setCard(pos));
 	}
+	public void combatStart(){
+	}
+	
+	
 }
