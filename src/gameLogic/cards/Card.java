@@ -1,5 +1,5 @@
 package gameLogic.cards;
-import gameLogic.Player;;
+import gameLogic.Player;
 
 public abstract class Card {
 	protected int hp;
@@ -47,6 +47,9 @@ public abstract class Card {
 		return false;
 	}
 	public boolean isTreasure(){
+		return false;
+	}
+	public boolean isResting(){
 		return false;
 	}
 	

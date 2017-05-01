@@ -8,19 +8,19 @@ public class Treasure extends Card{
 	}
 	
 	@Override
-	public void cardDiceEffect( Player p, int d){
+	public void cardDiceEffect(Player p, int d){
 		switch(d){
 		case 1: p.addArmor(1);
 				break;
 		case 2: p.addXp(2);
 				break;
-		case 3: //ADD DAMAGE TO WHAT ???
+		case 3: p.addSpell(1);
 				break;
-		case 4: //FREZE TURN
+		case 4: p.addSpell(2);
 				break;
-		case 5: //ADD DAMAGE TO WHAT PER TURN
+		case 5: p.addSpell(3);
 				break;
-		case 6: p.addHp(8);
+		case 6: p.addSpell(4);
 				break;
 		}
 	}

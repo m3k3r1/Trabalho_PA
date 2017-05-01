@@ -36,6 +36,12 @@ public interface Constants {
 	static final int MONSTER_REWARD_4 = 2;
 	static final int MONSTER_REWARD_5 = 3;
 	
+	static final int PRICE_RATION = 1;
+	static final int PRICE_HEALTH_POTION = 1;
+	static final int PRICE_BIG_HEALTH_POTION = 3;
+	static final int PRICE_ARMOR_PIECE = 6;
+	static final int PRICE_SPELL = 8; 
+	
 	static final String LOGO_TXT = "img/consoleElements/logo.txt"; 
 	static final String ABOUT_TXT = "img/consoleElements/about.txt"; 
 	static final String MENU_TXT = "img/consoleElements/menu.txt"; 

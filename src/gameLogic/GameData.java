@@ -16,6 +16,7 @@ public class GameData implements Constants {
 	public GameData(Player p){
 		user = p;
 		level = 1;
+		area = 1;
 	
 		diceStack = new ArrayList<Integer>();
 		cardStack = new ArrayList<Card>();

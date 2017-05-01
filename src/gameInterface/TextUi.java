@@ -22,12 +22,15 @@ public class TextUi implements Constants {
 		menu();
 	}
 	
+	// GAME BEGINS HERE
 	public void startGameInterface(){
 		int d = difficultyMenu();
 		
 		game.setDificulty(d);
 		
 		showCardStack();
+		getCard();
+		
 	}
 	
 	public void loadPreviousGameInterface(String savefile){
@@ -36,6 +39,11 @@ public class TextUi implements Constants {
 	
 	public void closeGame(){
 
+	}
+	
+	public void getCard() {
+		for(int i = 0; i < 5; i++)
+			game.chooseCard(i);
 	}
 	
 

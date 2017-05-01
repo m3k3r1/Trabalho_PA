@@ -11,7 +11,7 @@ public class Game implements Constants {
 		setState(new AwaitBeginning(data));
 	}
 	
-	//
+	// GETS
 	public GameData getGameData(){
 		return data;
 	}
@@ -21,11 +21,14 @@ public class Game implements Constants {
 	public RogueState getState(){
 		return state;
 	}
+	public int getLevel(){ 
+		return data.getLevel();
+	}
+	
+	// SETS
 	private void setState(RogueState s){
 		this.state = s; 
 	}
-	
-	//
 
 	
 	
@@ -40,7 +43,7 @@ public class Game implements Constants {
 	public void chooseCard(int pos){
 		setState(getState().setCard(pos));
 	}
-	public void combatStart(){
+	public void setCombatState(boolean c){
 	}
 	
 	
