@@ -11,7 +11,7 @@ public class Monster extends Card implements Constants{
 	}
 	
 	private void initializeStats(){
-		
+		//This is not right !!!!!!!!
 		setHp((5*level) + 1);
 		
 		switch(level){

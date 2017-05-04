@@ -12,11 +12,14 @@ public class Resting extends Card{
 		return true;
 	}
 	
-	public void restingDecision(Player p, int r){
+	@Override
+	public int playerOption(Player p, int r){
 		switch(r){
 			case 1: p.addXp(1); break;
 			case 2: p.addFood(1); break;
 			case 3: p.addHp(1); break;
 		}
+		
+		return 0;
 	}
 }

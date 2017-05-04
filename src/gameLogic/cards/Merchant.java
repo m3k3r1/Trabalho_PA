@@ -14,7 +14,7 @@ public class Merchant extends Card implements Constants {
 		return true;
 	}
 	
-	public int merchantPurchase(Player p, int b){
+	public int playerOption(Player p, int b){
 		switch(b){
 			case 1:
 				if(p.canBuy(PRICE_RATION)){

@@ -55,4 +55,5 @@ public abstract class Card {
 	
 	//
 	public void cardDiceEffect( Player p, int d){}
+	public int playerOption( Player p, int d){return 0;}
 }

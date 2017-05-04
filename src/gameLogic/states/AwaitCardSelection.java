@@ -9,15 +9,30 @@ public class AwaitCardSelection extends StateAdapter {
 	}
 	
 	@Override
-	public  RogueState setCard(int card){
+	public RogueState playerOption(int option, int card){
+		getGameData().mechantTransaction(card, option);
+		return new AwaitTrading(getGameData());
+	}
+	
+	
+	@Override
+	public  RogueState setCard(int card, int option){
 		
-		if(getGameData().cardIsMerchant(getGameData().getCard(card)))
-			return new AwaitTrading(getGameData());
-		else if(getGameData().cardIsEvent(getGameData().getCard(card))||
-				getGameData().cardIsTreasure(getGameData().getCard(card)))
+		if(getGameData().cardIsMerchant(getGameData().getCard(card))){
+			return playerOption(option, card);
+		}
+		else if(getGameData().cardIsEvent(getGameData().getCard(card)) ){
+			getGameData().eventType(card);
 			return this;
-		
-		return new AwaitOptionSelection(getGameData()); 
+		}
+				
+		else if(getGameData().cardIsTreasure(getGameData().getCard(card))){
+			getGameData().treasureType(card);
+			return this;
+		}
+			
+
+		return new AwaitOptionSelection(getGameData(), card); 
 	}
 
 }

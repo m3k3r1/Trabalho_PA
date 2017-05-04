@@ -11,9 +11,9 @@ public class Boss extends Card implements Constants{
 	}
 	
 	private void initializeStats(){
+		setHp(5*level);
 		
-		setHp((5*level) + 1);
-		
+		//TODO 
 		switch(level){
 			case 1 : setDamage(BOSS_DAMAGE_1);
 					 break;

@@ -39,6 +39,8 @@ public class GameData implements Constants {
 	
 	//
 	public void initializeCardStack(){
+		//TODO : BOSS NEEDS TO BE SET APART
+		
 		cardStack.add(new Boss(level));
 		cardStack.add(new Event(level));
 		cardStack.add(new Merchant(level));
@@ -73,7 +75,7 @@ public class GameData implements Constants {
 		}
 	}
 	
-	private int throwDice(){
+	public int throwDice(){
 		return (int)(Math. random() * 6 + 1);
 	}
 
@@ -93,6 +95,22 @@ public class GameData implements Constants {
 		return c.isTreasure();
 	}
 	
+	public void eventType(int card){
+		cardStack.get(card).cardDiceEffect(user, throwDice());
+	}
+	
+	public void treasureType(int card){
+		cardStack.get(card).cardDiceEffect(user, throwDice());
+	}
+	
+	public void mechantTransaction(int card, int option){
+		cardStack.get(card).playerOption(user, option);
+	}
+	
+	public void restingChoice(int card, int option){
+		cardStack.get(card).playerOption(user ,option);
+	}
+	
 	public void generateDiceValues(){
 		for(int i = 0; i < 3; i++)
 			diceStack.add(throwDice());
@@ -101,4 +119,5 @@ public class GameData implements Constants {
 	public void rerollDice(int dice){
 		diceStack.set(dice, throwDice());
 	}
+
 }

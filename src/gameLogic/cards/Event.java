@@ -13,7 +13,8 @@ public class Event extends Card{
 		return true;
 	}
 	
-	public void eventType(Player p, int dice){
+	@Override
+	public void cardDiceEffect(Player p, int dice){
 		switch(dice)  {
 			case 1: p.addFood(1); break;
 			case 2: p.addHp(2); break;
