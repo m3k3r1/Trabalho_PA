@@ -82,6 +82,69 @@ public class TextUi implements Constants {
 
 	}
 	
+	// METHODS TO HANDLE GAME SAVING AND LOADING
+	// SAVE GAME
+	// OPEN BYTE FILE 
+	public static ObjectOutputStream openFile2ObjectWrite(String name) throws IOException{
+		try {
+			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(name));
+			
+			return out;
+		} catch(IOException e) {
+			System.out.println("Error opening file " + name);
+			throw e;
+		}
+	}
+	
+	// WRITE TO BYTE FILE AND CLOSE
+	public void writeGame2File (String name, Player p) throws IOException {
+		if(game != null) {
+			ObjectOutputStream out = null;
+			try {
+				out = openFile2ObjectWrite(name);
+				out.writeObject(game);
+			} catch (IOException e) {
+				System.out.println("Error writing to file" + name);
+				throw e;
+			} finally {
+				if( out != null) out.close();
+			}
+		}
+	}
+	
+	// LOAD GAME
+	// OPEN BYTE FILE
+	public ObjectInputStream openFile2ObjectRead (String name) throws IOException{
+		try {
+			ObjectInputStream in = new ObjectInputStream(new FileInputStream(name));
+			
+			return in;
+		} catch(IOException e) {
+			System.out.println("Error opening file " + name);
+			throw e;
+		}
+	}
+	
+	// LOAD GAME OBJECTS FROM BYTE FILE 
+	public void readGameFile2Game (String name) throws Exception {
+		ObjectInputStream in = null;
+		Game g = null;
+		try {
+			in = openFile2ObjectRead(name);
+			
+			g = (Game) in.readObject();
+		} catch (EOFException e){
+			System.out.println("End of file " + name);
+		} catch (ClassNotFoundException e) {
+			System.out.println("Error reconstruting object");
+			throw e;
+		} finally {
+			if(in != null){ 
+				in.close();
+				game = g;
+			}
+		}
+	}
 	
 	
 	
