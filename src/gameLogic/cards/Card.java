@@ -57,6 +57,9 @@ public abstract class Card {
 	public boolean isResting(){
 		return false;
 	}
+	public boolean isMonster(){
+		return false;
+	}
 	
 	//
 	public void cardDiceEffect( Player p, int d){}

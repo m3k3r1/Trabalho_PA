@@ -1,25 +1,19 @@
 package gameLogic.states;
 
 import gameLogic.GameData;
+import gameLogic.states.combatStates.AwaitDiceReroll;
 
 public class AwaitCardSelection extends StateAdapter {
 
 	public AwaitCardSelection(GameData d) {
 		super(d);
 	}
-	
+		
 	@Override
-	public RogueState playerOption(int option, int card){
-		getGameData().merchantTransaction(card, option);
-		return new AwaitTrading(getGameData());
-	}
-	
-	
-	@Override
-	public  RogueState setCard(int card, int option){
+	public  RogueState setCard(int card){
 		
 		if(getGameData().cardIsMerchant(getGameData().getCard(card))){
-			return playerOption(option, card);
+			return new AwaitTrading(getGameData(), card);
 		}
 		else if(getGameData().cardIsEvent(getGameData().getCard(card)) ){
 			getGameData().eventType(card);
@@ -30,8 +24,10 @@ public class AwaitCardSelection extends StateAdapter {
 			getGameData().treasureType(card);
 			return this;
 		}
-			
-
+		else if(getGameData().cardIsMonster(getGameData().getCard(card))){
+			return new AwaitDiceReroll(getGameData());
+		}
+		
 		return new AwaitOptionSelection(getGameData(), card); 
 	}
 

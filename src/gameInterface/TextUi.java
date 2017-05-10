@@ -1,14 +1,12 @@
 package gameInterface;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
 import gameLogic.Constants;
 import gameLogic.Game;
-import gameLogic.cards.*;
 import gameLogic.states.*;
+import gameLogic.states.combatStates.*;
 
 
 public class TextUi implements Constants {
@@ -34,12 +32,13 @@ public class TextUi implements Constants {
 				optionSelectionUi();
 			else if(state instanceof AwaitTrading)
 				tradingUi();
+			else if(state instanceof AwaitDiceReroll)
+				combatUi();
 		}
 	}
 	
 	public void beginningUi(){
 		Scanner sc = new Scanner(System.in);
-		
 		System.out.print("Dificuldade: ");
 		game.setDificulty(sc.nextInt());
 		System.out.print("Area: ");
@@ -54,29 +53,34 @@ public class TextUi implements Constants {
 		
 		System.out.println("Player -> H : " +  game.getHp() + "| A : " + game.getArmor()
 		+ "| F : " + game.getFood() + "| G : " + game.getGold());
+			
+		for(int i = 0; i < 6; i++)
+			System.out.println("Card " + i + " : " + game.showCard(i));
 		
-		
-		if((card & 1) == 0){
-			System.out.println("Card > " + game.showCard(card));
-		}
-		else{
-			System.out.println("Card > " + game.showCard(card));
-			System.out.println("Card > " + game.showCard(card + 1));
-		}
 		
 		System.out.print("Turn Card > ");
 		card = sc.nextInt();
 		game.chooseCard(card);
-
-		
+	
 	}
 	public void optionSelectionUi(){
-		
+		System.out.println("[OPTION SELECTION]");
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Opção > ");
+		game.chooseOption(sc.nextInt());
+
 	}
 	public void tradingUi(){
-		
+		System.out.println("[MERCHANT SELECTION]");
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Opção > ");
+		game.chooseOption(sc.nextInt());
 	}
 	
+	public void combatUi(){
+		game.rerollDice();
+
+	}
 	
 	
 	
@@ -92,16 +96,6 @@ public class TextUi implements Constants {
 	
 	
 	/*
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	// GAME BEGINS HERE
 	public void startGameInterface(){
 		Scanner sc = new Scanner(System.in);

@@ -6,7 +6,7 @@ public class Event extends Card{
 	
 	public Event(int l){
 		super(l);
-		name = "Boss";
+		name = "Event";
 	}
 	
 	@Override

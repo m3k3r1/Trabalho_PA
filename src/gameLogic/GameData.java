@@ -55,7 +55,8 @@ public class GameData implements Constants {
 	public void initializeCardStack(){
 		//TODO : BOSS NEEDS TO BE SET APART
 		
-		cardStack.add(new Boss(level));
+		//cardStack.add(new Boss(level));
+		
 		cardStack.add(new Event(level));
 		cardStack.add(new Merchant(level));
 		cardStack.add(new Monster(level));
@@ -107,6 +108,10 @@ public class GameData implements Constants {
 	}
 	public boolean cardIsTreasure(Card c){
 		return c.isTreasure();
+	}
+	
+	public boolean cardIsMonster(Card c){
+		return c.isMonster();
 	}
 	
 	public void eventType(int card){

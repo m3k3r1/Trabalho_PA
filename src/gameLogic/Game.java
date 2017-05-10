@@ -39,15 +39,14 @@ public class Game implements Constants {
 	public String showCard(int c){
 		return data.showCard(c);
 	}
-
+	
+	
 	
 	// SETS
 	private void setState(RogueState s){
 		this.state = s; 
 	}
 
-	
-	
 	
 	//Methods to be used for UI's
 	public void startGame(){
@@ -62,5 +61,12 @@ public class Game implements Constants {
 	public void chooseCard(int pos){
 		setState(getState().setCard(pos));
 	}
+	public void chooseOption(int option){
+		setState(getState().playerOption(option));
+	}
+	public void rerollDice(){
+		setState(getState().rerollDice(data.throwDice()));
+	}
+	
 	
 }

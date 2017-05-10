@@ -11,6 +11,11 @@ public class Monster extends Card implements Constants{
 		initializeStats();
 	}
 	
+	@Override
+	public boolean isMonster(){
+		return true;
+	}
+	
 	private void initializeStats(){
 		//This is not right !!!!!!!!
 		setHp((5*level) + 1);

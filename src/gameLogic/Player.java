@@ -53,6 +53,10 @@ public class Player {
 				return false;
 		}
 		
+		public void buy(int cost){
+			gold -= cost;
+		}
+		
 		public int getSpells() {
 			int num = 0;
 			for(int i = 0; i < 2; i++)
