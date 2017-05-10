@@ -39,7 +39,13 @@ public class Game implements Constants {
 	public String showCard(int c){
 		return data.showCard(c);
 	}
+	public int getDiceSize(){
+		return data.getDiceSize();
+	}
 	
+	public int getDiceValue(int p){
+		return data.getDiceValue(p);
+	}
 	
 	
 	// SETS
@@ -64,8 +70,14 @@ public class Game implements Constants {
 	public void chooseOption(int option){
 		setState(getState().playerOption(option));
 	}
-	public void rerollDice(){
-		setState(getState().rerollDice(data.throwDice()));
+	public void rerollDiceOption(int option){
+		setState(getState().rerollDice(option));
+	}
+	public void featOption(boolean option, int dice){
+		setState(getState().featOption(option, dice));
+	}
+	public void spellOption(boolean option, int spell){
+		setState(getState().spellOption(option, spell));
 	}
 	
 	

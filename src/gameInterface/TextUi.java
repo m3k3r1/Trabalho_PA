@@ -33,8 +33,12 @@ public class TextUi implements Constants {
 			else if(state instanceof AwaitTrading)
 				tradingUi();
 			else if(state instanceof AwaitDiceReroll)
-				combatUi();
-		}
+				diceRerollOptionUi();
+			else if (state instanceof AwaitFeatDecision)
+				featOptionUi();
+			else if (state instanceof AwaitSpellDecision)
+				spellOptionUi();
+		}		
 	}
 	
 	public void beginningUi(){
@@ -42,8 +46,7 @@ public class TextUi implements Constants {
 		System.out.print("Dificuldade: ");
 		game.setDificulty(sc.nextInt());
 		System.out.print("Area: ");
-		game.setStartingArea(sc.nextInt());
-				
+		game.setStartingArea(sc.nextInt());		
 		game.startGame();
 	}
 	
@@ -68,7 +71,6 @@ public class TextUi implements Constants {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Opção > ");
 		game.chooseOption(sc.nextInt());
-
 	}
 	public void tradingUi(){
 		System.out.println("[MERCHANT SELECTION]");
@@ -77,9 +79,42 @@ public class TextUi implements Constants {
 		game.chooseOption(sc.nextInt());
 	}
 	
-	public void combatUi(){
-		game.rerollDice();
+	public void diceRerollOptionUi(){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("[COMBAT]");
+		System.out.print(" Do you wanna reroll any dice ? \n" );
+		for(int i = 0; i < game.getDiceSize(); i++)
+			System.out.println("Dice " + i + " : " + game.getDiceValue(i));
+		System.out.print("Dice to reroll > ");
+		game.rerollDiceOption(sc.nextInt());
+	}
+	
+	public void featOptionUi(){
+		int dice = -1;
+		int option;
+		boolean o = false;
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.print(" Do you wanna use feat ? (yes/no) " );
+		option = sc.nextInt();
+		
+		if(option == 1){
+			for(int i = 0; i < game.getDiceSize(); i++)
+				System.out.println("Dice " + i + " : " + game.getDiceValue(i));
+			System.out.print("Dice to reroll > ");
+			dice = sc.nextInt();
+			o = true;
+		}
 
+		game.featOption(o, dice);
+	}
+	
+	public void spellOptionUi(){
+		Scanner sc = new Scanner(System.in);
+		String option;
+		
+		System.out.print(" Do you wanna use spell ? (yes/no) " );
+		option = sc.nextLine();
 	}
 	
 	

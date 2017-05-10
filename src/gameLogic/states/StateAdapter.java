@@ -33,7 +33,10 @@ public class StateAdapter implements RogueState , gameLogic.Constants{
 	public RogueState skip() {return this;}
 	@Override
 	public RogueState rerollDice(int dice) {return this;}
-
+	@Override
+	public RogueState featOption(boolean option, int dice) {return this;}
+	@Override
+	public RogueState spellOption(boolean option, int spell) {return this;}
 
 }
  

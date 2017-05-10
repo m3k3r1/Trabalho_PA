@@ -23,6 +23,16 @@ public class GameData implements Constants {
 		
 		initializeCardStack();
 	}
+	public void takeHp(int h){
+		user.addHp(h);
+	}
+	public int getDiceSize(){
+		return diceStack.size();
+	}
+	
+	public int getDiceValue(int p){
+		return diceStack.get(p);
+	}
 	
 	public int getLevel(){
 		return level;

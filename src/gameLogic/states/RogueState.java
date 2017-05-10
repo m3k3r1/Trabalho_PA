@@ -11,6 +11,8 @@ public interface RogueState {
 	RogueState skip();
 	RogueState startGame();
 	RogueState quit();
+	RogueState featOption(boolean option, int dice);
+	RogueState spellOption(boolean option, int spell);
 	
 	// COMBAT METHODS
 	RogueState rerollDice(int dice);
