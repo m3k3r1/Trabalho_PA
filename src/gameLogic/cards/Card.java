@@ -1,23 +1,25 @@
 package gameLogic.cards;
-import gameLogic.Player;
 
-public abstract class Card {
+import gameLogic.Player;
+import java.io.Serializable;
+
+public abstract class Card implements Serializable{
 	protected int hp;
 	protected int dmg;
 	protected int reward;
 	protected int level;
 	protected String name;
-	
+
 	public Card(){
 		hp = 0;
 		dmg = 0;
 		reward = 0;
 	}
-	
+
 	public Card(int l){
 		level = l;
 	}
-	
+
 	//Getter's
 	public int getHp(){
 		return hp;
@@ -28,7 +30,7 @@ public abstract class Card {
 	public int getReward(){
 		return reward;
 	}
-	
+
 	//Setter's
 	protected void setHp(int h){
 		hp = h;
@@ -39,7 +41,7 @@ public abstract class Card {
 	protected void setReward(int r){
 		reward = r;
 	}
-	
+
 	//
 	@Override
 	public String toString(){
@@ -60,7 +62,7 @@ public abstract class Card {
 	public boolean isMonster(){
 		return false;
 	}
-	
+
 	//
 	public void cardDiceEffect( Player p, int d){}
 	public int playerOption( Player p, int d){return 0;}

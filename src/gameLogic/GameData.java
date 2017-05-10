@@ -2,25 +2,26 @@ package gameLogic;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.io.Serializable;
 import gameLogic.cards.*;
 
-public class GameData implements Constants {
-	
+public class GameData implements Constants, Serializable {
+
 	private int level;
 	private int area;
-	
+
 	private Player user;
 	private ArrayList<Card> cardStack;
 	private ArrayList<Integer> diceStack;
-	
+
 	public GameData(Player p){
 		user = p;
 		level = 1;
 		area = 1;
-	
+
 		diceStack = new ArrayList<Integer>();
 		cardStack = new ArrayList<Card>();
-		
+
 		initializeCardStack();
 	}
 	public void takeHp(int h){
@@ -29,11 +30,11 @@ public class GameData implements Constants {
 	public int getDiceSize(){
 		return diceStack.size();
 	}
-	
+
 	public int getDiceValue(int p){
 		return diceStack.get(p);
 	}
-	
+
 	public int getLevel(){
 		return level;
 	}
@@ -64,17 +65,17 @@ public class GameData implements Constants {
 	//
 	public void initializeCardStack(){
 		//TODO : BOSS NEEDS TO BE SET APART
-		
+
 		//cardStack.add(new Boss(level));
-		
+
 		cardStack.add(new Event(level));
 		cardStack.add(new Merchant(level));
 		cardStack.add(new Monster(level));
 		cardStack.add(new Resting(level));
 		cardStack.add(new Trap(level));
 		cardStack.add(new Treasure(level));
-	
-		Collections.shuffle(cardStack);	
+
+		Collections.shuffle(cardStack);
 	}
 
 	//
@@ -99,12 +100,12 @@ public class GameData implements Constants {
 		         	 break;
 		}
 	}
-	
+
 	public int throwDice(){
 		return (int)(Math. random() * 6 + 1);
 	}
 
-	public final Card getCard(int pos){ 
+	public final Card getCard(int pos){
 		if(pos < 6){
 			return cardStack.get(pos);
 		}
@@ -119,32 +120,32 @@ public class GameData implements Constants {
 	public boolean cardIsTreasure(Card c){
 		return c.isTreasure();
 	}
-	
+
 	public boolean cardIsMonster(Card c){
 		return c.isMonster();
 	}
-	
+
 	public void eventType(int card){
 		cardStack.get(card).cardDiceEffect(user, throwDice());
 	}
-	
+
 	public void treasureType(int card){
 		cardStack.get(card).cardDiceEffect(user, throwDice());
 	}
-	
+
 	public void merchantTransaction(int card, int option){
 		cardStack.get(card).playerOption(user, option);
 	}
-	
+
 	public void restingChoice(int card, int option){
 		cardStack.get(card).playerOption(user ,option);
 	}
-	
+
 	public void generateDiceValues(){
 		for(int i = 0; i < 3; i++)
 			diceStack.add(throwDice());
 	}
-	
+
 	public void rerollDice(int dice){
 		diceStack.set(dice, throwDice());
 	}
