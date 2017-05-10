@@ -6,6 +6,7 @@ public abstract class Card {
 	protected int dmg;
 	protected int reward;
 	protected int level;
+	protected String name;
 	
 	public Card(){
 		hp = 0;
@@ -40,6 +41,10 @@ public abstract class Card {
 	}
 	
 	//
+	@Override
+	public String toString(){
+		return name;
+	}
 	public boolean isMerchant(){
 		return false;
 	}

@@ -7,5 +7,7 @@ public class AwaitTrading extends StateAdapter {
 	public AwaitTrading(GameData d) {
 		super(d);
 	}
+	
+	
 
 }

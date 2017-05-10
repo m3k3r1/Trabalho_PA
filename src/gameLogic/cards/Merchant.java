@@ -7,6 +7,7 @@ public class Merchant extends Card implements Constants {
 	
 	public Merchant(int l){
 		super(l);
+		name = "Merchant";
 	}
 	
 	@Override

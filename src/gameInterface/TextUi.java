@@ -5,8 +5,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-import gameLogic.Game;
 import gameLogic.Constants;
+import gameLogic.Game;
+import gameLogic.cards.*;
+import gameLogic.states.*;
+
 
 public class TextUi implements Constants {
 	
@@ -16,20 +19,106 @@ public class TextUi implements Constants {
 		game = null;
 	}
 	
-	public void run(Game g){
+	public void run(Game g) throws IOException{
+		
 		game = g;
 		
-		menu();
+		while(true){
+			RogueState state = game.getState();
+			
+			if(state instanceof AwaitBeginning )
+				beginningUi();
+			else if(state instanceof AwaitCardSelection)
+				cardSelectionUi();
+			else if(state instanceof AwaitOptionSelection)
+				optionSelectionUi();
+			else if(state instanceof AwaitTrading)
+				tradingUi();
+		}
 	}
+	
+	public void beginningUi(){
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.print("Dificuldade: ");
+		game.setDificulty(sc.nextInt());
+		System.out.print("Area: ");
+		game.setStartingArea(sc.nextInt());
+				
+		game.startGame();
+	}
+	
+	public void cardSelectionUi(){
+		Scanner sc = new Scanner(System.in);
+		int card = 0;
+		
+		System.out.println("Player -> H : " +  game.getHp() + "| A : " + game.getArmor()
+		+ "| F : " + game.getFood() + "| G : " + game.getGold());
+		
+		
+		if((card & 1) == 0){
+			System.out.println("Card > " + game.showCard(card));
+		}
+		else{
+			System.out.println("Card > " + game.showCard(card));
+			System.out.println("Card > " + game.showCard(card + 1));
+		}
+		
+		System.out.print("Turn Card > ");
+		card = sc.nextInt();
+		game.chooseCard(card);
+
+		
+	}
+	public void optionSelectionUi(){
+		
+	}
+	public void tradingUi(){
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// GAME BEGINS HERE
 	public void startGameInterface(){
+		Scanner sc = new Scanner(System.in);
 		int d = difficultyMenu();
 		
 		game.setDificulty(d);
+		game.setStartingArea(1);
 		
-		showCardStack();
-		getCard();
+		do{
+			int card = 0;
+			
+			showPlayerStats();
+			System.out.print("\nCarta > " + game.showCard(card) );
+			card = sc.nextInt();
+			game.chooseCard(card);
+		}while(true);
+
 		
 	}
 	
@@ -41,12 +130,11 @@ public class TextUi implements Constants {
 
 	}
 	
-	public void getCard() {
-		for(int i = 0; i < 5; i++)
-			game.chooseCard(i);
+	public void showPlayerStats(){
+		System.out.print("Player -> H : " +  game.getHp() + "| A : " + game.getArmor()
+		+ "| F : " + game.getFood() + "| G : " + game.getGold());
 	}
 	
-
 	private void showCardStack(){
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
@@ -166,4 +254,4 @@ public class TextUi implements Constants {
 	    return menu_op;
 	}
 
-}
+*/}

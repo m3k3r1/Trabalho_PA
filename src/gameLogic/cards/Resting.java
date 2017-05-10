@@ -5,6 +5,7 @@ import gameLogic.Player;
 public class Resting extends Card{
 	public Resting(int l){
 		super(l);
+		name = "Resting";
 	}
 	
 	@Override

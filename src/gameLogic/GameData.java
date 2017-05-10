@@ -36,7 +36,21 @@ public class GameData implements Constants {
 	public void setArea(int a){
 		area = a;
 	}
-	
+	public int getHp(){
+		return user.getHp();
+	}
+	public int getArmor(){
+		return user.getArmor();
+	}
+	public int getGold(){
+		return user.getGold();
+	}
+	public int getFood(){
+		return user.getFood();
+	}
+	public String showCard(int c){
+		return cardStack.get(c).toString();
+	}
 	//
 	public void initializeCardStack(){
 		//TODO : BOSS NEEDS TO BE SET APART
@@ -103,7 +117,7 @@ public class GameData implements Constants {
 		cardStack.get(card).cardDiceEffect(user, throwDice());
 	}
 	
-	public void mechantTransaction(int card, int option){
+	public void merchantTransaction(int card, int option){
 		cardStack.get(card).playerOption(user, option);
 	}
 	

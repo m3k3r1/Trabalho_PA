@@ -6,6 +6,7 @@ public class Boss extends Card implements Constants{
 	
 	public Boss(int l){
 		super(l);
+		name = "Boss";
 		
 		initializeStats();
 	}

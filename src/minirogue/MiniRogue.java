@@ -1,5 +1,7 @@
 package minirogue;
 
+import java.io.IOException;
+
 //import gameInterface.GraphicalUi;
 import gameInterface.TextUi;
 import gameLogic.Game;
@@ -15,7 +17,10 @@ public class MiniRogue {
 		//GraphicalUi ui = new GraphicalUi();
 		TextUi ui = new TextUi();
 		
-		
-		ui.run(newGame);
+		try{
+			ui.run(newGame);
+		}catch(IOException e){
+			System.out.println (e.toString());
+		}
 	}
 }

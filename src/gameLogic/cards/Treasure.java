@@ -5,6 +5,7 @@ import gameLogic.Player;
 public class Treasure extends Card{
 	public Treasure(int l){
 		super(l);
+		name = "Treasure";
 	}
 	
 	@Override

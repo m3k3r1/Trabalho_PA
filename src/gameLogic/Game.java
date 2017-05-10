@@ -24,6 +24,22 @@ public class Game implements Constants {
 	public int getLevel(){ 
 		return data.getLevel();
 	}
+	public int getHp(){
+		return data.getHp();
+	}
+	public int getArmor(){
+		return data.getArmor();
+	}
+	public int getGold(){
+		return data.getGold();
+	}
+	public int getFood(){
+		return data.getFood();
+	}
+	public String showCard(int c){
+		return data.showCard(c);
+	}
+
 	
 	// SETS
 	private void setState(RogueState s){
@@ -34,6 +50,9 @@ public class Game implements Constants {
 	
 	
 	//Methods to be used for UI's
+	public void startGame(){
+		setState(getState().startGame());
+	}
 	public void setDificulty(int d){
 		setState(getState().setDificulty(d));
 	}
@@ -43,8 +62,5 @@ public class Game implements Constants {
 	public void chooseCard(int pos){
 		setState(getState().setCard(pos));
 	}
-	public void setCombatState(boolean c){
-	}
-	
 	
 }

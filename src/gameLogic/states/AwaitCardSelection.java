@@ -10,7 +10,7 @@ public class AwaitCardSelection extends StateAdapter {
 	
 	@Override
 	public RogueState playerOption(int option, int card){
-		getGameData().mechantTransaction(card, option);
+		getGameData().merchantTransaction(card, option);
 		return new AwaitTrading(getGameData());
 	}
 	

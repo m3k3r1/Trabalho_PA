@@ -6,6 +6,7 @@ public class Monster extends Card implements Constants{
 	
 	public Monster(int l){
 		super(l);
+		name = "Monster";
 		
 		initializeStats();
 	}
