@@ -1,4 +1,5 @@
 package gameLogic.cards;
+import gameLogic.GameData;
 import gameLogic.Player;
 
 public abstract class Card {
@@ -60,12 +61,17 @@ public abstract class Card {
 	public boolean isMonster(){
 		return false;
 	}
+	public boolean isBoss(){
+		return false;
+	}
 	
 	public void attackMonster(int damage){
 		
 	}
 	
 	//
-	public void cardDiceEffect( Player p, int d){}
-	public int playerOption( Player p, int d){return 0;}
+	public int cardDiceEffect(Player p, int d){return 0;}
+	public int playerOption(Player p, int d){return 0;}
+
+	public void trapEffect(GameData g, int d) {}
 }

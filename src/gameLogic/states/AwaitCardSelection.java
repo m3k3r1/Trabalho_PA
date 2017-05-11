@@ -25,12 +25,11 @@ public class AwaitCardSelection extends StateAdapter {
 			return this;
 		}
 		else if(getGameData().cardIsMonster(getGameData().getCard(card))){
-			
-			if( !getGameData().hasHp() )
+			if(!getGameData().hasHp())
 				return new AwaitBeginning(getGameData());
 			
 			return new AwaitDiceReroll(getGameData(), card);
-		}
+		} 
 		
 		return new AwaitOptionSelection(getGameData(), card); 
 	}

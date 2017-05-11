@@ -11,6 +11,11 @@ public class Boss extends Card implements Constants{
 		initializeStats();
 	}
 	
+	@Override
+	public boolean isBoss(){
+		return true;
+	}
+	
 	private void initializeStats(){
 		setHp(5*level);
 		

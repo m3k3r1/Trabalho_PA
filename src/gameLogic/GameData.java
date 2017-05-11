@@ -23,6 +23,11 @@ public class GameData implements Constants {
 		
 		initializeCardStack();
 	}
+	
+	public void removeSpell(int s){
+		user.removeSpell(s);
+	}
+	 
 	public int getSpellValue(int p){
 		return user.getSpellValue(p);
 	}
@@ -50,6 +55,7 @@ public class GameData implements Constants {
 	public void takeHp(int h){
 		user.addHp(h);
 	}
+	
 	public int getDiceSize(){
 		return diceStack.size();
 	}
@@ -70,6 +76,15 @@ public class GameData implements Constants {
 	public void setArea(int a){
 		area = a;
 	}
+	
+	public void setHp(int h){
+		user.setHp(h);
+	}
+	
+	public void addHp(int h){
+		user.addHp(h);
+	}
+	
 	public int getHp(){
 		return user.getHp();
 	}
@@ -82,15 +97,16 @@ public class GameData implements Constants {
 	public int getFood(){
 		return user.getFood();
 	}
+
+	public Player getPlayer(){
+		return user;
+	}
+	
 	public String showCard(int c){
 		return cardStack.get(c).toString();
 	}
-	//
+	
 	public void initializeCardStack(){
-		//TODO : BOSS NEEDS TO BE SET APART
-		
-		//cardStack.add(new Boss(level));
-		
 		cardStack.add(new Event(level));
 		cardStack.add(new Merchant(level));
 		cardStack.add(new Monster(level));
@@ -98,10 +114,19 @@ public class GameData implements Constants {
 		cardStack.add(new Trap(level));
 		cardStack.add(new Treasure(level));
 	
-		Collections.shuffle(cardStack);	
+		Collections.shuffle(cardStack);
+		
+		if(checkBossArea())
+			cardStack.add(new Boss(level));
 	}
 
-	//
+	private boolean checkBossArea(){
+		if(area == 2 || area == 4 || area == 7 || area == 10 || area == 14)
+			return true;
+		
+		return false;
+	}
+	
 	public void setDificulty(int d){
 		switch(d){
 			case 1 : user.addArmor(CASUAL_ARMOR);
@@ -148,6 +173,10 @@ public class GameData implements Constants {
 		return c.isMonster();
 	}
 	
+	public boolean cardIsBoss(Card c){
+		return c.isBoss();
+	}
+	
 	public void eventType(int card){
 		cardStack.get(card).cardDiceEffect(user, throwDice());
 	}
@@ -171,6 +200,10 @@ public class GameData implements Constants {
 	
 	public void rerollDice(int dice){
 		diceStack.set(dice, throwDice());
+	}
+	
+	public void nextLevel(){
+		level++;
 	}
 
 }

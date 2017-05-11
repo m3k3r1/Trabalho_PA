@@ -15,14 +15,27 @@ public class Event extends Card{
 	}
 	
 	@Override
-	public void cardDiceEffect(Player p, int dice){
+	public int cardDiceEffect(Player p, int dice){
 		switch(dice)  {
-			case 1: p.addFood(1); break;
-			case 2: p.addHp(2); break;
-			case 3: p.addGold(2); break;
-			case 4: p.addXp(2); break;
-			case 5: p.addArmor(1); break;
-			case 6: // FIGHT MONSTER COMBAT STATE; break;
+			case 1: 
+				p.addFood(1); 
+				return 0;
+			case 2: 
+				p.addHp(2); 
+				return 0;
+			case 3: 
+				p.addGold(2);
+				return 0;
+			case 4: 
+				p.addXP(2);
+				return 0;
+			case 5: 
+				p.addArmor(1); 
+				return 0;;
+			case 6: 
+				return 1;
 		}
+		
+		return 0;
 	}
 }

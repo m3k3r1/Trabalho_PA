@@ -37,28 +37,18 @@ public class Player {
 		public int getArmor() { return armor; }
 		public int getFood() { return food; }
 		public int getGold() { return gold; }
+		public int getXP() { return xp; }
 		
 		public void addHp(int h) { hp += h; }
 		public void addArmor(int a) { armor += a; }
 		public void addFood(int f) { food += f; }
-		public void addGold(int g) { gold += g; } 
+		public void addGold(int g) { gold += g; }
+		public void addXP(int x) { xp += x; }
 		
-		public int getXp() { return xp; }
-		public void addXp(int x) { xp += x; }
+		public void setHp(int h){ hp = h; }
 		
 		public int getSpellValue(int p){
 			return spells[p];
-		}
-		
-		public boolean canBuy(int c) {
-			if(gold >= c)
-				return true;
-			else
-				return false;
-		}
-		
-		public void buy(int cost){
-			gold -= cost;
 		}
 		
 		public int getSpells() {

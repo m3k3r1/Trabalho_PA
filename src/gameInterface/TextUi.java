@@ -3,6 +3,7 @@ package gameInterface;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
@@ -48,12 +49,19 @@ public class TextUi implements Constants {
 	}
 	
 	public void beginningUi(){
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Dificuldade: ");
-		game.setDificulty(sc.nextInt());
-		System.out.print("Area: ");
-		game.setStartingArea(sc.nextInt());		
-		game.startGame();
+		
+		switch(menu()){
+			case 1 : 
+		}
+		
+		
+		
+		//Scanner sc = new Scanner(System.in);
+		//System.out.print("Dificuldade: ");
+		//game.setDificulty(sc.nextInt());
+		//System.out.print("Area: ");
+		//game.setStartingArea(sc.nextInt());		
+		//game.startGame();
 	}
 	
 	public void cardSelectionUi(){
@@ -226,7 +234,81 @@ public class TextUi implements Constants {
 	
 	
 	
+	private int menu(){
+	    int menu_op = 0;
+	    Scanner sc = new Scanner(System.in);
+
+	    do{
+	    	try{
+	    		
+	    		printTxt(LOGO_TXT);
+	    		printTxt(MENU_TXT);
+				
+	    		System.out.print("Opção >> ");
+	    		menu_op = sc.nextInt();
+				
+	    		if(menu_op < 0 || menu_op > 4){
+	    			System.out.print("\n\tOpção Inválida :: Prima ENTER para tentar outra vez");
+	    			sc.nextLine();
+	    		}
+	    	}
+	    	catch(IOException e){
+	    		System.out.println (e.toString());
+	    	}	
+	    }while (menu_op < 0 || menu_op > 4);
+	    	
+
+	   
+	    
+	    sc.close();
+	    
+	    return menu_op;
+	}
 	
+	private void printTxt(String filename) throws IOException {
+		
+		BufferedReader in = new BufferedReader(new FileReader(filename));
+		String line = in.readLine();
+		System.out.print("\n\n\n");
+		
+		while(line != null)
+		{
+		  System.out.println(line);
+		  line = in.readLine();
+		}
+		in.close(); 
+	}
+	
+	int difficultyMenu(){
+		int menu_op = 0;
+		@SuppressWarnings("resource")
+	    Scanner sc = new Scanner(System.in);
+
+	    	do{
+	    		try{
+	    			//clearScreen();
+	    			printTxt(LOGO_TXT);
+	    			printTxt(DIF_MENU_TXT);
+	    			
+	    			System.out.print("Opção >> ");
+	    			menu_op = sc.nextInt();
+				
+	    			if(menu_op < 0 || menu_op > 4){
+	    				System.out.print("\n\tOpção Inválida :: Prima ENTER para tentar outra vez");
+	    				sc.nextLine();
+	    			}
+	    		}
+	    		catch(IOException e){
+	    			System.out.println (e.toString());
+	    			System.out.println("Could not find menu elements");
+	    		}
+	    	}while (menu_op < 0 || menu_op > 5);
+	
+	
+	}
+}
+	
+		
 	/*
 	// GAME BEGINS HERE
 	public void startGameInterface(){
@@ -283,30 +365,7 @@ public class TextUi implements Constants {
 		int card = -1;
 	}
 	
-	int difficultyMenu(){
-		int menu_op = 0;
-		@SuppressWarnings("resource")
-	    Scanner sc = new Scanner(System.in);
 
-	    	do{
-	    		try{
-	    			//clearScreen();
-	    			printTxt(LOGO_TXT);
-	    			printTxt(DIF_MENU_TXT);
-	    			
-	    			System.out.print("Opção >> ");
-	    			menu_op = sc.nextInt();
-				
-	    			if(menu_op < 0 || menu_op > 4){
-	    				System.out.print("\n\tOpção Inválida :: Prima ENTER para tentar outra vez");
-	    				sc.nextLine();
-	    			}
-	    		}
-	    		catch(IOException e){
-	    			System.out.println (e.toString());
-	    			System.out.println("Could not find menu elements");
-	    		}
-	    	}while (menu_op < 0 || menu_op > 5);
 	  
 		
 		return menu_op;
@@ -325,19 +384,7 @@ public class TextUi implements Constants {
 	        System.out.println("Could not find game elements");
 		}
 	}
-	void printTxt(String filename) throws IOException {
-		
-		BufferedReader in = new BufferedReader(new FileReader(filename));
-		String line = in.readLine();
-		System.out.print("\n\n\n");
-		
-		while(line != null)
-		{
-		  System.out.println(line);
-		  line = in.readLine();
-		}
-		in.close(); 
-	}
+
 	int menu(){
 	    int menu_op = 0;
 	    Scanner sc = new Scanner(System.in);
@@ -380,4 +427,4 @@ public class TextUi implements Constants {
 	    return menu_op;
 	}
 
-*/}
+*/

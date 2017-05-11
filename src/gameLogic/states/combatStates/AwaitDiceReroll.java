@@ -1,7 +1,7 @@
 package gameLogic.states.combatStates;
 
-import gameLogic.GameData;
 import gameLogic.states.*;
+import gameLogic.GameData;
 
 public class AwaitDiceReroll extends StateAdapter {
 	private int monsterCard;
@@ -11,11 +11,7 @@ public class AwaitDiceReroll extends StateAdapter {
 		monsterCard = c;
 		getGameData().generateDiceValues();
 	}
-	
-	private void checkHp(){
 		
-	}
-	
 	@Override
 	public RogueState skip(){
 		return new AwaitFeatDecision(getGameData(), monsterCard);
@@ -23,6 +19,10 @@ public class AwaitDiceReroll extends StateAdapter {
 	
 	@Override
 	public RogueState rerollDice(int dice){
+		if(!getGameData().hasHp())
+			return new AwaitBeginning(getGameData()); // TODO NEEDS END GAME STATE
+		
+		
 		getGameData().rerollDice(dice);
 		
 		return new AwaitFeatDecision(getGameData(), monsterCard);
