@@ -4,11 +4,11 @@ import gameLogic.GameData;
 
 public class StateAdapter implements RogueState , gameLogic.Constants{
 	private GameData data;
-
+	
 	public StateAdapter(GameData d){
 		this.data = d;
 	}
-
+	
 	public GameData getGameData(){
 		return data;
 	}
@@ -39,3 +39,4 @@ public class StateAdapter implements RogueState , gameLogic.Constants{
 	public RogueState spellOption(boolean option, int spell) {return this;}
 
 }
+ 

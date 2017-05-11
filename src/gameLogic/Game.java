@@ -48,6 +48,10 @@ public class Game implements Constants {
 	}
 	
 	
+	public int getSpellValue(int p){
+		return data.getSpellValue(p);
+	}
+	
 	// SETS
 	private void setState(RogueState s){
 		this.state = s; 
@@ -79,6 +83,8 @@ public class Game implements Constants {
 	public void spellOption(boolean option, int spell){
 		setState(getState().spellOption(option, spell));
 	}
-	
+	public void skip(){
+		setState(getState().skip());
+	}
 	
 }

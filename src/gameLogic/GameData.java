@@ -2,39 +2,62 @@ package gameLogic;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.io.Serializable;
 import gameLogic.cards.*;
 
-public class GameData implements Constants, Serializable {
-
+public class GameData implements Constants {
+	
 	private int level;
 	private int area;
-
+	
 	private Player user;
 	private ArrayList<Card> cardStack;
 	private ArrayList<Integer> diceStack;
-
+	
 	public GameData(Player p){
 		user = p;
 		level = 1;
 		area = 1;
-
+	
 		diceStack = new ArrayList<Integer>();
 		cardStack = new ArrayList<Card>();
-
+		
 		initializeCardStack();
 	}
+	public int getSpellValue(int p){
+		return user.getSpellValue(p);
+	}
+	
+	public boolean hasHp(int c){
+		if(cardStack.get(c).getHp() != 0)
+			return true;
+		return false;
+	}
+	
+	public void attackMonster(int card, int damage){
+		cardStack.get(card).attackMonster(damage);
+	}
+	
+	public void attackUser(int card){
+		user.addHp(-cardStack.get(card).getDamage());
+	}
+	
+	public boolean hasHp(){
+		if(user.getHp() != 0)
+			return true;
+		return false;
+	}
+	
 	public void takeHp(int h){
 		user.addHp(h);
 	}
 	public int getDiceSize(){
 		return diceStack.size();
 	}
-
+	
 	public int getDiceValue(int p){
 		return diceStack.get(p);
 	}
-
+	
 	public int getLevel(){
 		return level;
 	}
@@ -65,17 +88,17 @@ public class GameData implements Constants, Serializable {
 	//
 	public void initializeCardStack(){
 		//TODO : BOSS NEEDS TO BE SET APART
-
+		
 		//cardStack.add(new Boss(level));
-
+		
 		cardStack.add(new Event(level));
 		cardStack.add(new Merchant(level));
 		cardStack.add(new Monster(level));
 		cardStack.add(new Resting(level));
 		cardStack.add(new Trap(level));
 		cardStack.add(new Treasure(level));
-
-		Collections.shuffle(cardStack);
+	
+		Collections.shuffle(cardStack);	
 	}
 
 	//
@@ -100,12 +123,12 @@ public class GameData implements Constants, Serializable {
 		         	 break;
 		}
 	}
-
+	
 	public int throwDice(){
 		return (int)(Math. random() * 6 + 1);
 	}
 
-	public final Card getCard(int pos){
+	public final Card getCard(int pos){ 
 		if(pos < 6){
 			return cardStack.get(pos);
 		}
@@ -120,32 +143,32 @@ public class GameData implements Constants, Serializable {
 	public boolean cardIsTreasure(Card c){
 		return c.isTreasure();
 	}
-
+	
 	public boolean cardIsMonster(Card c){
 		return c.isMonster();
 	}
-
+	
 	public void eventType(int card){
 		cardStack.get(card).cardDiceEffect(user, throwDice());
 	}
-
+	
 	public void treasureType(int card){
 		cardStack.get(card).cardDiceEffect(user, throwDice());
 	}
-
+	
 	public void merchantTransaction(int card, int option){
 		cardStack.get(card).playerOption(user, option);
 	}
-
+	
 	public void restingChoice(int card, int option){
 		cardStack.get(card).playerOption(user ,option);
 	}
-
+	
 	public void generateDiceValues(){
 		for(int i = 0; i < 3; i++)
 			diceStack.add(throwDice());
 	}
-
+	
 	public void rerollDice(int dice){
 		diceStack.set(dice, throwDice());
 	}

@@ -4,8 +4,20 @@ import gameLogic.GameData;
 import gameLogic.states.*;
 
 public class AwaitFeatDecision extends StateAdapter{
-	public AwaitFeatDecision(GameData d){
+	private int monsterCard;
+	private int userDamage;
+	
+	public AwaitFeatDecision(GameData d, int card){
 		super(d);
+		monsterCard = card;
+	}
+	
+	@Override
+	public RogueState skip(){
+		//calculate userDamage first
+		userDamage = 1;
+		
+		return new AwaitSpellDecision(getGameData(), monsterCard, userDamage);
 	}
 	
 	@Override
@@ -16,6 +28,9 @@ public class AwaitFeatDecision extends StateAdapter{
 				getGameData().rerollDice(dice);
 		}
 		
-		return new AwaitSpellDecision(getGameData());
+		//Calculate dice sum
+		userDamage = dice;
+		
+		return new AwaitSpellDecision(getGameData(), monsterCard, userDamage);
 	}
 }

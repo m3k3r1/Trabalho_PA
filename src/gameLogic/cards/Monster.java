@@ -16,6 +16,11 @@ public class Monster extends Card implements Constants{
 		return true;
 	}
 	
+	@Override
+	public void attackMonster(int damage){
+		hp -= damage;
+	}
+	
 	private void initializeStats(){
 		//This is not right !!!!!!!!
 		setHp((5*level) + 1);
