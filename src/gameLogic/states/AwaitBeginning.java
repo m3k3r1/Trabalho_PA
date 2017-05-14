@@ -24,6 +24,7 @@ public class AwaitBeginning extends StateAdapter  {
 	
 	@Override
 	public RogueState startGame(){
+		getGameData().initializeCardStack();
 		return new AwaitCardSelection(getGameData());
 	}
 }

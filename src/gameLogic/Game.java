@@ -56,6 +56,14 @@ public class Game implements Constants {
 		return data.getXp();
 	}
 	
+	public int getArea(){
+		return data.getArea();
+	}
+	
+	public int getCardStackSize(){
+		return data.getCardStackSize();
+	}
+	
 	// SETS
 	private void setState(RogueState s){
 		this.state = s; 

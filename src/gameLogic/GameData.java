@@ -21,7 +21,6 @@ public class GameData implements Constants {
 		diceStack = new ArrayList<Integer>();
 		cardStack = new ArrayList<Card>();
 		
-		initializeCardStack();
 	}
 	
 	public void dimFood(){
@@ -34,8 +33,6 @@ public class GameData implements Constants {
 				return a.getHp();
 		return 0;
 	}
-	
-	
 	
 	public void nextArea(){
 		area++;
@@ -140,17 +137,23 @@ public class GameData implements Constants {
 	}
 	
 	public void initializeCardStack(){
+		
 		cardStack.add(new Event(level));
 		cardStack.add(new Merchant(level));
 		cardStack.add(new Monster(level));
 		cardStack.add(new Resting(level));
 		cardStack.add(new Trap(level));
 		cardStack.add(new Treasure(level));
+		
 	
 		Collections.shuffle(cardStack);
 		
 		if(checkBossArea())
 			cardStack.add(new Boss(level));
+	}
+	
+	public int getCardStackSize(){
+		return cardStack.size();
 	}
 
 	private boolean checkBossArea(){
@@ -231,14 +234,14 @@ public class GameData implements Constants {
 	}
 	
 	public void generateDiceValues(){
-		int nDices = 1;
+		int nDices = 3;
 		diceStack.clear();
 		
 		if(user.getXp() >= 12)
 			nDices = 2;
 		else if(user.getXp() >= 18)
 			nDices = 3;
-				
+		
 		for(int i = 0; i < nDices; i++)
 			diceStack.add(throwDice());
 	}

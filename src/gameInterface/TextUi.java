@@ -62,10 +62,12 @@ public class TextUi implements Constants {
 		Scanner sc = new Scanner(System.in);
 		int card = 0;
 		
+		System.out.println("Level : " + game.getLevel() +  " |  Area : " +  game.getArea());
 		System.out.println("Player -> H : " +  game.getHp() + "| A : " + game.getArmor()
 		+ "| F : " + game.getFood() + "| G : " + game.getGold() + "| Xp : " + game.getXp());
-			
-		for(int i = 0; i < 6; i++)
+		
+		System.out.println(game.getCardStackSize());
+		for(int i = 0; i < game.getCardStackSize(); i++)
 			System.out.println("Card " + i + " : " + game.showCard(i));
 		
 		
