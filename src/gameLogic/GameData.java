@@ -113,6 +113,10 @@ public class GameData implements Constants {
 		user.addHp(h);
 	}
 	
+	public int getXp(){
+		return user.getXp();
+	}
+	
 	public int getHp(){
 		return user.getHp();
 	}
@@ -125,6 +129,7 @@ public class GameData implements Constants {
 	public int getFood(){
 		return user.getFood();
 	}
+
 
 	public Player getPlayer(){
 		return user;
@@ -221,10 +226,20 @@ public class GameData implements Constants {
 		cardStack.get(card).playerOption(user ,option);
 	}
 	
+	public void addReward(int card){
+		user.addXp(cardStack.get(card).getReward());
+	}
+	
 	public void generateDiceValues(){
+		int nDices = 1;
 		diceStack.clear();
 		
-		for(int i = 0; i < 1; i++)
+		if(user.getXp() >= 12)
+			nDices = 2;
+		else if(user.getXp() >= 18)
+			nDices = 3;
+				
+		for(int i = 0; i < nDices; i++)
 			diceStack.add(throwDice());
 	}
 	

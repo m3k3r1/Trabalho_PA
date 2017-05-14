@@ -48,6 +48,8 @@ public class AwaitSpellDecision extends StateAdapter {
 		
 			bonusDamage = 0;
 			
+			getGameData().addReward(monsterCard);
+			
 			return new AwaitCardSelection(getGameData());
 		}
 		

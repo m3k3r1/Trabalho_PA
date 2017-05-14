@@ -52,6 +52,9 @@ public class Game implements Constants {
 	public int getSpellValue(int p){
 		return data.getSpellValue(p);
 	}
+	public int getXp(){
+		return data.getXp();
+	}
 	
 	// SETS
 	private void setState(RogueState s){

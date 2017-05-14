@@ -63,7 +63,7 @@ public class TextUi implements Constants {
 		int card = 0;
 		
 		System.out.println("Player -> H : " +  game.getHp() + "| A : " + game.getArmor()
-		+ "| F : " + game.getFood() + "| G : " + game.getGold());
+		+ "| F : " + game.getFood() + "| G : " + game.getGold() + "| Xp : " + game.getXp());
 			
 		for(int i = 0; i < 6; i++)
 			System.out.println("Card " + i + " : " + game.showCard(i));
@@ -93,7 +93,7 @@ public class TextUi implements Constants {
 		
 		System.out.println("[COMBAT]  - MONSTER HP : " + game.getMonsterHp());
 		System.out.println("Player -> H : " +  game.getHp() + "| A : " + game.getArmor()
-		+ "| F : " + game.getFood() + "| G : " + game.getGold());
+		+ "| F : " + game.getFood() + "| G : " + game.getGold() + "| Xp : " + game.getXp());
 		
 		for(int i = 0; i < game.getDiceSize(); i++)
 			System.out.println("Dice " + i + " : " + game.getDiceValue(i));
