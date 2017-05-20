@@ -1,6 +1,8 @@
 package gameLogic.states;
 
-public interface RogueState {
+import java.io.Serializable;
+
+public interface RogueState extends Serializable {
 
 	RogueState setDificulty(int d);
 	RogueState setStartingArea(int a);

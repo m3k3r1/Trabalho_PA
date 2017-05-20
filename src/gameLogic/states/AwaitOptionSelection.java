@@ -17,7 +17,19 @@ public class AwaitOptionSelection extends StateAdapter{
 	
 	@Override
 	public RogueState playerOption(int option){
-		getGameData().restingChoice(restingCard, option);
+
+
+		getGameData().getCard(restingCard).playerOption(getGameData().getPlayer(), getGameData().throwDice());
+
+		if(!getGameData().hasHp())
+			return new AwaitBeginning(getGameData());
+
+		if(getGameData().nCardsTurned() == getGameData().getCardStackSize()){
+            getGameData().setArea(getGameData().getArea() + 1);
+            getGameData().clearCardStack();
+            getGameData().initializeCardStack();
+            return this;
+        }
 		return new AwaitCardSelection(getGameData());
 	}
 	

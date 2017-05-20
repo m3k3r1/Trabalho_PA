@@ -8,6 +8,7 @@ public abstract class Card {
 	protected int reward;
 	protected int level;
 	protected String name;
+	protected boolean turned = false;
 	
 	public Card(){
 		hp = 0;
@@ -40,12 +41,17 @@ public abstract class Card {
 	protected void setReward(int r){
 		reward = r;
 	}
-	
+
+	public void turnCard(){
+		turned = true;
+	}
+
 	//
 	@Override
 	public String toString(){
 		return name;
 	}
+
 	public boolean isMerchant(){
 		return false;
 	}
@@ -64,7 +70,10 @@ public abstract class Card {
 	public boolean isBoss(){
 		return false;
 	}
-	
+	public boolean isTrap(){
+		return false;
+	}
+	public boolean isTurned(){ return turned; }
 	public void attackMonster(int damage){
 		
 	}

@@ -1,11 +1,10 @@
-	                 
-			                   DIFFICULTY LEVEL
+
+			                   RESTING OPTION
 
                          ╔══════════════════════════╗
                          ║                          ║
-                         ║    1 - Casual            ║
-                         ║    2 - Normal            ║
-                         ║    3 - Hard              ║
-                         ║    4 - Impossible        ║
+                         ║    1 - Weapon +1 XP      ║
+                         ║    2 - Normal +1 FOOD    ║
+                         ║    3 - Heal   +2 HP      ║
                          ║                          ║
 	                     ╚══════════════════════════╝

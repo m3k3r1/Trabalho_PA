@@ -43,7 +43,7 @@ public class AwaitSpellDecision extends StateAdapter {
 		//IF MONSTER HASN'T HP
 		else{
 			
-			if(getGameData().cardIsBoss(getGameData().getCard(monsterCard)))
+			if(getGameData().getCard(monsterCard).isBoss())
 				getGameData().nextLevel();
 		
 			bonusDamage = 0;
@@ -58,7 +58,8 @@ public class AwaitSpellDecision extends StateAdapter {
 	
 	@Override
 	public RogueState spellOption(boolean option, int spell){
-		
+
+
 		
 		if(option){
 			switch(spell){
@@ -78,7 +79,7 @@ public class AwaitSpellDecision extends StateAdapter {
 						getGameData().addHp(8);
 			}
 			
-			getGameData().removeSpell(spell);
+			getGameData().removeSpell();
 		}
 		
 		if(getGameData().hasHp())
@@ -94,6 +95,12 @@ public class AwaitSpellDecision extends StateAdapter {
 			freezeSpell= false;
 			return new AwaitDiceReroll(getGameData() , monsterCard);
 		}
+        if(getGameData().nCardsTurned() == getGameData().getCardStackSize()){
+            getGameData().setArea(getGameData().getArea() + 1);
+            getGameData().clearCardStack();
+            getGameData().initializeCardStack();
+            return this;
+        }
 		return new AwaitCardSelection(getGameData());
 	}
 

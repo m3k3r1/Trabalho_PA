@@ -11,6 +11,8 @@ public class AwaitDiceReroll extends StateAdapter {
 		monsterCard = c;
 		getGameData().generateDiceValues();
 	}
+	
+	
 		
 	@Override
 	public RogueState skip(){

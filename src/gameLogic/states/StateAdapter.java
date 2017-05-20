@@ -2,7 +2,7 @@ package gameLogic.states;
 
 import gameLogic.GameData;
 
-public class StateAdapter implements RogueState , gameLogic.Constants{
+public class StateAdapter implements RogueState , gameLogic.Constants {
 	private GameData data;
 	
 	public StateAdapter(GameData d){

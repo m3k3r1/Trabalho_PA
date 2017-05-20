@@ -10,20 +10,8 @@ public class Game implements Constants {
 		data = new GameData(p);
 		setState(new AwaitBeginning(data));
 	}
-	
-	// GETS
-	public GameData getGameData(){
-		return data;
-	}
-	public void setGameData(GameData d){
-		this.data = d;
-	}
-	public RogueState getState(){
-		return state;
-	}
-	public int getLevel(){ 
-		return data.getLevel();
-	}
+
+	//Player Data
 	public int getHp(){
 		return data.getHp();
 	}
@@ -36,42 +24,47 @@ public class Game implements Constants {
 	public int getFood(){
 		return data.getFood();
 	}
-	public String showCard(int c){
-		return data.showCard(c);
+
+	//Game Data
+    public int getLevel(){
+        return data.getLevel();
+    }
+    public int getXp(){
+        return data.getXp();
+    }
+    public int getArea(){
+        return data.getArea();
+    }
+    public int getDiceSize(){
+        return data.getDiceSize();
+    }
+    public int getDiceValue(int p){
+        return data.getDiceValue(p);
+    }
+    public int getSpellValue(int p){
+        return data.getSpellValue(p);
+    }
+    public String showCard(int c){
+		//if(data.getCard(c).isTurned())
+			return data.showCard(c);
+		//1return "NOT TURNED";
 	}
-	public int getDiceSize(){
-		return data.getDiceSize();
-	}
-	
-	public int getDiceValue(int p){
-		return data.getDiceValue(p);
-	}
+    public int getCardStackSize(){
+        return data.getCardStackSize();
+    }
 	public int getMonsterHp(){
 		return data.getMonsterHp();
 	}
-	public int getSpellValue(int p){
-		return data.getSpellValue(p);
-	}
-	public int getXp(){
-		return data.getXp();
-	}
-	
-	public int getArea(){
-		return data.getArea();
-	}
-	
-	public int getCardStackSize(){
-		return data.getCardStackSize();
-	}
-	
-	// SETS
-	private void setState(RogueState s){
-		this.state = s; 
-	}
 
-	
-	//Methods to be used for UI's
-	public void startGame(){
+    //States handling
+    public RogueState getState(){
+        return state;
+    }
+    private void setState(RogueState s){
+        this.state = s;
+    }
+
+    public void startGame(){
 		setState(getState().startGame());
 	}
 	public void setDificulty(int d){
@@ -81,6 +74,7 @@ public class Game implements Constants {
 		setState(getState().setStartingArea(a));
 	}
 	public void chooseCard(int pos){
+	    data.getCard(pos).turnCard();
 		setState(getState().setCard(pos));
 	}
 	public void chooseOption(int option){
@@ -98,5 +92,4 @@ public class Game implements Constants {
 	public void skip(){
 		setState(getState().skip());
 	}
-	
 }

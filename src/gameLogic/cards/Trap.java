@@ -9,7 +9,12 @@ public class Trap extends Card{
 		
 		name= "Trap";
 	}
-	
+
+	@Override
+	public boolean isTrap(){
+		return true;
+	}
+
 	@Override
 	public void trapEffect(GameData g, int d){
 		Player p = g.getPlayer();

@@ -46,6 +46,10 @@ public interface Constants {
 	static final String ABOUT_TXT = "img/consoleElements/about.txt"; 
 	static final String MENU_TXT = "img/consoleElements/menu.txt"; 
 	static final String DIF_MENU_TXT = "img/consoleElements/difMenu.txt";
+	static final String AREA_MENU_TXT = "img/consoleElements/areaMenu.txt";
+	static final String MERCHANT_TXT = "img/consoleElements/merchant.txt";
+	static final String RESTING_TXT = "img/consoleElements/resting.txt";
+
 	
 	static final String LOAD_FILE = "res/saves/save.bin";
 	static final String CARD_STACK_FILE = "img/consoleElements/cardStack.txt"; 

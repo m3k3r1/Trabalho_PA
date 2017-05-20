@@ -1,10 +1,11 @@
 package gameLogic;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import gameLogic.cards.*;
 
-public class GameData implements Constants {
+public class GameData implements Constants, Serializable {
 	
 	private int level;
 	private int area;
@@ -22,236 +23,211 @@ public class GameData implements Constants {
 		cardStack = new ArrayList<Card>();
 		
 	}
-	
+
+	//Game
+    public Player getPlayer(){
+        return user;
+    }
+    public boolean hasHp(){
+        if(user.getHp() > 0)
+            return true;
+        return false;
+    }
+    public void takeHp(int h){
+        user.addHp(h);
+    }
+    public void setDificulty(int d){
+        switch(d){
+            case 1 : user.addArmor(CASUAL_ARMOR);
+                user.addHp(CASUAL_HP);
+                user.addGold(CASUAL_GOLD);
+                user.addFood(CASUAL_FOOD);
+                break;
+            case 2 : user.addHp(NORMAL_HP);
+                user.addGold(NORMAL_GOLD);
+                user.addFood(NORMAL_FOOD);
+                break;
+            case 3 : user.addHp(HARD_HP);
+                user.addGold(HARD_GOLD);
+                user.addFood(HARD_FOOD);
+                break;
+            case 4 : user.addHp(IMPOSSIBLE_HP);
+                user.addGold(IMPOSSIBLE_GOLD);
+                user.addFood(IMPOSSIBLE_FOOD);
+                break;
+        }
+    }
+    public int getLevel(){
+        return level;
+    }
+    public void setLevel(int l){
+        level = l;
+    }
+    public void nextLevel(){
+        level++;
+    }
+    public int getArea(){
+        return area;
+    }
+    public void setArea(int a){
+        area = a;
+    }
+    public void nextArea(){
+        area++;
+    }
+    public boolean checkBossArea(){
+        if(area == 2 || area == 4 || area == 7 || area == 10 || area == 14){
+            System.out.println("yufyfu");
+            return true;
+        }
+
+
+        return false;
+    }
+    public void clearCardStack(){
+        cardStack.clear();
+    }
+
+    //Player
 	public void dimFood(){
-		user.setFood(user.getFood() - 1);
+		if(user.getFood() <= 0)
+			user.addHp(-2);
+		else
+			user.setFood(user.getFood() - 1);
 	}
-	 
-	public int getMonsterHp(){
-		for(Card  a : cardStack)
-			if(a.isMonster() || a.isBoss())
-				return a.getHp();
-		return 0;
-	}
-	
-	public void nextArea(){
-		area++;
-	}
-	
-	public int calculateDiceSum(){
-		int sum = 0;
-		
-		for(int i = 0; i < getDiceSize(); i++){
-			if(getDiceValue(i) > 0)
-				sum += getDiceValue(i);
-		}
-		
-		return sum;
-	}
-	
-	public void removeSpell(int s){
-		user.removeSpell(s);
-	}
-	 
-	public int getSpellValue(int p){
-		return user.getSpellValue(p);
-	}
-	
-	public boolean hasHp(int c){
-		if(cardStack.get(c).getHp() >= 0)
-			return true;
-		return false;
-	}
-	
-	public void attackMonster(int card, int damage){
-		cardStack.get(card).attackMonster(damage);
-	}
-	
-	public void attackUser(int card){
-		user.addHp(-cardStack.get(card).getDamage());
-	}
-	
-	public boolean hasHp(){
-		if(user.getHp() != 0)
-			return true;
-		return false;
-	}
-	
-	public void takeHp(int h){
-		user.addHp(h);
-	}
-	
-	public int getDiceSize(){
-		return diceStack.size();
-	}
-	
-	public int getDiceValue(int p){
-		return diceStack.get(p);
-	}
-	
-	public int getLevel(){
-		return level;
-	}
-	public int getArea(){
-		return area;
-	}
-	public void setLevel(int l){
-		level = l;
-	}
-	public void setArea(int a){
-		area = a;
-	}
-	
-	public void setHp(int h){
-		user.setHp(h);
-	}
-	
-	public void addHp(int h){
-		user.addHp(h);
-	}
-	
-	public int getXp(){
-		return user.getXp();
-	}
-	
-	public int getHp(){
-		return user.getHp();
-	}
-	public int getArmor(){
-		return user.getArmor();
-	}
-	public int getGold(){
-		return user.getGold();
-	}
-	public int getFood(){
-		return user.getFood();
-	}
+    public int getHp(){
+        return user.getHp();
+    }
+    public int getArmor(){
+        return user.getArmor();
+    }
+    public int getGold(){
+        return user.getGold();
+    }
+    public int getFood(){
+        return user.getFood();
+    }
+    public void setHp(int h){
+        user.setHp(h);
+    }
+    public void addHp(int h){
+        user.addHp(h);
+    }
+    public int getXp(){
+        return user.getXp();
+    }
+    public void addReward(int card){
+        user.addXp(cardStack.get(card).getReward());
+    }
+    public int getSpellValue(int p){
+        return user.getSpellValue(p);
+    }
+    public void removeSpell(){
+        user.removeSpell();
+    }
+    public void attackMonster(int card, int damage){
+        cardStack.get(card).attackMonster(damage);
+    }
 
+    //Card
+    public void initializeCardStack(){
 
-	public Player getPlayer(){
-		return user;
-	}
-	
-	public String showCard(int c){
-		return cardStack.get(c).toString();
-	}
-	
-	public void initializeCardStack(){
-		
-		cardStack.add(new Event(level));
-		cardStack.add(new Merchant(level));
-		cardStack.add(new Monster(level));
-		cardStack.add(new Resting(level));
-		cardStack.add(new Trap(level));
-		cardStack.add(new Treasure(level));
-		
-	
-		Collections.shuffle(cardStack);
-		
-		if(checkBossArea())
-			cardStack.add(new Boss(level));
-	}
-	
-	public int getCardStackSize(){
-		return cardStack.size();
-	}
+        cardStack.add(new Event(level));
+        cardStack.add(new Merchant(level));
+        cardStack.add(new Monster(level));
+        cardStack.add(new Resting(level));
+        cardStack.add(new Trap(level));
+        cardStack.add(new Treasure(level));
 
-	private boolean checkBossArea(){
-		if(area == 2 || area == 4 || area == 7 || area == 10 || area == 14)
-			return true;
-		
-		return false;
-	}
-	
-	public void setDificulty(int d){
-		switch(d){
-			case 1 : user.addArmor(CASUAL_ARMOR);
-					 user.addHp(CASUAL_HP);
-					 user.addGold(CASUAL_GOLD);
-					 user.addFood(CASUAL_FOOD);
-				 	 break;
-			case 2 : user.addHp(NORMAL_HP);
-		 	     	 user.addGold(NORMAL_GOLD);
-		 	     	 user.addFood(NORMAL_FOOD);
-		 	     	 break;
-			case 3 : user.addHp(HARD_HP);
-		         	 user.addGold(HARD_GOLD);
-		         	 user.addFood(HARD_FOOD);
-		         	 break;
-			case 4 : user.addHp(IMPOSSIBLE_HP);
-		         	 user.addGold(IMPOSSIBLE_GOLD);
-		         	 user.addFood(IMPOSSIBLE_FOOD);
-		         	 break;
-		}
-	}
-	
-	public int throwDice(){
-		return (int)(Math. random() * 6 + 1);
-	}
+        Collections.shuffle(cardStack);
 
-	public final Card getCard(int pos){ 
-		if(pos < 6){
-			return cardStack.get(pos);
-		}
-		return null;
-	}
-	public boolean cardIsMerchant(Card c){
-		return c.isMerchant();
-	}
-	public boolean cardIsEvent(Card c){
-		return c.isEvent();
-	}
-	public boolean cardIsTreasure(Card c){
-		return c.isTreasure();
-	}
-	
-	public boolean cardIsMonster(Card c){
-		return c.isMonster();
-	}
-	
-	public boolean cardIsBoss(Card c){
-		return c.isBoss();
-	}
-	
-	public void eventType(int card){
-		cardStack.get(card).cardDiceEffect(user, throwDice());
-	}
-	
-	public void treasureType(int card){
-		cardStack.get(card).cardDiceEffect(user, throwDice());
-	}
-	
-	public void merchantTransaction(int card, int option){
-		cardStack.get(card).playerOption(user, option);
-	}
-	
-	public void restingChoice(int card, int option){
-		cardStack.get(card).playerOption(user ,option);
-	}
-	
-	public void addReward(int card){
-		user.addXp(cardStack.get(card).getReward());
-	}
-	
-	public void generateDiceValues(){
-		int nDices = 3;
-		diceStack.clear();
-		
-		if(user.getXp() >= 12)
-			nDices = 2;
-		else if(user.getXp() >= 18)
-			nDices = 3;
-		
-		for(int i = 0; i < nDices; i++)
-			diceStack.add(throwDice());
-	}
-	
-	public void rerollDice(int dice){
-		diceStack.set(dice, throwDice());
-	}
-	
-	public void nextLevel(){
-		level++;
-	}
+        if(checkBossArea())
+            cardStack.add(new Boss(level));
+    }
+    public final Card getCard(int pos){
+        if(pos < 6){
+            return cardStack.get(pos);
+        }
+        return null;
+    }
+    public String showCard(int c){
+        return cardStack.get(c).toString();
+    }
+    public int nCardsTurned() {
+        int counter = 0;
+        for (Card c : cardStack){
+            if (c.isTurned())
+                counter++;
+        }
+        return counter;
+    }
+    public int cardsTurned(){
+        int counter = 0;
 
+        for(int i = 0; i < cardStack.size(); i++){
+            if(cardStack.get(i).isTurned())
+                counter++;
+        }
+
+        return counter;
+    }
+    public int getCardStackSize(){
+        return cardStack.size();
+    }
+    public void createEventMonster(){
+        cardStack.add(new Monster(level));
+    }
+    public void createBossMonster(){
+        cardStack.add(new Boss(level));
+    }
+    public int getMonsterHp(){
+        for(Card  a : cardStack)
+            if((a.isMonster() || a.isBoss()) && a.getHp() > 0 )
+                return a.getHp();
+        return 0;
+    }
+    public boolean hasHp(int c){
+        if(cardStack.get(c).getHp() >= 0)
+            return true;
+        return false;
+    }
+    public void attackUser(int card){
+        user.addHp(-cardStack.get(card).getDamage());
+    }
+
+    //Dice
+    public int throwDice(){
+        return (int)(Math. random() * 6 + 1);
+    }
+    public int getDiceSize(){
+        return diceStack.size();
+    }
+    public int getDiceValue(int p){
+        return diceStack.get(p);
+    }
+    public void generateDiceValues(){
+        int nDices = 1;
+        diceStack.clear();
+
+        if(user.getXp() >= 12)
+            nDices = 2;
+        else if(user.getXp() >= 18)
+            nDices = 3;
+
+        for(int i = 0; i < nDices; i++)
+            diceStack.add(throwDice());
+    }
+    public void rerollDice(int dice){
+        diceStack.set(dice, throwDice());
+    }
+    public int calculateDiceSum(){
+        int sum = 0;
+
+        for(int i = 0; i < getDiceSize(); i++){
+            if(getDiceValue(i) > 0)
+                sum += getDiceValue(i);
+        }
+
+        return sum;
+    }
 }
