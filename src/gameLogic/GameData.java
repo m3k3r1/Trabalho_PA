@@ -13,6 +13,8 @@ public class GameData implements Constants, Serializable {
 	private Player user;
 	private ArrayList<Card> cardStack;
 	private ArrayList<Integer> diceStack;
+
+	private String buffer;
 	
 	public GameData(Player p){
 		user = p;
@@ -77,7 +79,6 @@ public class GameData implements Constants, Serializable {
     }
     public boolean checkBossArea(){
         if(area == 2 || area == 4 || area == 7 || area == 10 || area == 14){
-            System.out.println("yufyfu");
             return true;
         }
 
@@ -229,5 +230,16 @@ public class GameData implements Constants, Serializable {
         }
 
         return sum;
+    }
+
+    //Useful Methods
+    public void outputBuffer(String g){
+        buffer = g;
+    }
+    public void clearOutputBuffer(){
+        buffer = "";
+    }
+    public String getBuffer(){
+        return buffer;
     }
 }

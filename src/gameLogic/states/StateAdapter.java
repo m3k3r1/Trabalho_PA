@@ -12,6 +12,9 @@ public class StateAdapter implements RogueState , gameLogic.Constants {
 	public GameData getGameData(){
 		return data;
 	}
+	private void toBuffer(String s){
+		getGameData().outputBuffer(s);
+	}
 
 	@Override
 	public RogueState setDificulty(int d) {return this;}
@@ -20,11 +23,7 @@ public class StateAdapter implements RogueState , gameLogic.Constants {
 	@Override
 	public RogueState setCard(int pos) {return this;}
 	@Override
-	public RogueState setCard(int card, int option) {return this;}
-	@Override
 	public RogueState playerOption(int option) {return this;}
-	@Override
-	public RogueState playerOption(int option, int card) {return this;}
 	@Override
 	public RogueState startGame() {return this;}
 	@Override

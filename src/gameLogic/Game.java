@@ -55,6 +55,7 @@ public class Game implements Constants {
 	public int getMonsterHp(){
 		return data.getMonsterHp();
 	}
+	public String getOutputBuffer(){return data.getBuffer();}
 
     //States handling
     public RogueState getState(){
