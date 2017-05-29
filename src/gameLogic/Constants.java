@@ -52,5 +52,18 @@ public interface Constants {
 
 	
 	static final String LOAD_FILE = "res/saves/save.bin";
-	static final String CARD_STACK_FILE = "img/consoleElements/cardStack.txt"; 
+	static final String CARD_STACK_FILE = "img/consoleElements/cardStack.txt";
+
+    static final String INTRO_IMAGE = "img/graphicalElements/cards/intro.png";
+    static final String GAME_BACKGROUND = "img/graphicalElements/bkg.JPG";
+	static final String CHARACTER_STATS = "img/graphicalElements/cards/charStats.png";
+    static final String DUNGEON_STATS = "img/graphicalElements/cards/dungeon.png";
+    static final String TREASURE_CARD = "img/graphicalElements/cards/treasure.png";
+    static final String EVENT_CARD = "img/graphicalElements/cards/event.png";
+    static final String MERCHANT_CARD = "img/graphicalElements/cards/merchant.png";
+    static final String RESTING_CARD = "img/graphicalElements/cards/resting.png";
+    static final String MONSTER_CARD = "img/graphicalElements/cards/monster.png";
+    static final String TRAP_CARD = "img/graphicalElements/cards/trap.png";
+    static final String BOOS_CARD = "img/graphicalElements/cards/boss.png";
+
 }
