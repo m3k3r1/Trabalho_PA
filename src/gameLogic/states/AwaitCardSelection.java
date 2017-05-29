@@ -31,7 +31,7 @@ public class AwaitCardSelection extends StateAdapter {
             }
 		}
 		else if(getGameData().getCard(card).isTreasure()){
-		    //TODO use toBuffer() to add the output choice 
+		    //TODO use toBuffer() to add the output choice
 			getGameData().getCard(card).cardDiceEffect(getGameData().getPlayer(), getGameData().throwDice());
 			if(!getGameData().hasHp())
 				return new AwaitBeginning(getGameData());

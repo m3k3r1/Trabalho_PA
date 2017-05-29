@@ -84,10 +84,10 @@ public class TextUi implements Constants {
         }
 	}
 	public void optionSelectionUi(){
-		game.chooseOption( showRestingOptions() );
+		game.chooseOption(showRestingOptions());
 	}
 	public void tradingUi(){
-		game.chooseOption( showTradingOptions() );
+		game.chooseOption(showTradingOptions());
 	}
     public void diceRerollOptionUi(){
 		Scanner sc = new Scanner(System.in);
@@ -367,7 +367,7 @@ public class TextUi implements Constants {
         }
     }
 
-    //Random methods
+	//Useful Methods
     private void printTxt(String filename) throws IOException {
 
         BufferedReader in = new BufferedReader(new FileReader(filename));
