@@ -64,6 +64,6 @@ public interface Constants {
     static final String RESTING_CARD = "img/graphicalElements/cards/resting.png";
     static final String MONSTER_CARD = "img/graphicalElements/cards/monster.png";
     static final String TRAP_CARD = "img/graphicalElements/cards/trap.png";
-    static final String BOOS_CARD = "img/graphicalElements/cards/boss.png";
+    static final String BOSS_CARD = "img/graphicalElements/cards/boss.png";
 
 }

@@ -1,50 +1,51 @@
 package gameInterface.graphicalInterface;
 
+import gameLogic.Constants;
 import gameLogic.Game;
+import gameLogic.ObservableGame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.Observable;
 import java.util.Observer;
 
-public class GraphicalUi extends JFrame implements Observer{
-    private static Game game;
+public class GraphicalUi extends JFrame implements Observer, Constants {
+    private GraphicalPanel gamePanel;
 
-    public GraphicalUi(){
+    ObservableGame observableGame;
+
+    public GraphicalUi(ObservableGame game) {
         super("MiniRogue");
-    }
 
-    public void run(Game g){
-        game = g;
-
-
-        setVisible(true);
+        observableGame = game;
+        game.addObserver(this);
 
         addMenuBar();
-        addComponents();
+        Container container = getContentPane();
+
+        gamePanel = new GraphicalPanel(observableGame);
+        container.add(gamePanel, BorderLayout.CENTER);
 
         this.setSize(700, 500);
         this.setMinimumSize(new Dimension(650, 450));
+        setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         validate();
     }
 
-    public void addComponents(){
-
-    }
-
     //TopBar
-    public void addMenuBar(){
+    public void addMenuBar() {
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
 
         addGameMenu(menuBar);
         addHelpMenu(menuBar);
     }
-    private void addGameMenu(JMenuBar menuBar){
+    private void addGameMenu(JMenuBar menuBar) {
         JMenu gameMenu = new JMenu("Game");
 
         JMenuItem newGame = new JMenuItem("New Game");
@@ -78,7 +79,7 @@ public class GraphicalUi extends JFrame implements Observer{
         exitGame.addActionListener(new ExitGameBarListener());
 
     }
-    private void addHelpMenu(JMenuBar menuBar){
+    private void addHelpMenu(JMenuBar menuBar) {
         JMenu helpMenu = new JMenu("Help");
 
         JMenuItem manual = new JMenuItem("Manual");
@@ -101,35 +102,36 @@ public class GraphicalUi extends JFrame implements Observer{
     }
 
     //Listeners
-    class NewGameBarListener implements ActionListener{
+    class NewGameBarListener implements ActionListener {
         @Override
-        public void actionPerformed(ActionEvent e){
+        public void actionPerformed(ActionEvent e) {
         }
 
     }
-    class LoadGameBarListener implements ActionListener{
+    class LoadGameBarListener implements ActionListener {
         @Override
-        public void actionPerformed(ActionEvent e){
+        public void actionPerformed(ActionEvent e) {
         }
     }
-    class SaveGameBarListener implements ActionListener{
+    class SaveGameBarListener implements ActionListener {
         @Override
-        public void actionPerformed(ActionEvent e){
+        public void actionPerformed(ActionEvent e) {
         }
     }
-    class ExitGameBarListener implements ActionListener{
+    class ExitGameBarListener implements ActionListener {
         @Override
-        public void actionPerformed(ActionEvent e){
+        public void actionPerformed(ActionEvent e) {
+            System.exit(0);
         }
     }
-    class ManualHelpBarListener implements ActionListener{
+    class ManualHelpBarListener implements ActionListener {
         @Override
-        public void actionPerformed(ActionEvent e){
+        public void actionPerformed(ActionEvent e) {
         }
     }
-    class AboutHelpBarListener implements ActionListener{
+    class AboutHelpBarListener implements ActionListener {
         @Override
-        public void actionPerformed(ActionEvent e){
+        public void actionPerformed(ActionEvent e) {
         }
     }
 
