@@ -35,6 +35,11 @@ public class GraphicalPanel extends JPanel implements Observer,  Constants {
        test.add(awaitBeginningPanel);
        test.add(awaitCardSelectionPanel);
        add(test);
+
+       setLayout(new BorderLayout());
+       add(test);
+
+       test.setBackground(Color.CYAN);
    }
 
 

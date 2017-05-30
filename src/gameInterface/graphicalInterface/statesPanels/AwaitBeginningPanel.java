@@ -5,6 +5,7 @@ import gameLogic.ObservableGame;
 import gameLogic.states.AwaitBeginning;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
@@ -47,15 +48,18 @@ public class AwaitBeginningPanel extends JPanel implements Observer, Constants {
 
     public void setupLayout(){
 
+        //Makes Panel Transparent
+        setBackground(new Color(0,0,0,1));
 
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        add(dificultyLabel);
-        add(dificultyComboBox);
-        add(Box.createVerticalGlue());
-        add(areaLabel);
-        add(areaComboBox);
-        add(Box.createVerticalGlue());
-        add(startGame);
+        Box inputBox = Box.createVerticalBox();
+
+        inputBox.add(dificultyLabel);
+        inputBox.add(dificultyComboBox);
+        inputBox.add(areaLabel);
+        inputBox.add(areaComboBox);
+        inputBox.add(startGame);
+
+        add(inputBox);
     }
 
     @Override

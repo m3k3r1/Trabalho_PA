@@ -29,7 +29,6 @@ public class GraphicalUi extends JFrame implements Observer, Constants {
 
         gamePanel = new GraphicalPanel(observableGame);
         container.add(gamePanel, BorderLayout.CENTER);
-
         this.setSize(700, 500);
         this.setMinimumSize(new Dimension(650, 450));
         setVisible(true);
