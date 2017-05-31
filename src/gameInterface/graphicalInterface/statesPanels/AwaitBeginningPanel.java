@@ -1,5 +1,6 @@
 package gameInterface.graphicalInterface.statesPanels;
 
+import gameInterface.graphicalInterface.GraphicalPanel;
 import gameLogic.Constants;
 import gameLogic.ObservableGame;
 import gameLogic.states.AwaitBeginning;
@@ -31,7 +32,6 @@ public class AwaitBeginningPanel extends JPanel implements Observer, Constants {
     public AwaitBeginningPanel(ObservableGame g){
         game = g;
         this.game.addObserver(this);
-
         setupComponents();
         setupLayout();
 
@@ -39,28 +39,44 @@ public class AwaitBeginningPanel extends JPanel implements Observer, Constants {
     }
 
     public void setupComponents(){
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        setPreferredSize(new Dimension(screenSize.width, screenSize.height));
+        // setBackground(new Color(0,0,0,1));
+
         dificultyLabel = new JLabel("Dificulty");
         dificultyComboBox  = new JComboBox(dificulties);
         areaLabel = new JLabel("Area");
         areaComboBox = new JComboBox(areas);
         startGame = new JButton("Start Game");
+
+        areaLabel.setFont(new Font("Arial", Font.BOLD, 15));
+        areaLabel.setForeground(Color.WHITE);
+        dificultyLabel.setFont(new Font("Arial", Font.BOLD, 15));
+        dificultyLabel.setForeground(Color.WHITE);
+        startGame.setFont(new Font("Arial", Font.BOLD, 15));
+
         startGame.addActionListener(new StartListener());
     }
 
     public void setupLayout(){
+        setLayout( new GridBagLayout() );
 
-        //Makes Panel Transparent
+        setForeground(Color.WHITE);
+
         setBackground(new Color(0,0,0,1));
+        setPreferredSize(new Dimension(690, 1000));
 
-        Box inputBox = Box.createVerticalBox();
+        Box dificultyBox = Box.createVerticalBox();
+        dificultyBox.add(dificultyLabel);
+        dificultyBox.add(dificultyComboBox);
+        dificultyBox.add(areaLabel);
+        dificultyBox.add(areaComboBox);
+        dificultyBox.add(startGame);
 
-        inputBox.add(dificultyLabel);
-        inputBox.add(dificultyComboBox);
-        inputBox.add(areaLabel);
-        inputBox.add(areaComboBox);
-        inputBox.add(startGame);
 
-        add(inputBox);
+        add(dificultyBox, new GridBagConstraints());
+
     }
 
     @Override
@@ -75,6 +91,12 @@ public class AwaitBeginningPanel extends JPanel implements Observer, Constants {
             game.startGame( (dificultyComboBox.getSelectedIndex()+1), (areaComboBox.getSelectedIndex()+1));
             System.out.print("Dificuldade " + (dificultyComboBox.getSelectedIndex()+1) + " | " + "Area : " + (areaComboBox.getSelectedIndex()+1));
         }
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(GraphicalPanel.getIntroImage(), 0, 50, 645, 900, this);
     }
 
 

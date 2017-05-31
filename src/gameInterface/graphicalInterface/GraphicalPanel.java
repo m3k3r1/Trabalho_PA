@@ -117,6 +117,7 @@ public class GraphicalPanel extends JPanel implements Observer,  Constants {
    }
 
    private void setupComponents(){
+       setBackground(new Color(0,0,0,1));
        userStatsPanel = new UserStatsPanel(observableGame);
        dungeonPanel = new DungeonPanel(observableGame);
 
@@ -128,20 +129,16 @@ public class GraphicalPanel extends JPanel implements Observer,  Constants {
        JPanel main = new JPanel();
        main.add(awaitBeginningPanel);
        main.add(awaitCardSelectionPanel);
-       main.setBackground(Color.CYAN);
 
-       JPanel sidePanel = new JPanel();
-       sidePanel.add(userStatsPanel);
-       sidePanel.setBackground(Color.BLUE);
+       main.setBackground(new Color(0,0,0,1));
 
-       JPanel left = new JPanel();
-       left.add(dungeonPanel);
-       left.setBackground(Color.BLACK);
-
+       JPanel statsPanel = new JPanel();
+       statsPanel.add(userStatsPanel);
+       statsPanel.setBackground(new Color(0,0,0,1));
+       
        setLayout(new BorderLayout());
        add(main, BorderLayout.CENTER);
-       add(sidePanel, BorderLayout.EAST);
-       add(left, BorderLayout.WEST);
+       add(statsPanel, BorderLayout.SOUTH);
    }
 
 
@@ -150,6 +147,4 @@ public class GraphicalPanel extends JPanel implements Observer,  Constants {
    public void update(Observable t, Object o) {
 
    }
-
-
 }

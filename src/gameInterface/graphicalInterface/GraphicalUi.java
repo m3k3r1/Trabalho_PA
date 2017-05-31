@@ -2,6 +2,8 @@ package gameInterface.graphicalInterface;
 
 import gameLogic.Constants;
 import gameLogic.ObservableGame;
+import gameLogic.states.AwaitBeginning;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,19 +20,24 @@ public class GraphicalUi extends JFrame implements Observer, Constants {
 
     public GraphicalUi(ObservableGame game) {
         super("MiniRogue");
-
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         observableGame = game;
         game.addObserver(this);
+        setLayout(new BorderLayout());
+
+        setContentPane(new JLabel(new ImageIcon(GraphicalPanel.getGameBackground().getScaledInstance(screenSize.width, screenSize.height, Image.SCALE_SMOOTH))));
+
+        setLayout(new FlowLayout());
 
         addMenuBar();
         Container container = getContentPane();
 
+
+
         gamePanel = new GraphicalPanel(observableGame);
-        container.add(gamePanel, BorderLayout.CENTER);
+        container.add(gamePanel);
 
-
-        this.setSize(700, 500);
-        this.setMinimumSize(new Dimension(650, 450));
+        setBounds(0,0,screenSize.width, screenSize.height);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         validate();
@@ -139,6 +146,8 @@ public class GraphicalUi extends JFrame implements Observer, Constants {
     public void update(Observable o, Object arg) {
         repaint();
     }
+
+
 
 
 }

@@ -19,10 +19,7 @@ public class UserStatsPanel extends JPanel implements Observer, Constants{
 
     private ObservableGame game;
 
-
-    //BUTOES SÒ PARA TESTE !!!!!!
-    private JButton user;
-
+    private JLabel statsImage;
 
     public UserStatsPanel(ObservableGame g){
         game = g;
@@ -35,11 +32,13 @@ public class UserStatsPanel extends JPanel implements Observer, Constants{
     }
 
     public void setupComponents(){
-        user = new JButton("User");
+        statsImage = new JLabel(new ImageIcon(GraphicalPanel.getCharacterStats().getScaledInstance(940, 350, Image.SCALE_SMOOTH)));
     }
 
     private void setupLayout(){
-        add(user);
+        //Makes Panel Transparent
+        setBackground(new Color(0,0,0,1));
+        add(statsImage);
     }
 
     @Override

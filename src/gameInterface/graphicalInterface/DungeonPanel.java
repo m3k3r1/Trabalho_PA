@@ -12,10 +12,7 @@ import java.util.Observer;
 
 public class DungeonPanel extends JPanel implements Observer, Constants {
     private ObservableGame game;
-
-
-    //BUTOES SÒ PARA TESTE !!!!!!
-    private JButton dungeon;
+    private JLabel dungeonImage;
 
 
     public DungeonPanel(ObservableGame g){
@@ -29,11 +26,11 @@ public class DungeonPanel extends JPanel implements Observer, Constants {
     }
 
     public void setupComponents(){
-        dungeon = new JButton("Dungeon");
+        dungeonImage = new JLabel(new ImageIcon(GraphicalPanel.getDungeonCard().getScaledInstance(360, 505, Image.SCALE_SMOOTH)));
     }
 
     private void setupLayout(){
-        add(dungeon);
+        add(dungeonImage);
     }
 
     @Override

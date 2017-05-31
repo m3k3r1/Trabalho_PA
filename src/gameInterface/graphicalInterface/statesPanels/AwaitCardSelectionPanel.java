@@ -48,32 +48,28 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
     }
 
     public void setupLayout(){
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        setPreferredSize(new Dimension(1000,600));
 
         Box box = Box.createVerticalBox();
-        box.add(Box.createVerticalGlue());
         box.add(card);
-        box.add(card1);
-        box.setBackground(Color.BLACK);
-        box.add(Box.createVerticalGlue());
-
+        box.add(Box.createHorizontalGlue());
 
         Box box1 = Box.createVerticalBox();
+        box1.add(card1);
         box1.add(Box.createVerticalGlue());
         box1.add(card2);
-        box1.add(card3);
-        box1.add(Box.createVerticalGlue());
+        box.add(Box.createHorizontalGlue());
 
         Box box2 = Box.createVerticalBox();
-        box2.add(Box.createVerticalGlue());
-        box2.add(card4);
-        box2.add(card5);
-        box2.add(Box.createVerticalGlue());
+        box2.add(card3);
+        box.add(Box.createHorizontalGlue());
 
         Box box3 = Box.createVerticalBox();
+        box3.add(card4);
         box3.add(Box.createVerticalGlue());
-        box3.add(card6);
-        box3.add(Box.createVerticalGlue());
+        box3.add(card5);
+        box.add(Box.createHorizontalGlue());
 
         add(box);
         add(box1);
@@ -96,7 +92,7 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
 
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(GraphicalPanel.getGameBackground(), 0, 0, this.getWidth(), this.getHeight(), null);
+        //super.paintComponent(g);
+        //g.drawImage(GraphicalPanel.getGameBackground(), 0, 0, this.getWidth(), this.getHeight(), this);
     }
 }
