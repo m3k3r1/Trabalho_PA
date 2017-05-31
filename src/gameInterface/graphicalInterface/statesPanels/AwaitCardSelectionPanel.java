@@ -25,6 +25,7 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
     private JButton card4;
     private JButton card5;
     private JButton card6;
+    private JButton card7;
 
     public AwaitCardSelectionPanel(ObservableGame g) {
         game = g;
@@ -37,13 +38,14 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
     }
 
     public void setupComponents(){
-        card = new JButton("Carta 1");
-        card1 = new JButton("Carta 2");
-        card2 = new JButton("Carta 3");
-        card3 = new JButton("Carta 4");
-        card4 = new JButton("Carta 5");
-        card5 = new JButton("Carta 6");
-        card6= new JButton("Carta 7");
+        card = new JButton(new ImageIcon(GraphicalPanel.getRestingCard().getScaledInstance(215, 290, Image.SCALE_SMOOTH)));
+        card1 = new JButton(new ImageIcon(GraphicalPanel.getBackCard().getScaledInstance(215, 290, Image.SCALE_SMOOTH)));
+        card2 = new JButton(new ImageIcon(GraphicalPanel.getBackCard().getScaledInstance(215, 290, Image.SCALE_SMOOTH)));
+        card3 = new JButton(new ImageIcon(GraphicalPanel.getBackCard().getScaledInstance(215, 290, Image.SCALE_SMOOTH)));
+        card4 = new JButton(new ImageIcon(GraphicalPanel.getBackCard().getScaledInstance(215, 290, Image.SCALE_SMOOTH)));
+        card5 = new JButton(new ImageIcon(GraphicalPanel.getBackCard().getScaledInstance(215, 290, Image.SCALE_SMOOTH)));
+        card6 = new JButton(new ImageIcon(GraphicalPanel.getBackCard().getScaledInstance(215, 290, Image.SCALE_SMOOTH)));
+        card7 = new JButton(new ImageIcon(GraphicalPanel.getBossCard().getScaledInstance(215, 290, Image.SCALE_SMOOTH)));
 
     }
 
@@ -51,30 +53,37 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setPreferredSize(new Dimension(1300,600));
 
-        Box box = Box.createVerticalBox();
+        Box box = Box.createHorizontalBox();
+        box.add(Box.createHorizontalGlue());
+        box.add(Box.createHorizontalGlue());
         box.add(card);
         box.add(Box.createHorizontalGlue());
 
         Box box1 = Box.createVerticalBox();
         box1.add(card1);
-        box1.add(Box.createVerticalGlue());
         box1.add(card2);
-        box.add(Box.createHorizontalGlue());
+        box1.add(Box.createHorizontalGlue());
+
 
         Box box2 = Box.createVerticalBox();
         box2.add(card3);
-        box.add(Box.createHorizontalGlue());
+        box2.add(Box.createHorizontalGlue());
+
 
         Box box3 = Box.createVerticalBox();
         box3.add(card4);
-        box3.add(Box.createVerticalGlue());
         box3.add(card5);
-        box.add(Box.createHorizontalGlue());
+        box3.add(Box.createHorizontalGlue());
+
+
+        Box box4 = Box.createVerticalBox();
+        box4.add(card7);
 
         add(box);
         add(box1);
         add(box2);
         add(box3);
+        add(box4);
     }
 
     @Override

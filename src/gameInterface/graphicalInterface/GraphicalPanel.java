@@ -19,6 +19,7 @@ public class GraphicalPanel extends JPanel implements Observer,  Constants {
 
     static private BufferedImage introImage = null;
     static private BufferedImage gameBackground = null;
+    static private BufferedImage backCard = null;
     static private BufferedImage characterStats = null;
     static private BufferedImage dungeonCard = null;
     static private BufferedImage treasureCard = null;
@@ -34,6 +35,7 @@ public class GraphicalPanel extends JPanel implements Observer,  Constants {
             introImage = ImageIO.read(Resources.getResourceFile(INTRO_IMAGE));
             gameBackground = ImageIO.read(Resources.getResourceFile(GAME_BACKGROUND));
             characterStats = ImageIO.read(Resources.getResourceFile(CHARACTER_STATS));
+            backCard = ImageIO.read(Resources.getResourceFile(BACK_CARD));
             dungeonCard = ImageIO.read(Resources.getResourceFile(DUNGEON_STATS));
             treasureCard = ImageIO.read(Resources.getResourceFile(TREASURE_CARD));
             eventCard = ImageIO.read(Resources.getResourceFile(EVENT_CARD));
@@ -53,6 +55,7 @@ public class GraphicalPanel extends JPanel implements Observer,  Constants {
     public static BufferedImage getGameBackground() {
         return gameBackground;
     }
+    public static BufferedImage getBackCard(){ return backCard; }
     public static BufferedImage getCharacterStats() {
         return characterStats;
     }
