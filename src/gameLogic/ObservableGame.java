@@ -1,8 +1,6 @@
 package gameLogic;
 
 import java.util.Observable;
-
-import gameLogic.states.AwaitBeginning;
 import gameLogic.states.RogueState;
 
 public class ObservableGame extends Observable{
@@ -18,6 +16,12 @@ public class ObservableGame extends Observable{
     }
 
     //
+    public  void newGame(){
+        game.newGame();
+
+        setChanged();
+        notifyObservers();
+    }
     public void startGame(int area, int difLevel){
         game.setStartingArea(area);
         game.setDificulty(difLevel);

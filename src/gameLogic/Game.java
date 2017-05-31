@@ -64,6 +64,9 @@ public class Game implements Constants {
     private void setState(RogueState s){
         this.state = s;
     }
+    public void newGame(){
+        setState(new AwaitBeginning(new GameData(data.getPlayer())));
+    }
 
     public void startGame(){
 		setState(getState().startGame());

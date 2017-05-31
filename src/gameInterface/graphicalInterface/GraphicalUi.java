@@ -1,12 +1,9 @@
 package gameInterface.graphicalInterface;
 
 import gameLogic.Constants;
-import gameLogic.Game;
 import gameLogic.ObservableGame;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -17,6 +14,7 @@ public class GraphicalUi extends JFrame implements Observer, Constants {
     private GraphicalPanel gamePanel;
 
     ObservableGame observableGame;
+
 
     public GraphicalUi(ObservableGame game) {
         super("MiniRogue");
@@ -29,6 +27,8 @@ public class GraphicalUi extends JFrame implements Observer, Constants {
 
         gamePanel = new GraphicalPanel(observableGame);
         container.add(gamePanel, BorderLayout.CENTER);
+
+
         this.setSize(700, 500);
         this.setMinimumSize(new Dimension(650, 450));
         setVisible(true);
@@ -104,6 +104,7 @@ public class GraphicalUi extends JFrame implements Observer, Constants {
     class NewGameBarListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            observableGame.newGame();
         }
 
     }
@@ -138,5 +139,6 @@ public class GraphicalUi extends JFrame implements Observer, Constants {
     public void update(Observable o, Object arg) {
         repaint();
     }
+
 
 }

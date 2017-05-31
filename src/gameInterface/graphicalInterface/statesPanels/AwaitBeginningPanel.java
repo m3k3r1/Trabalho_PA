@@ -30,6 +30,7 @@ public class AwaitBeginningPanel extends JPanel implements Observer, Constants {
 
     public AwaitBeginningPanel(ObservableGame g){
         game = g;
+        this.game.addObserver(this);
 
         setupComponents();
         setupLayout();
@@ -64,7 +65,7 @@ public class AwaitBeginningPanel extends JPanel implements Observer, Constants {
 
     @Override
     public void update(Observable t, Object o) {
-        setVisible(game.getState()instanceof AwaitBeginning);
+        setVisible(game.getState() instanceof AwaitBeginning);
     }
 
     class StartListener implements ActionListener {
