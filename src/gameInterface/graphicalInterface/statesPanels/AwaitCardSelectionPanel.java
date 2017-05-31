@@ -49,7 +49,7 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
 
     public void setupLayout(){
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-        setPreferredSize(new Dimension(1000,600));
+        setPreferredSize(new Dimension(1300,600));
 
         Box box = Box.createVerticalBox();
         box.add(card);
@@ -92,7 +92,6 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
 
     @Override
     protected void paintComponent(Graphics g) {
-        //super.paintComponent(g);
-        //g.drawImage(GraphicalPanel.getGameBackground(), 0, 0, this.getWidth(), this.getHeight(), this);
+
     }
 }

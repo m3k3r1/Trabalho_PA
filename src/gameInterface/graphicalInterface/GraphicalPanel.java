@@ -135,10 +135,16 @@ public class GraphicalPanel extends JPanel implements Observer,  Constants {
        JPanel statsPanel = new JPanel();
        statsPanel.add(userStatsPanel);
        statsPanel.setBackground(new Color(0,0,0,1));
-       
+
+       JPanel dungPanel = new JPanel();
+       dungPanel.add(dungeonPanel);
+       dungPanel.setBackground(new Color(0,0,0,1));
+
+
        setLayout(new BorderLayout());
        add(main, BorderLayout.CENTER);
        add(statsPanel, BorderLayout.SOUTH);
+       add(dungPanel, BorderLayout.WEST);
    }
 
 

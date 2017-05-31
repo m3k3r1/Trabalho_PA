@@ -42,10 +42,4 @@ public class DungeonPanel extends JPanel implements Observer, Constants {
 
     }
 
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
-        //g.drawImage(GraphicalPanel.getStats(), x, y,this);
-    }
 }
