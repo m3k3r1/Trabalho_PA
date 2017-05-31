@@ -55,7 +55,6 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
 
         Box box = Box.createHorizontalBox();
         box.add(Box.createHorizontalGlue());
-        box.add(Box.createHorizontalGlue());
         box.add(card);
         box.add(Box.createHorizontalGlue());
 
