@@ -1,6 +1,9 @@
 package gameInterface.graphicalInterface;
 
 import gameInterface.graphicalInterface.statesPanels.AwaitCardSelectionPanel;
+import gameInterface.graphicalInterface.statesPanels.AwaitOptionSelection;
+import gameInterface.graphicalInterface.statesPanels.AwaitTrading;
+import gameInterface.graphicalInterface.statesPanels.combatStatesPanels.AwaitDiceRerrollPanel;
 import gameLogic.ObservableGame;
 import gameInterface.graphicalInterface.statesPanels.AwaitBeginningPanel;
 import gameLogic.Constants;
@@ -89,6 +92,10 @@ public class GraphicalPanel extends JPanel implements Observer,  Constants {
 
     AwaitBeginningPanel awaitBeginningPanel;
     AwaitCardSelectionPanel awaitCardSelectionPanel;
+    AwaitOptionSelection awaitOptionSelection;
+    AwaitTrading awaitTrading;
+
+    AwaitDiceRerrollPanel awaitDiceRerrollPanel;
 
     ObservableGame observableGame;
 
@@ -113,7 +120,6 @@ public class GraphicalPanel extends JPanel implements Observer,  Constants {
        this.observableGame.addObserver(this);
 
        setupComponents();
-
        setupLayout();
 
        update(game, null);
@@ -121,17 +127,26 @@ public class GraphicalPanel extends JPanel implements Observer,  Constants {
 
    private void setupComponents(){
        setBackground(new Color(0,0,0,1));
+
        userStatsPanel = new UserStatsPanel(observableGame);
        dungeonPanel = new DungeonPanel(observableGame);
 
        awaitBeginningPanel = new AwaitBeginningPanel(observableGame);
        awaitCardSelectionPanel = new AwaitCardSelectionPanel(observableGame);
+       awaitOptionSelection = new AwaitOptionSelection(observableGame);
+       awaitTrading = new AwaitTrading(observableGame);
+
+       awaitDiceRerrollPanel = new AwaitDiceRerrollPanel(observableGame);
    }
 
    private void setupLayout(){
        JPanel main = new JPanel();
        main.add(awaitBeginningPanel);
        main.add(awaitCardSelectionPanel);
+       main.add(awaitOptionSelection);
+       main.add(awaitTrading);
+
+       main.add(awaitDiceRerrollPanel);
 
        main.setBackground(new Color(0,0,0,1));
 
@@ -143,16 +158,13 @@ public class GraphicalPanel extends JPanel implements Observer,  Constants {
        dungPanel.add(dungeonPanel);
        dungPanel.setBackground(new Color(0,0,0,1));
 
-
        setLayout(new BorderLayout());
        add(main, BorderLayout.CENTER);
        add(statsPanel, BorderLayout.SOUTH);
        add(dungPanel, BorderLayout.WEST);
    }
 
-
-
-    @Override
+   @Override
    public void update(Observable t, Object o) {
 
    }

@@ -14,16 +14,5 @@ public class MiniRogue {
 		Game newGame = new Game(player);
 		
 		GraphicalUi ui = new GraphicalUi(new ObservableGame(newGame));
-
-
-		/*
-		TextUi ui = new TextUi();
-
-		try{
-			ui.run(newGame);
-		}catch(IOException e){
-			System.out.println (e.toString());
-		}
-		*/
 	}
 }

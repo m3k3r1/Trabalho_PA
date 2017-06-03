@@ -1,6 +1,11 @@
 package gameLogic.cards;
+import gameInterface.graphicalInterface.GraphicalPanel;
 import gameLogic.GameData;
 import gameLogic.Player;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public abstract class Card {
 	protected int hp;
@@ -9,6 +14,7 @@ public abstract class Card {
 	protected int level;
 	protected String name;
 	protected boolean turned = false;
+	protected ImageIcon image;
 	
 	public Card(){
 		hp = 0;
@@ -19,6 +25,9 @@ public abstract class Card {
 	public Card(int l){
 		level = l;
 	}
+	public Card(BufferedImage i){
+	    image =  new ImageIcon(i.getScaledInstance(215, 290, Image.SCALE_SMOOTH));
+    }
 	
 	//Getter's
 	public int getHp(){
@@ -30,6 +39,9 @@ public abstract class Card {
 	public int getReward(){
 		return reward;
 	}
+	public ImageIcon getImage(){
+	    return image;
+    }
 	
 	//Setter's
 	protected void setHp(int h){
@@ -78,9 +90,8 @@ public abstract class Card {
 		
 	}
 	
-	//
+	//TODO make a general funcion to this 3 methods
 	public int cardDiceEffect(Player p, int d){return 0;}
 	public int playerOption(Player p, int d){return 0;}
-
 	public void trapEffect(GameData g, int d) {}
 }

@@ -2,9 +2,11 @@ package gameLogic.cards;
 
 import gameLogic.Constants;
 
+import java.awt.image.BufferedImage;
+
 public class Boss extends Card implements Constants{
 	
-	public Boss(int l){
+	public Boss(BufferedImage l){
 		super(l);
 		name = "Boss";
 		

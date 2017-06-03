@@ -3,6 +3,8 @@ package gameLogic;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+
+import gameInterface.graphicalInterface.GraphicalPanel;
 import gameLogic.cards.*;
 
 public class GameData implements Constants, Serializable {
@@ -23,10 +25,15 @@ public class GameData implements Constants, Serializable {
 	
 		diceStack = new ArrayList<Integer>();
 		cardStack = new ArrayList<Card>();
-		
 	}
 
 	//Game
+    public void reset(){
+
+	    diceStack = new ArrayList<Integer>();
+	    cardStack = new ArrayList<Card>();
+	    initializeCardStack();
+    }
     public Player getPlayer(){
         return user;
     }
@@ -133,17 +140,17 @@ public class GameData implements Constants, Serializable {
     //Card
     public void initializeCardStack(){
 
-        cardStack.add(new Event(level));
-        cardStack.add(new Merchant(level));
-        cardStack.add(new Monster(level));
-        cardStack.add(new Resting(level));
-        cardStack.add(new Trap(level));
-        cardStack.add(new Treasure(level));
+        cardStack.add(new Event(GraphicalPanel.getEventCard()));
+        cardStack.add(new Merchant(GraphicalPanel.getMerchantCard()));
+        cardStack.add(new Monster(GraphicalPanel.getMonsterCard()));
+        cardStack.add(new Resting(GraphicalPanel.getRestingCard()));
+        cardStack.add(new Trap(GraphicalPanel.getTrapCard()));
+        cardStack.add(new Treasure(GraphicalPanel.getTreasureCard()));
 
         Collections.shuffle(cardStack);
 
         if(checkBossArea())
-            cardStack.add(new Boss(level));
+            cardStack.add(new Boss(GraphicalPanel.getBossCard()));
     }
     public final Card getCard(int pos){
         if(pos < 6){
@@ -176,10 +183,10 @@ public class GameData implements Constants, Serializable {
         return cardStack.size();
     }
     public void createEventMonster(){
-        cardStack.add(new Monster(level));
+        cardStack.add(new Monster(GraphicalPanel.getMonsterCard()));
     }
     public void createBossMonster(){
-        cardStack.add(new Boss(level));
+        cardStack.add(new Boss(GraphicalPanel.getBossCard()));
     }
     public int getMonsterHp(){
         for(Card  a : cardStack)

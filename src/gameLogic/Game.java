@@ -2,6 +2,8 @@ package gameLogic;
 
 import gameLogic.states.*;
 
+import javax.swing.*;
+
 public class Game implements Constants {
 	private GameData data;
 	private RogueState state; 
@@ -26,6 +28,13 @@ public class Game implements Constants {
 	}
 
 	//Game Data
+	public final Player getPlayer(){
+	    return data.getPlayer();
+    }
+    public void initialcizeCards(){
+	    data.initializeCardStack();
+    }
+	public ImageIcon getCard(int index){return data.getCard(index).getImage();}
     public int getLevel(){
         return data.getLevel();
     }
@@ -56,6 +65,9 @@ public class Game implements Constants {
 		return data.getMonsterHp();
 	}
 	public String getOutputBuffer(){return data.getBuffer();}
+    public Boolean isTurned(int index){
+	    return data.getCard(index).isTurned();
+    }
 
     //States handling
     public RogueState getState(){
@@ -65,7 +77,8 @@ public class Game implements Constants {
         this.state = s;
     }
     public void newGame(){
-        setState(new AwaitBeginning(new GameData(data.getPlayer())));
+        setState(new AwaitBeginning(new GameData(new Player())));
+        data.reset();
     }
 
     public void startGame(){

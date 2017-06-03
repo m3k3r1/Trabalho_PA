@@ -2,8 +2,10 @@ package gameLogic.cards;
 
 import gameLogic.Player;
 
+import java.awt.image.BufferedImage;
+
 public class Resting extends Card{
-	public Resting(int l){
+	public Resting(BufferedImage l){
 		super(l);
 		name = "Resting";
 	}

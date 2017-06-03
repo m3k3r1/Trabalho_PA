@@ -2,10 +2,12 @@ package gameLogic.cards;
 
 import gameLogic.Player;
 
+import java.awt.image.BufferedImage;
+
 public class Event extends Card{
 	
-	public Event(int l){
-		super(l);
+	public Event(BufferedImage i){
+		super(i);
 		name = "Event";
 	}
 	

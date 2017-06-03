@@ -3,9 +3,11 @@ package gameLogic.cards;
 import gameLogic.Constants;
 import gameLogic.Player;
 
+import java.awt.image.BufferedImage;
+
 public class Merchant extends Card implements Constants {
 	
-	public Merchant(int l){
+	public Merchant(BufferedImage l){
 		super(l);
 		name = "Merchant";
 	}

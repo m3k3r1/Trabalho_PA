@@ -15,7 +15,7 @@ import java.util.Observer;
 public class AwaitBeginningPanel extends JPanel implements Observer, Constants {
 
     private String[] dificulties = {"Casual", "Normal", "Hard", "Impossible"};
-    private String[] areas = {"1", "2"};
+    private String[] areas = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"};
 
     private JLabel dificultyLabel;
     private JComboBox dificultyComboBox;
@@ -60,7 +60,7 @@ public class AwaitBeginningPanel extends JPanel implements Observer, Constants {
     }
 
     public void setupLayout(){
-        setLayout( new GridBagLayout() );
+        setLayout(new GridBagLayout());
 
         setForeground(Color.WHITE);
 
@@ -74,9 +74,7 @@ public class AwaitBeginningPanel extends JPanel implements Observer, Constants {
         dificultyBox.add(areaComboBox);
         dificultyBox.add(startGame);
 
-
         add(dificultyBox, new GridBagConstraints());
-
     }
 
     @Override
@@ -98,6 +96,4 @@ public class AwaitBeginningPanel extends JPanel implements Observer, Constants {
         super.paintComponent(g);
         g.drawImage(GraphicalPanel.getIntroImage(), 0, 50, 645, 900, this);
     }
-
-
 }

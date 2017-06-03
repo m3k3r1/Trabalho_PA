@@ -3,8 +3,10 @@ package gameLogic.cards;
 import gameLogic.GameData;
 import gameLogic.Player;
 
+import java.awt.image.BufferedImage;
+
 public class Trap extends Card{
-	public Trap(int l){
+	public Trap(BufferedImage l){
 		super(l);
 		
 		name= "Trap";

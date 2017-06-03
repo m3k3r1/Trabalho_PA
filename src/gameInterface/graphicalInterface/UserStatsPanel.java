@@ -6,6 +6,8 @@ import gameInterface.graphicalInterface.Resources;
 import gameLogic.Constants;
 import gameLogic.ObservableGame;
 import gameLogic.states.AwaitBeginning;
+import gameLogic.states.AwaitCardSelection;
+import gameLogic.states.AwaitOptionSelection;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

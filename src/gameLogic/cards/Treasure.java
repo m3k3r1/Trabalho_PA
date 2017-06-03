@@ -2,8 +2,10 @@ package gameLogic.cards;
 
 import gameLogic.Player;
 
+import java.awt.image.BufferedImage;
+
 public class Treasure extends Card{
-	public Treasure(int l){
+	public Treasure(BufferedImage l){
 		super(l);
 		name = "Treasure";
 	}

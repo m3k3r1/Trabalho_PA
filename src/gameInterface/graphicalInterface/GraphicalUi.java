@@ -2,7 +2,10 @@ package gameInterface.graphicalInterface;
 
 import gameLogic.Constants;
 import gameLogic.ObservableGame;
-import gameLogic.states.AwaitBeginning;
+import gameLogic.states.*;
+import gameLogic.states.combatStates.AwaitDiceReroll;
+import gameLogic.states.combatStates.AwaitFeatDecision;
+import gameLogic.states.combatStates.AwaitSpellDecision;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +17,6 @@ import java.util.Observer;
 
 public class GraphicalUi extends JFrame implements Observer, Constants {
     private GraphicalPanel gamePanel;
-
     ObservableGame observableGame;
 
 
@@ -144,10 +146,7 @@ public class GraphicalUi extends JFrame implements Observer, Constants {
 
     @Override
     public void update(Observable o, Object arg) {
+        System.out.println("Player -> H : " + observableGame.getPlayer().getHp() + "| A : " + observableGame.getPlayer().getArmor() + "| F : " + observableGame.getPlayer().getFood() + "| G : " + observableGame.getPlayer().getGold() + "| Xp : " + observableGame.getPlayer().getXp());
         repaint();
     }
-
-
-
-
 }
