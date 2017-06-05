@@ -4,6 +4,9 @@ package gameInterface.graphicalInterface;
 import gameLogic.Constants;
 import gameLogic.ObservableGame;
 import gameLogic.states.AwaitBeginning;
+import gameLogic.states.AwaitOptionSelection;
+import gameLogic.states.AwaitTrading;
+import gameLogic.states.combatStates.AwaitDiceReroll;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,7 +38,10 @@ public class DungeonPanel extends JPanel implements Observer, Constants {
 
     @Override
     public void update(Observable t, Object o){
-        if( game.getState() instanceof AwaitBeginning)
+        if( game.getState() instanceof AwaitBeginning ||
+                game.getState() instanceof AwaitTrading ||
+                game.getState() instanceof AwaitOptionSelection ||
+                game.getState() instanceof AwaitDiceReroll)
             setVisible(false);
         else
             setVisible(true);

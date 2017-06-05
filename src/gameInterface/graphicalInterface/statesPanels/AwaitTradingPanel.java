@@ -12,18 +12,17 @@ import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
-public class AwaitTrading extends JPanel implements Observer, Constants {
+public class AwaitTradingPanel extends JPanel implements Observer, Constants {
 
     ObservableGame game ;
 
     private JLabel merchantImage;
-    private JButton button1;
 
     private JButton buy[];
     private JButton sell[];
 
 
-    public AwaitTrading(ObservableGame g){
+    public AwaitTradingPanel(ObservableGame g){
         game = g;
         this.game.addObserver(this);
 
@@ -35,10 +34,8 @@ public class AwaitTrading extends JPanel implements Observer, Constants {
 
         update(game, this);
     }
-
     public void setupComponents(){
         merchantImage = new JLabel(new ImageIcon(GraphicalPanel.getMerchantCard().getScaledInstance(215, 290, Image.SCALE_SMOOTH)));
-        button1 = new JButton("Trading");
 
         buy[0] = new JButton("Ration");
         buy[1] = new JButton("Health Potion");
@@ -49,7 +46,6 @@ public class AwaitTrading extends JPanel implements Observer, Constants {
         sell[0] = new JButton("Armor Piece");
         sell[1] = new JButton("Spell");
     }
-
     public void setupLayout(){
 
         setPreferredSize(new Dimension(1300,600));
@@ -100,7 +96,7 @@ public class AwaitTrading extends JPanel implements Observer, Constants {
     class ArmorPiece implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e){
-            game.chooseOption(3);
+            game.chooseOption(4);
         }
     }
     class AnySpell implements ActionListener{
@@ -128,7 +124,7 @@ public class AwaitTrading extends JPanel implements Observer, Constants {
         setVisible(false);
 
         RogueState state =  game.getState();
-        if(state instanceof gameLogic.states.AwaitTrading) {
+        if(state instanceof AwaitTrading) {
             setVisible(true);
         }
 

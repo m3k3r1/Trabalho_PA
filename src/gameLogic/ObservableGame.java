@@ -30,6 +30,12 @@ public class ObservableGame extends Observable{
     public Boolean isTurned(int index){
        return game.isTurned(index);
     }
+    public int getDiceStackSize(){
+        return game.getDiceSize();
+    }
+    public int getDiceValue(int index){
+        return game.getDiceValue(index);
+    }
 
     //States Handling
     public  void newGame(){

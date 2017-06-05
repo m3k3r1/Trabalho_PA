@@ -1,8 +1,8 @@
 package gameInterface.graphicalInterface;
 
 import gameInterface.graphicalInterface.statesPanels.AwaitCardSelectionPanel;
-import gameInterface.graphicalInterface.statesPanels.AwaitOptionSelection;
-import gameInterface.graphicalInterface.statesPanels.AwaitTrading;
+import gameInterface.graphicalInterface.statesPanels.AwaitOptionSelectionPanel;
+import gameInterface.graphicalInterface.statesPanels.AwaitTradingPanel;
 import gameInterface.graphicalInterface.statesPanels.combatStatesPanels.AwaitDiceRerrollPanel;
 import gameLogic.ObservableGame;
 import gameInterface.graphicalInterface.statesPanels.AwaitBeginningPanel;
@@ -18,7 +18,6 @@ import java.util.Observer;
 
 
 public class GraphicalPanel extends JPanel implements Observer,  Constants {
-
 
     static private BufferedImage introImage = null;
     static private BufferedImage gameBackground = null;
@@ -92,8 +91,8 @@ public class GraphicalPanel extends JPanel implements Observer,  Constants {
 
     AwaitBeginningPanel awaitBeginningPanel;
     AwaitCardSelectionPanel awaitCardSelectionPanel;
-    AwaitOptionSelection awaitOptionSelection;
-    AwaitTrading awaitTrading;
+    AwaitOptionSelectionPanel awaitOptionSelectionPanel;
+    AwaitTradingPanel awaitTradingPanel;
 
     AwaitDiceRerrollPanel awaitDiceRerrollPanel;
 
@@ -113,8 +112,6 @@ public class GraphicalPanel extends JPanel implements Observer,  Constants {
         }
     }
 
-
-
    public GraphicalPanel(ObservableGame game){
        observableGame = game;
        this.observableGame.addObserver(this);
@@ -124,7 +121,6 @@ public class GraphicalPanel extends JPanel implements Observer,  Constants {
 
        update(game, null);
    }
-
    private void setupComponents(){
        setBackground(new Color(0,0,0,1));
 
@@ -133,18 +129,17 @@ public class GraphicalPanel extends JPanel implements Observer,  Constants {
 
        awaitBeginningPanel = new AwaitBeginningPanel(observableGame);
        awaitCardSelectionPanel = new AwaitCardSelectionPanel(observableGame);
-       awaitOptionSelection = new AwaitOptionSelection(observableGame);
-       awaitTrading = new AwaitTrading(observableGame);
+       awaitOptionSelectionPanel = new AwaitOptionSelectionPanel(observableGame);
+       awaitTradingPanel = new AwaitTradingPanel(observableGame);
 
        awaitDiceRerrollPanel = new AwaitDiceRerrollPanel(observableGame);
    }
-
    private void setupLayout(){
        JPanel main = new JPanel();
        main.add(awaitBeginningPanel);
        main.add(awaitCardSelectionPanel);
-       main.add(awaitOptionSelection);
-       main.add(awaitTrading);
+       main.add(awaitOptionSelectionPanel);
+       main.add(awaitTradingPanel);
 
        main.add(awaitDiceRerrollPanel);
 

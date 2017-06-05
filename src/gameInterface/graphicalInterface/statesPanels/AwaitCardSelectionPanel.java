@@ -1,6 +1,5 @@
 package gameInterface.graphicalInterface.statesPanels;
 
-
 import gameInterface.graphicalInterface.GraphicalPanel;
 import gameLogic.Constants;
 import gameLogic.ObservableGame;
@@ -29,13 +28,11 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
 
         update(game, this);
     }
-
     public void setupComponents(){
 
         for(int i = 0; i < 6; i++)
             cards[i] = new JButton(new ImageIcon(GraphicalPanel.getBackCard().getScaledInstance(215, 290, Image.SCALE_SMOOTH)));
     }
-
     public void setupLayout(){
 
         for(int i = 0; i < 6; i++) {
@@ -145,7 +142,6 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
         else
             setVisible(false);
     }
-
     @Override
     protected void paintComponent(Graphics g) {
     }

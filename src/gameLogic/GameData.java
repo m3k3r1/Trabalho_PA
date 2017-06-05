@@ -214,8 +214,8 @@ public class GameData implements Constants, Serializable {
         return diceStack.get(p);
     }
     public void generateDiceValues(){
-        int nDices = 1;
         diceStack.clear();
+        int nDices = 1;
 
         if(user.getXp() >= 12)
             nDices = 2;

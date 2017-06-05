@@ -4,12 +4,7 @@ package gameInterface.graphicalInterface.statesPanels;
 import gameInterface.graphicalInterface.GraphicalPanel;
 import gameLogic.Constants;
 import gameLogic.ObservableGame;
-import gameLogic.states.AwaitBeginning;
-import gameLogic.states.AwaitCardSelection;
 import gameLogic.states.RogueState;
-import gameLogic.states.combatStates.AwaitDiceReroll;
-import gameLogic.states.combatStates.AwaitFeatDecision;
-import gameLogic.states.combatStates.AwaitSpellDecision;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +13,7 @@ import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
-public class AwaitOptionSelection extends JPanel implements Observer, Constants{
+public class AwaitOptionSelectionPanel extends JPanel implements Observer, Constants{
 
     ObservableGame game ;
 
@@ -27,8 +22,7 @@ public class AwaitOptionSelection extends JPanel implements Observer, Constants{
     private JButton button2;
     private JButton button3;
 
-
-    public AwaitOptionSelection(ObservableGame g){
+    public AwaitOptionSelectionPanel(ObservableGame g){
         game = g;
         this.game.addObserver(this);
 
@@ -37,14 +31,12 @@ public class AwaitOptionSelection extends JPanel implements Observer, Constants{
 
         update(game, this);
     }
-
     public void setupComponents(){
         restingImage = new JLabel(new ImageIcon(GraphicalPanel.getRestingCard().getScaledInstance(215, 290, Image.SCALE_SMOOTH)));
         button1 = new JButton("Reinforce Weapon");
         button2 = new JButton("Search Ration");
         button3 = new JButton("Heal");
     }
-
     public void setupLayout(){
         setPreferredSize(new Dimension(1300,600));
 
