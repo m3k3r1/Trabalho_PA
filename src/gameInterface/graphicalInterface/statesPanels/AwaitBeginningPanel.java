@@ -87,7 +87,7 @@ public class AwaitBeginningPanel extends JPanel implements Observer, Constants {
         @Override
         public void actionPerformed(ActionEvent e){
             game.startGame( (dificultyComboBox.getSelectedIndex()+1), (areaComboBox.getSelectedIndex()+1));
-            System.out.print("Dificuldade " + (dificultyComboBox.getSelectedIndex()+1) + " | " + "Area : " + (areaComboBox.getSelectedIndex()+1));
+            System.out.println("Dificuldade " + (dificultyComboBox.getSelectedIndex()+1) + " | " + "Area : " + (areaComboBox.getSelectedIndex()+1));
         }
     }
 

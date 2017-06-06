@@ -31,18 +31,21 @@ public class AwaitDiceRerrollPanel extends JPanel implements Observer, Constants
     public void  setupComponents(){
         monsterCard = new JLabel(new ImageIcon(GraphicalPanel.getMonsterCard().getScaledInstance(215, 290, Image.SCALE_SMOOTH)));
         for(int i = 0; i < game.getDiceStackSize(); i++){
-            buttons[i] = new JButton("" + game.getDiceValue(i));
+            buttons[0] = new JButton("" + game.getDiceValue(0));
         }
     }
     public void setupLayout(){
         setPreferredSize(new Dimension(1300,600));
         add(monsterCard);
-        System.out.print("Dados " + game.getDiceStackSize());
+
+
         Box box1 = Box.createVerticalBox();
-        for(int i = 0 ; i < game.getDiceStackSize(); i++){
-            box1.add(buttons[i]);
-        }
+        for(int i = 0 ; i < game.getDiceStackSize(); i++)
+            box1.add(buttons[0]);
+
+        add(box1);
     }
+
 
     @Override
     public void update(Observable t, Object o) {
@@ -51,12 +54,13 @@ public class AwaitDiceRerrollPanel extends JPanel implements Observer, Constants
 
         RogueState state =  game.getState();
         if(state instanceof AwaitDiceReroll) {
-            //setupLayout();
+
             setVisible(true);
         }
 
     }
     @Override
     protected void paintComponent(Graphics g) {
+
     }
 }

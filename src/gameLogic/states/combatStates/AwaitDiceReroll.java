@@ -9,7 +9,7 @@ public class AwaitDiceReroll extends StateAdapter {
 	public AwaitDiceReroll(GameData d, int c){
 		super(d);
 		monsterCard = c;
-		getGameData().generateDiceValues();
+		//getGameData().generateDiceValues();
 	}
 	
 	

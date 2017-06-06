@@ -25,6 +25,8 @@ public class GameData implements Constants, Serializable {
 	
 		diceStack = new ArrayList<Integer>();
 		cardStack = new ArrayList<Card>();
+
+		generateDiceValues();
 	}
 
 	//Game
