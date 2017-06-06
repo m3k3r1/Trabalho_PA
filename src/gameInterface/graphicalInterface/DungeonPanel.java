@@ -29,10 +29,11 @@ public class DungeonPanel extends JPanel implements Observer, Constants {
     }
 
     public void setupComponents(){
-        dungeonImage = new JLabel(new ImageIcon(GraphicalPanel.getDungeonCard().getScaledInstance(360, 505, Image.SCALE_SMOOTH)));
+        dungeonImage = new JLabel("");
     }
 
     private void setupLayout(){
+        setPreferredSize(new Dimension(360, 505));
         add(dungeonImage);
     }
 
@@ -47,5 +48,11 @@ public class DungeonPanel extends JPanel implements Observer, Constants {
             setVisible(true);
 
     }
-
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(GraphicalPanel.getDungeonCard(), 0, 0, 360, 505, this);
+        g.drawImage(GraphicalPanel.getToken(), 30, 200, 30,30,this);
+        g.drawImage(GraphicalPanel.getToken(), 305, 462, 30,30,this);
+    }
 }

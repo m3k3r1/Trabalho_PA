@@ -7,6 +7,7 @@ import gameInterface.graphicalInterface.statesPanels.combatStatesPanels.AwaitDic
 import gameLogic.ObservableGame;
 import gameInterface.graphicalInterface.statesPanels.AwaitBeginningPanel;
 import gameLogic.Constants;
+import sun.util.BuddhistCalendar;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -31,6 +32,7 @@ public class GraphicalPanel extends JPanel implements Observer,  Constants {
     static private BufferedImage monsterCard = null;
     static private BufferedImage trapCard = null;
     static private BufferedImage bossCard = null;
+    static private BufferedImage token = null;
 
     static {
         try {
@@ -46,6 +48,7 @@ public class GraphicalPanel extends JPanel implements Observer,  Constants {
             monsterCard = ImageIO.read(Resources.getResourceFile(MONSTER_CARD));
             trapCard = ImageIO.read(Resources.getResourceFile(TRAP_CARD));
             bossCard = ImageIO.read(Resources.getResourceFile(BOSS_CARD));
+            token = ImageIO.read(Resources.getResourceFile(MORTY_TOKEN));
         } catch (IOException e) {
             System.out.println("Error loading images ");
         }
@@ -85,6 +88,7 @@ public class GraphicalPanel extends JPanel implements Observer,  Constants {
     public static BufferedImage getBossCard() {
         return bossCard;
     }
+    public static BufferedImage getToken(){ return token; }
 
     UserStatsPanel userStatsPanel;
     DungeonPanel dungeonPanel;

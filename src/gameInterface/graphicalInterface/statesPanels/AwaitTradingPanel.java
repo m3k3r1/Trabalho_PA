@@ -21,7 +21,6 @@ public class AwaitTradingPanel extends JPanel implements Observer, Constants {
     private JButton buy[];
     private JButton sell[];
 
-
     public AwaitTradingPanel(ObservableGame g){
         game = g;
         this.game.addObserver(this);

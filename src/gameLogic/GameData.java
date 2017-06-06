@@ -224,6 +224,7 @@ public class GameData implements Constants, Serializable {
 
         for(int i = 0; i < nDices; i++)
             diceStack.add(throwDice());
+        System.out.println("DADO : " + diceStack.get(0));
     }
     public void rerollDice(int dice){
         diceStack.set(dice, throwDice());

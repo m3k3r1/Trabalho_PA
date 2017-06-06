@@ -51,6 +51,7 @@ public class AwaitDiceRerrollPanel extends JPanel implements Observer, Constants
 
         RogueState state =  game.getState();
         if(state instanceof AwaitDiceReroll) {
+            //setupLayout();
             setVisible(true);
         }
 
