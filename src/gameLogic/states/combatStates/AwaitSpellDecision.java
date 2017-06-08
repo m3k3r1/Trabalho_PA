@@ -44,6 +44,9 @@ public class AwaitSpellDecision extends StateAdapter {
 		else{
 			
 			if(getGameData().getCard(monsterCard).isBoss())
+				getGameData().nextArea();
+
+			if(getGameData().checkBossArea())
 				getGameData().nextLevel();
 		
 			bonusDamage = 0;
