@@ -28,6 +28,9 @@ public class Game implements Constants {
 	}
 
 	//Game Data
+	public String getBuffer(){
+		return data.getBuffer();
+	}
 	public final Player getPlayer(){
 	    return data.getPlayer();
     }
@@ -91,7 +94,15 @@ public class Game implements Constants {
 		setState(getState().setStartingArea(a));
 	}
 	public void chooseCard(int pos){
-	    data.getCard(pos).turnCard();
+        if(pos == 0 || pos == 3){
+            data.getCard(pos).turnCard();
+            data.getCard(pos+1).turnCard();
+            data.getCard(pos+2).turnCard();
+        }else if( pos == 1 )
+            data.getCard(pos+2).turnCard();
+        else if (pos == 2)
+            data.getCard(pos+1).turnCard();
+
 		setState(getState().setCard(pos));
 	}
 	public void chooseOption(int option){

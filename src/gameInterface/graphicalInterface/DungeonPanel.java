@@ -51,8 +51,14 @@ public class DungeonPanel extends JPanel implements Observer, Constants {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+
         g.drawImage(GraphicalPanel.getDungeonCard(), 0, 0, 360, 505, this);
-        g.drawImage(GraphicalPanel.getToken(), 30, 200, 30,30,this);
-        g.drawImage(GraphicalPanel.getToken(), 305, 462, 30,30,this);
+
+        //AREA
+        if(game.getArea() == 2 || game.getArea() == 4 || game.getArea() == 7 || game.getArea() == 10 || game.getArea() == 14 )
+            g.drawImage(GraphicalPanel.getToken(), 30 + (20 * game.getArea()), 200 + (30  * game.getArea()), 30,30,this);
+       else
+            g.drawImage(GraphicalPanel.getToken(), 30 + (20 * game.getArea()), 200, 30,30,this);
+       // g.drawImage(GraphicalPanel.getToken(), 305, 462 -(30 *2), 30,30,this);
     }
 }

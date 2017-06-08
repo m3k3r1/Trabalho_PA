@@ -19,6 +19,12 @@ public class ObservableGame extends Observable{
     }
 
     //Game Info
+    public String getBuffer(){
+        return game.getBuffer();
+    }
+    public int getArea() {
+        return game.getArea();
+    }
     public final Player getPlayer(){
         return game.getPlayer();
     }

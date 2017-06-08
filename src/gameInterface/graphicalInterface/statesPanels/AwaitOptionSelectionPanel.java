@@ -1,6 +1,6 @@
 package gameInterface.graphicalInterface.statesPanels;
 
-
+import javax.swing.JOptionPane;
 import gameInterface.graphicalInterface.GraphicalPanel;
 import gameLogic.Constants;
 import gameLogic.ObservableGame;
@@ -54,6 +54,7 @@ public class AwaitOptionSelectionPanel extends JPanel implements Observer, Const
         button1.addActionListener(new WeaponListener());
         button2.addActionListener(new FoodListener());
         button3.addActionListener(new HealingListener());
+
     }
 
     //Listeners
@@ -62,6 +63,9 @@ public class AwaitOptionSelectionPanel extends JPanel implements Observer, Const
         public void actionPerformed(ActionEvent e) {
             game.chooseOption(1);
         }
+
+
+
     }
     class FoodListener implements ActionListener{
         @Override
@@ -82,6 +86,7 @@ public class AwaitOptionSelectionPanel extends JPanel implements Observer, Const
         if(state instanceof gameLogic.states.AwaitOptionSelection) {
             setVisible(true);
         }
+
 
 
     }

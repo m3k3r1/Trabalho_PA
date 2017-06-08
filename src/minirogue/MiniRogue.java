@@ -13,6 +13,6 @@ public class MiniRogue {
 		Player player = new Player();
 		Game newGame = new Game(player);
 		
-		GraphicalUi ui = new GraphicalUi(new ObservableGame(newGame));
+ 		GraphicalUi ui = new GraphicalUi(new ObservableGame(newGame));
 	}
 }

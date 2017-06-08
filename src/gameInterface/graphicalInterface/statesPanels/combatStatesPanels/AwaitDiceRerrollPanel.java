@@ -41,7 +41,7 @@ public class AwaitDiceRerrollPanel extends JPanel implements Observer, Constants
 
         Box box1 = Box.createVerticalBox();
         for(int i = 0 ; i < game.getDiceStackSize(); i++)
-            box1.add(buttons[0]);
+            box1.add(buttons[i]);
 
         add(box1);
     }

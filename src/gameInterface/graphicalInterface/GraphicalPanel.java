@@ -4,6 +4,8 @@ import gameInterface.graphicalInterface.statesPanels.AwaitCardSelectionPanel;
 import gameInterface.graphicalInterface.statesPanels.AwaitOptionSelectionPanel;
 import gameInterface.graphicalInterface.statesPanels.AwaitTradingPanel;
 import gameInterface.graphicalInterface.statesPanels.combatStatesPanels.AwaitDiceRerrollPanel;
+import gameInterface.graphicalInterface.statesPanels.combatStatesPanels.AwaitFeatDecisionPanel;
+import gameInterface.graphicalInterface.statesPanels.combatStatesPanels.AwaitSpellDecisionPanel;
 import gameLogic.ObservableGame;
 import gameInterface.graphicalInterface.statesPanels.AwaitBeginningPanel;
 import gameLogic.Constants;
@@ -99,6 +101,8 @@ public class GraphicalPanel extends JPanel implements Observer,  Constants {
     AwaitTradingPanel awaitTradingPanel;
 
     AwaitDiceRerrollPanel awaitDiceRerrollPanel;
+    AwaitFeatDecisionPanel awaitFeatDecisionPanel;
+    AwaitSpellDecisionPanel awaitSpellDecisionPanel;
 
     ObservableGame observableGame;
 
@@ -137,6 +141,8 @@ public class GraphicalPanel extends JPanel implements Observer,  Constants {
        awaitTradingPanel = new AwaitTradingPanel(observableGame);
 
        awaitDiceRerrollPanel = new AwaitDiceRerrollPanel(observableGame);
+       awaitFeatDecisionPanel = new AwaitFeatDecisionPanel(observableGame);
+       awaitSpellDecisionPanel = new AwaitSpellDecisionPanel(observableGame);
    }
    private void setupLayout(){
        JPanel main = new JPanel();
@@ -146,6 +152,8 @@ public class GraphicalPanel extends JPanel implements Observer,  Constants {
        main.add(awaitTradingPanel);
 
        main.add(awaitDiceRerrollPanel);
+       main.add(awaitFeatDecisionPanel);
+       main.add(awaitSpellDecisionPanel);
 
        main.setBackground(new Color(0,0,0,1));
 

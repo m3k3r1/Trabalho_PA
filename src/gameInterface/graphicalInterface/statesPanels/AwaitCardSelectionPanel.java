@@ -82,6 +82,8 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
         cards[4].addActionListener(new Card5Listener());
         cards[5].addActionListener(new Card6Listener());
         //cards[6].addActionListener(new Card7Listener());
+
+
     }
 
     //Listeners
@@ -135,8 +137,11 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
         if (game.getState() instanceof AwaitCardSelection){
             setVisible(true);
 
+            //TODO develop this notification idea
+            JOptionPane.showMessageDialog(this, game.getBuffer(), "InfoBox: " + "MiniRogue", JOptionPane.INFORMATION_MESSAGE);
+
             for (int i = 0; i < 6; i++){
-               //if(game.isTurned(i))
+                if(game.isTurned(i))
                     cards[i].setIcon(game.getCardImage(i));
             }
         }

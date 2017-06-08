@@ -42,7 +42,6 @@ public class AwaitBeginningPanel extends JPanel implements Observer, Constants {
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setPreferredSize(new Dimension(screenSize.width, screenSize.height));
-        // setBackground(new Color(0,0,0,1));
 
         dificultyLabel = new JLabel("Dificulty");
         dificultyComboBox  = new JComboBox(dificulties);
@@ -86,8 +85,8 @@ public class AwaitBeginningPanel extends JPanel implements Observer, Constants {
 
         @Override
         public void actionPerformed(ActionEvent e){
-            game.startGame( (dificultyComboBox.getSelectedIndex()+1), (areaComboBox.getSelectedIndex()+1));
-            System.out.println("Dificuldade " + (dificultyComboBox.getSelectedIndex()+1) + " | " + "Area : " + (areaComboBox.getSelectedIndex()+1));
+            game.startGame( (areaComboBox.getSelectedIndex()+1), (dificultyComboBox.getSelectedIndex()+1));
+
         }
     }
 
