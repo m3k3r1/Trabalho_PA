@@ -70,6 +70,9 @@ public class ObservableGame extends Observable{
         setChanged();
         notifyObservers();
     }
+    public int getArea() {
+      return game.getArea();
+    }
 
 }
 
