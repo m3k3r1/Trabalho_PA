@@ -54,11 +54,17 @@ public class DungeonPanel extends JPanel implements Observer, Constants {
 
         g.drawImage(GraphicalPanel.getDungeonCard(), 0, 0, 360, 505, this);
 
-        //AREA
-        if(game.getArea() == 2 || game.getArea() == 4 || game.getArea() == 7 || game.getArea() == 10 || game.getArea() == 14 )
-            g.drawImage(GraphicalPanel.getToken(), 30 + (20 * game.getArea()), 200 + (30  * game.getArea()), 30,30,this);
-       else
-            g.drawImage(GraphicalPanel.getToken(), 30 + (20 * game.getArea()), 200, 30,30,this);
+        if(game.getArea() <= 2)
+            g.drawImage(GraphicalPanel.getToken(), 30 + (game.getArea() - 1) * 40, 200, 30,30,this);
+        if(game.getArea() >= 3 && game.getArea() <= 4)
+            g.drawImage(GraphicalPanel.getToken(), 30 + (game.getArea() - 3) * 40, 260, 30,30,this);
+        if(game.getArea() >= 5 && game.getArea() <= 7)
+            g.drawImage(GraphicalPanel.getToken(), 30 + (game.getArea() - 5) * 40, 320, 30,30,this);
+        if(game.getArea() >= 8 && game.getArea() <= 10)
+            g.drawImage(GraphicalPanel.getToken(), 30 + (game.getArea() - 8) * 40, 380, 30,30,this);
+        if(game.getArea() >= 11)
+            g.drawImage(GraphicalPanel.getToken(), 30 + (game.getArea() - 11) * 40, 440, 30,30,this);
+
        // g.drawImage(GraphicalPanel.getToken(), 305, 462 -(30 *2), 30,30,this);
     }
 }
