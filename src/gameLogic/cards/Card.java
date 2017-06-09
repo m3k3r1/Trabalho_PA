@@ -86,12 +86,7 @@ public abstract class Card {
 		return false;
 	}
 	public boolean isTurned(){ return turned; }
-	public void attackMonster(int damage){
-		
-	}
-	
-	//TODO make a general funcion to this 3 methods
-	public int cardDiceEffect(Player p, int d){return 0;}
-	public int playerOption(Player p, int d){return 0;}
-	public void trapEffect(GameData g, int d) {}
+	public void attackMonster(int damage){}
+
+	public int cardEffect(GameData data, int d){return 0;}
 }

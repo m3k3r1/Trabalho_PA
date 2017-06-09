@@ -1,5 +1,6 @@
 package gameLogic.cards;
 
+import gameLogic.GameData;
 import gameLogic.Player;
 
 import java.awt.image.BufferedImage;
@@ -14,15 +15,24 @@ public class Resting extends Card{
 	public boolean isResting(){
 		return true;
 	}
-	
+
 	@Override
-	public int playerOption(Player p, int r){
-		switch(r){
-			case 1: p.addXp(1); break;
-			case 2: p.addFood(1); break;
-			case 3: p.addHp(1); break;
-		}
-		
-		return 0;
-	}
+    public int cardEffect(GameData data, int d){
+        switch(d){
+            case 1:
+                data.getPlayer().addXp(1);
+                data.outputBuffer("Xp : +1");
+                break;
+            case 2:
+                data.getPlayer().addFood(1);
+                data.outputBuffer("Food : +1");
+                break;
+            case 3:
+                data.getPlayer().addHp(1);
+                data.outputBuffer("Hp : +1");
+                break;
+        }
+
+        return 0;
+    }
 }

@@ -21,24 +21,22 @@ public class AwaitCardSelection extends StateAdapter {
 			return new AwaitTrading(getGameData(), card);
 		}
 		else if(getGameData().getCard(card).isEvent()) {
-            switch(getGameData().getCard(card).cardDiceEffect(getGameData().getPlayer(), getGameData().throwDice())) {
-                //TODO make all the different cases
+            switch(getGameData().getCard(card).cardEffect(getGameData(), getGameData().throwDice())) {
                 case 1:
-                    //TODO use to buffer to output return option
                     getGameData().createEventMonster();
                     return new AwaitDiceReroll(getGameData(), 6);
                 default: return this;
             }
 		}
 		else if(getGameData().getCard(card).isTreasure()){
-		    //TODO use toBuffer() to add the output choice
-			getGameData().getCard(card).cardDiceEffect(getGameData().getPlayer(), getGameData().throwDice());
+			getGameData().getCard(card).cardEffect(getGameData(), getGameData().throwDice());
 			if(!getGameData().hasHp())
 				return new AwaitBeginning(getGameData());
 			return this;
 		}
 		else if(getGameData().getCard(card).isTrap()){
-			getGameData().getCard(card).trapEffect(getGameData(),getGameData().throwDice() );
+			getGameData().getCard(card).cardEffect(getGameData(),getGameData().throwDice() );
+
 			if(!getGameData().hasHp())
 				return new AwaitBeginning(getGameData());
 			return this;

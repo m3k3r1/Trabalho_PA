@@ -5,53 +5,66 @@ import gameLogic.Player;
 
 import java.awt.image.BufferedImage;
 
-public class Trap extends Card{
-	public Trap(BufferedImage l){
-		super(l);
-		
-		name= "Trap";
-	}
+public class Trap extends Card {
+    public Trap(BufferedImage l) {
+        super(l);
 
-	@Override
-	public boolean isTrap(){
-		return true;
-	}
+        name = "Trap";
+    }
 
-	@Override
-	public void trapEffect(GameData g, int d){
-		Player p = g.getPlayer();
-		int l = g.getLevel();
-		
-		switch(d){
-			case 1:
-				if(p.getFood() > 0)
-					p.addFood(-1);
-				break;
-			case 2:
-				if(g.getGold() > 0)
-					p.addGold(-1);
-				break;
-			case 3:
-				if(p.getArmor() > 0)
-					p.addArmor(-1);
-				break;
-			case 4:
-				p.addHp(-1);
-				break;
-			case 5:
-				if(p.getXp() > 0)
-					p.addXp(-1);
-				break;
-			case 6:
-				if(l > 0 && l <= 2)
-					g.setArea(g.getArea() + 2);
-				else if(l >= 3 && l <= 4)
-					g.setArea(g.getArea() + 3);
-				
-				p.addHp(-2);
-				g.setLevel(l + 1);
-				
-		}
-		
-	}
+    @Override
+    public boolean isTrap() {
+        return true;
+    }
+
+
+    @Override
+    public int cardEffect(GameData data, int d) {
+        switch (d) {
+            case 1:
+                if (data.getPlayer().getFood() > 0) {
+                    data.getPlayer().addFood(-1);
+                    data.outputBuffer("Food: -1");
+                }
+                break;
+            case 2:
+                if (data.getPlayer().getGold() > 0) {
+                    data.getPlayer().addGold(-1);
+                    data.outputBuffer("Gold: -1");
+                }
+                break;
+            case 3:
+                if (data.getPlayer().getArmor() > 0) {
+                    data.getPlayer().addArmor(-1);
+                    data.outputBuffer("Armor: -1");
+                }
+                break;
+            case 4:
+                data.getPlayer().addHp(-1);
+                data.outputBuffer("Hp: -1");
+                break;
+            case 5:
+                if (data.getPlayer().getXp() > 0) {
+                    data.getPlayer().addXp(-1);
+                    data.outputBuffer("Xp: -1");
+                }
+                break;
+            case 6:
+                if (data.getLevel() > 0 && data.getLevel() <= 2) {
+                    data.setArea(data.getArea() + 2);
+                    data.outputBuffer("You skip 2 Areas");
+                } else if (data.getLevel() >= 3 && data.getLevel() <= 4) {
+                    data.setArea(data.getArea() + 3);
+                    data.outputBuffer("You skip 3 Areas");
+                }
+
+
+                data.addHp(-2);
+                data.outputBuffer("Hp: -2");
+                data.setLevel(data.getLevel() + 1);
+                data.outputBuffer("You skipped 1 level");
+
+        }
+        return 0;
+    }
 }

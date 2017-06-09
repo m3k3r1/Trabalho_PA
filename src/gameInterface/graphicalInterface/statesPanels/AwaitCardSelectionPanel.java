@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 public class AwaitCardSelectionPanel extends JPanel implements Observer, Constants {
     ObservableGame game;
 
@@ -138,7 +140,8 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
             setVisible(true);
 
             //TODO develop this notification idea
-            JOptionPane.showMessageDialog(this, game.getBuffer(), "InfoBox: " + "MiniRogue", JOptionPane.INFORMATION_MESSAGE);
+            if(!game.getBuffer().equals(""))
+                JOptionPane.showMessageDialog(null, game.getBuffer(), "InfoBox: " + "MiniRogue", JOptionPane.INFORMATION_MESSAGE);
 
             for (int i = 0; i < 6; i++){
                 if(game.isTurned(i))
