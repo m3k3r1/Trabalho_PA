@@ -93,12 +93,17 @@ public class Game implements Constants , Serializable {
 	}
 	public void chooseCard(int pos){
         if(pos == 0 || pos == 3){
-            data.getCard(pos+1).turnCard();
-            data.getCard(pos+2).turnCard();
-        }else if( pos == 1 )
-            data.getCard(pos+2).turnCard();
-        else if (pos == 2)
-            data.getCard(pos+1).turnCard();
+            data.getCard(pos).useCard();
+            data.getCard(pos + 1).turnCard();
+            data.getCard(pos + 2).turnCard();
+        }else if( pos == 1 || pos == 4) {
+			data.getCard(pos).useCard();
+			data.getCard(pos + 1).useCard();
+			data.getCard(pos + 2).turnCard();
+		}else if (pos == 2 || pos == 5) {
+			data.getCard(pos).useCard();
+			data.getCard(pos + 1).turnCard();
+		}
 
 		setState(getState().setCard(pos));
 	}
