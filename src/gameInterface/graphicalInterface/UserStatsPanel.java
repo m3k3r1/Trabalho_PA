@@ -48,20 +48,35 @@ public class UserStatsPanel extends JPanel implements Observer, Constants{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(GraphicalPanel.getCharacterStats(), 0 ,0, 940, 350, this );
+
         // XP
         if(game.getPlayer().getXp() < 21)
             g.drawImage(GraphicalPanel.getToken(),70 + game.getPlayer().getXp() * 40, 34, 30, 30, this );
         else
             g.drawImage(GraphicalPanel.getToken(),70 + game.getPlayer().getXp() * 40, 76, 30, 30, this );
+
         // GOLD
         g.drawImage(GraphicalPanel.getToken(),70 + game.getPlayer().getGold() * 40, 148, 30, 30, this );
+
         // HP
-        g.drawImage(GraphicalPanel.getToken(),70 + game.getPlayer().getHp() * 40, 218 , 30, 30, this );
+        if(game.getPlayer().getHp() < 0)
+            g.drawImage(GraphicalPanel.getToken(),70, 218 , 30, 30, this );
+        else
+            g.drawImage(GraphicalPanel.getToken(),70 + game.getPlayer().getHp() * 40, 218 , 30, 30, this );
+
         // ARMOR
         g.drawImage(GraphicalPanel.getToken(),70 + game.getPlayer().getArmor() * 40, 287, 30, 30, this );
+
         // SPELLS
-        //g.drawImage(GraphicalPanel.getToken(),70, 150, 30, 30, this );
+        for(int i = 0, a = 0; i < 2; i++) {
+            if(i == 1 && game.getPlayer().getSpellValue(i - 1) == game.getPlayer().getSpellValue(i))
+                a++;
+
+            if(game.getPlayer().getSpellValue(i) != 0)
+                g.drawImage(GraphicalPanel.getToken(), 310 + (80 * (game.getPlayer().getSpellValue(i) - 1 + a)), 287, 30, 30, this);
+        }
+
         // FOOD
-        //g.drawImage(GraphicalPanel.getToken(),70, 150, 30, 30, this );
+        g.drawImage(GraphicalPanel.getToken(),635 + (game.getPlayer().getFood() * 40), 287, 30, 30, this );
     }
 }
