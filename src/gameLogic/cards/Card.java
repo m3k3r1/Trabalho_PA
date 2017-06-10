@@ -15,6 +15,7 @@ public abstract class Card implements Serializable{
 	protected int level;
 	protected String name;
 	protected boolean turned = false;
+	protected boolean used = false
 	protected ImageIcon image;
 	
 	public Card(){
@@ -94,4 +95,7 @@ public abstract class Card implements Serializable{
 	public void attackMonster(int damage){}
 
 	public int cardEffect(GameData data, int d){return 0;}
+
+	public void useCard(){ used = true; }
+	public boolean isUsed(){ return used; }
 }
