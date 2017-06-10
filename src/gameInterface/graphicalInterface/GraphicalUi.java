@@ -150,6 +150,10 @@ public class GraphicalUi extends JFrame implements Observer, Constants {
     public void update(Observable o, Object arg) {
         System.out.println("Player -> H : " + observableGame.getPlayer().getHp() + "| A : " + observableGame.getPlayer().getArmor() + "| F : " + observableGame.getPlayer().getFood() + "| G : " + observableGame.getPlayer().getGold() + "| Xp : " + observableGame.getPlayer().getXp());
         System.out.println("Monster HP : " + observableGame.getMonsterHp());
+        System.out.print("Spells: ");
+        for(int i = 0; i < 2;i++)
+            System.out.print(observableGame.getPlayer().getSpellValue(i) + " ");
+        System.out.println();
         repaint();
     }
 }
