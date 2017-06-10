@@ -32,8 +32,9 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
     }
     public void setupComponents(){
 
-        for(int i = 0; i < 6; i++)
+        for(int i = 0; i < 6; i++) {
             cards[i] = new JButton(new ImageIcon(GraphicalPanel.getBackCard().getScaledInstance(215, 290, Image.SCALE_SMOOTH)));
+        }
     }
     public void setupLayout(){
 
@@ -44,9 +45,8 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
             cards[i].setFocusPainted(false);
             cards[i].setContentAreaFilled(false);
             cards[i].setCursor(new Cursor(Cursor.HAND_CURSOR));
+
         }
-
-
 
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setPreferredSize(new Dimension(1300,600));
@@ -92,38 +92,43 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
     class Card1Listener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(!game.isTurned(0))
+            //if(!game.isTurned(0))
                 game.chooseCard(0);
         }
     }
     class Card2Listener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            game.chooseCard(1);
+            if(game.isTurned(1) )
+                game.chooseCard(1);
         }
     }
     class Card3Listener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            game.chooseCard(2);
+            if(game.isTurned(2) )
+                game.chooseCard(2);
         }
     }
     class Card4Listener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            game.chooseCard(3);
+            if(game.isTurned(3) )
+                game.chooseCard(3);
         }
     }
     class Card5Listener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            game.chooseCard(4);
+            if(game.isTurned(4) )
+                game.chooseCard(4);
         }
     }
     class Card6Listener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            game.chooseCard(5);
+            if(game.isTurned(5) )
+                game.chooseCard(5);
         }
     }
     class Card7Listener implements ActionListener{
@@ -139,13 +144,14 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
         if (game.getState() instanceof AwaitCardSelection){
             setVisible(true);
 
-            //TODO develop this notification idea
             if(!game.getBuffer().equals(""))
                 JOptionPane.showMessageDialog(null, game.getBuffer(), "InfoBox: " + "MiniRogue", JOptionPane.INFORMATION_MESSAGE);
 
             for (int i = 0; i < 6; i++){
                 if(game.isTurned(i))
                     cards[i].setIcon(game.getCardImage(i));
+                else
+                    cards[i].setIcon(new ImageIcon(GraphicalPanel.getBackCard().getScaledInstance(215, 290, Image.SCALE_SMOOTH)));
             }
         }
         else
@@ -153,5 +159,6 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
     }
     @Override
     protected void paintComponent(Graphics g) {
+
     }
 }

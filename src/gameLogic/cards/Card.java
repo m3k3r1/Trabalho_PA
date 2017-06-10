@@ -6,8 +6,9 @@ import gameLogic.Player;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
-public abstract class Card {
+public abstract class Card implements Serializable{
 	protected int hp;
 	protected int dmg;
 	protected int reward;

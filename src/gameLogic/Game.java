@@ -1,10 +1,12 @@
 package gameLogic;
 
+import com.sun.corba.se.spi.activation.ServerOperations;
 import gameLogic.states.*;
 
 import javax.swing.*;
+import java.io.Serializable;
 
-public class Game implements Constants {
+public class Game implements Constants , Serializable {
 	private GameData data;
 	private RogueState state; 
 	
@@ -79,10 +81,6 @@ public class Game implements Constants {
     private void setState(RogueState s){
         this.state = s;
     }
-    public void newGame(){
-        setState(new AwaitBeginning(new GameData(new Player())));
-        data.reset();
-    }
 
     public void startGame(){
 		setState(getState().startGame());
@@ -95,7 +93,6 @@ public class Game implements Constants {
 	}
 	public void chooseCard(int pos){
         if(pos == 0 || pos == 3){
-            data.getCard(pos).turnCard();
             data.getCard(pos+1).turnCard();
             data.getCard(pos+2).turnCard();
         }else if( pos == 1 )

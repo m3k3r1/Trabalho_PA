@@ -90,7 +90,7 @@ public class AwaitTradingPanel extends JPanel implements Observer, Constants {
         @Override
         public void actionPerformed(ActionEvent e){
             game.chooseOption(3);
-        }
+         }
     }
     class ArmorPiece implements ActionListener{
         @Override

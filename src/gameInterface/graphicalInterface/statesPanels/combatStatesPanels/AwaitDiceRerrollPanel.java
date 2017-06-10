@@ -8,6 +8,8 @@ import gameLogic.states.combatStates.AwaitDiceReroll;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -44,6 +46,15 @@ public class AwaitDiceRerrollPanel extends JPanel implements Observer, Constants
             box1.add(buttons[i]);
 
         add(box1);
+    }
+
+    class Dice1Listener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(game.isTurned(1) )
+                game.chooseCard(1);
+        }
+
     }
 
 

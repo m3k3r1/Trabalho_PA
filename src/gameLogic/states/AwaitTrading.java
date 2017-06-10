@@ -5,10 +5,7 @@ import gameLogic.GameData;
 public class AwaitTrading extends StateAdapter {
 	int card;
 	
-	public AwaitTrading(GameData d) {
-		super(d);
-	}
-	
+
 	public AwaitTrading(GameData d, int c){
 		super(d);
 		card = c;

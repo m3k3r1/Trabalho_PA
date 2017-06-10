@@ -31,12 +31,6 @@ public class GameData implements Constants, Serializable {
 	}
 
 	//Game
-    public void reset(){
-
-	    diceStack = new ArrayList<Integer>();
-	    cardStack = new ArrayList<Card>();
-	    initializeCardStack();
-    }
     public Player getPlayer(){
         return user;
     }
@@ -154,6 +148,8 @@ public class GameData implements Constants, Serializable {
 
         if(checkBossArea())
             cardStack.add(new Boss(GraphicalPanel.getBossCard()));
+
+        cardStack.get(0).turnCard();
     }
     public final Card getCard(int pos){
         if(pos < 6){

@@ -120,11 +120,13 @@ public class GraphicalUi extends JFrame implements Observer, Constants {
     class LoadGameBarListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            observableGame.loadGame();
         }
     }
     class SaveGameBarListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            observableGame.saveGame();
         }
     }
     class ExitGameBarListener implements ActionListener {

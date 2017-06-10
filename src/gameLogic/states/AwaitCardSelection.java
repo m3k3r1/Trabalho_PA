@@ -9,6 +9,12 @@ public class AwaitCardSelection extends StateAdapter {
 	
 	public AwaitCardSelection(GameData d) {
 		super(d);
+
+        if(getGameData().nCardsTurned() == getGameData().getCardStackSize()) {
+            getGameData().setArea(getGameData().getArea() + 1);
+            getGameData().clearCardStack();
+            getGameData().initializeCardStack();
+        }
 	}
 
 	@Override
