@@ -6,11 +6,11 @@ import java.awt.image.BufferedImage;
 
 public class Boss extends Card implements Constants{
 	
-	public Boss(BufferedImage l){
-		super(l);
-		name = "Boss";
-		
-		initializeStats();
+	public Boss(BufferedImage l, int le){
+        super(l, le);
+        name = "Monster";
+
+        initializeStats();
 	}
 	
 	@Override

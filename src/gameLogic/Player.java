@@ -61,7 +61,7 @@ public class Player implements Serializable {
 		public int[] getArraySpell(){ return spells; }
 		public void addSpell(int s) {
 				for(int i = 0; i < 2; i++)
-					if(spells[i] != 0)
+					if(spells[i] == 0)
 						spells[i] = s;
 		}
 		public boolean removeSpell() {

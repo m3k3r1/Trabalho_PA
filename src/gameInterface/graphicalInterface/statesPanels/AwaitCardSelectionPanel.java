@@ -32,13 +32,13 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
     }
     public void setupComponents(){
 
-        for(int i = 0; i < 6; i++) {
+        for(int i = 0; i < 7; i++) {
             cards[i] = new JButton(new ImageIcon(GraphicalPanel.getBackCard().getScaledInstance(215, 290, Image.SCALE_SMOOTH)));
         }
     }
     public void setupLayout(){
 
-        for(int i = 0; i < 6; i++) {
+        for(int i = 0; i < 7; i++) {
             cards[i].setBorder(null);
             cards[i].setBorderPainted(false);
             cards[i].setMargin(new Insets(0, 0, 0, 0));
@@ -72,10 +72,15 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
         box3.add(cards[5]);
         box3.add(Box.createHorizontalGlue());
 
+
+
+
         add(box);
         add(box1);
         add(box2);
         add(box3);
+
+
 
         cards[0].addActionListener(new Card1Listener());
         cards[1].addActionListener(new Card2Listener());
@@ -83,7 +88,7 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
         cards[3].addActionListener(new Card4Listener());
         cards[4].addActionListener(new Card5Listener());
         cards[5].addActionListener(new Card6Listener());
-        //cards[6].addActionListener(new Card7Listener());
+        cards[6].addActionListener(new Card7Listener());
 
 
     }
@@ -139,6 +144,15 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
 
     @Override
     public void update(Observable t, Object o) {
+        if(game.getArea() == 2
+                ||game.getArea() == 4
+                || game.getArea() == 7
+                || game.getArea() == 10
+                || game.getArea() == 14) {
+
+            Box box4 = Box.createVerticalBox();
+            box4.add(cards[6]);
+            add(box4);}
 
         if (game.getState() instanceof AwaitCardSelection){
             setVisible(true);
@@ -146,7 +160,7 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
             if(!game.getBuffer().equals(""))
                 JOptionPane.showMessageDialog(null, game.getBuffer(), "InfoBox: " + "MiniRogue", JOptionPane.INFORMATION_MESSAGE);
 
-            for (int i = 0; i < 6; i++){
+            for (int i = 0; i < game.getCardStackSize(); i++){
                 if(game.isTurned(i))
                     cards[i].setIcon(game.getCardImage(i));
                 else

@@ -149,13 +149,15 @@ public class GameData implements Constants, Serializable {
 
         Collections.shuffle(cardStack);
 
-        if(checkBossArea())
-            cardStack.add(new Boss(GraphicalPanel.getBossCard()));
+        if(checkBossArea()) {
+            cardStack.add(new Boss(GraphicalPanel.getBossCard(), level));
+            cardStack.get(6).turnCard();
+        }
 
         cardStack.get(0).turnCard();
     }
     public final Card getCard(int pos){
-        if(pos < 6){
+        if(pos < 7){
             return cardStack.get(pos);
         }
         return null;
@@ -188,7 +190,7 @@ public class GameData implements Constants, Serializable {
         cardStack.add(new Monster(GraphicalPanel.getMonsterCard(),level));
     }
     public void createBossMonster(){
-        cardStack.add(new Boss(GraphicalPanel.getBossCard()));
+        cardStack.add(new Boss(GraphicalPanel.getBossCard(), level));
     }
     public int getMonsterHp(){
         for(Card  a : cardStack)

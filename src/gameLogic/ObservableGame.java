@@ -88,6 +88,9 @@ public class ObservableGame extends Observable{
     public int getMonsterHp(){
        return game.getMonsterHp();
     }
+    public int getCardStackSize(){
+        return game.getCardStackSize();
+    }
 
     //States Handling
     public  void newGame(){
