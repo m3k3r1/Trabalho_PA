@@ -29,6 +29,10 @@ public abstract class Card implements Serializable{
 	public Card(BufferedImage i){
 	    image =  new ImageIcon(i.getScaledInstance(215, 290, Image.SCALE_SMOOTH));
     }
+    public Card(BufferedImage i, int l){
+        image =  new ImageIcon(i.getScaledInstance(215, 290, Image.SCALE_SMOOTH));
+        level = l;
+    }
 	
 	//Getter's
 	public int getHp(){

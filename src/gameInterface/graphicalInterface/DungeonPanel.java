@@ -41,8 +41,7 @@ public class DungeonPanel extends JPanel implements Observer, Constants {
     public void update(Observable t, Object o){
         if( game.getState() instanceof AwaitBeginning ||
                 game.getState() instanceof AwaitTrading ||
-                game.getState() instanceof AwaitOptionSelection ||
-                game.getState() instanceof AwaitDiceReroll)
+                game.getState() instanceof AwaitOptionSelection )
             setVisible(false);
         else
             setVisible(true);

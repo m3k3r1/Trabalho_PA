@@ -19,8 +19,15 @@ public class AwaitFeatDecision extends StateAdapter{
 		
 		return new AwaitSpellDecision(getGameData(), monsterCard, userDamage);
 	}
-	
-	@Override
+    private void attackMonster(int damage){
+        getGameData().attackMonster(monsterCard, damage);
+    }
+
+    private void attackUser(){
+        getGameData().attackUser(monsterCard);
+    }
+
+    @Override
 	public RogueState featOption(boolean option, int dice){
 		if(option){
 			
@@ -28,11 +35,26 @@ public class AwaitFeatDecision extends StateAdapter{
 			
 			if(dice >= 0)
 				getGameData().rerollDice(dice);
+
+			getGameData().getPlayer().addHp(-2);
 		}
 		
 		
 		userDamage = getGameData().calculateDiceSum();
-		
-		return new AwaitSpellDecision(getGameData(), monsterCard, userDamage);
+
+
+        if(getGameData().hasHp())
+            attackMonster(userDamage);
+
+        else
+            return new AwaitBeginning(getGameData());
+
+
+        if(getGameData().hasHp(monsterCard)) {
+            attackUser();
+            return new AwaitDiceReroll(getGameData(), monsterCard);
+        }else
+            return new AwaitCardSelection(getGameData());
+
 	}
 }

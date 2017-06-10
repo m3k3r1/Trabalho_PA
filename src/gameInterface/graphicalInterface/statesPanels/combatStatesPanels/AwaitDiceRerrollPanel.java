@@ -18,12 +18,14 @@ public class AwaitDiceRerrollPanel extends JPanel implements Observer, Constants
     ObservableGame game;
     JLabel monsterCard;
     JButton buttons[];
+    JButton start;
 
     public AwaitDiceRerrollPanel(ObservableGame g) {
         game = g;
         this.game.addObserver(this);
 
         buttons = new JButton[game.getDiceStackSize()];
+        start = new JButton("Start Fight");
 
         setupComponents();
         setupLayout();
@@ -40,36 +42,50 @@ public class AwaitDiceRerrollPanel extends JPanel implements Observer, Constants
         setPreferredSize(new Dimension(1300,600));
         add(monsterCard);
 
-
         Box box1 = Box.createVerticalBox();
         for(int i = 0 ; i < game.getDiceStackSize(); i++)
             box1.add(buttons[i]);
 
+        Box box2 = Box.createVerticalBox();
+        box2.add(start);
+
+        buttons[0].addActionListener(new Dice1Listener());
+        start.addActionListener(new StartListener());
+
+        add(box2);
         add(box1);
+
     }
 
     class Dice1Listener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(game.isTurned(1) )
-                game.chooseCard(1);
+            if(game.getDiceValue(0) == 6)
+                game.rerrollDice(0);
         }
 
     }
+    class StartListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            //if(game.getDiceValue(0) != 1)
+            game.skip();
+        }
 
+    }
 
     @Override
     public void update(Observable t, Object o) {
-
         setVisible(false);
 
+        for(int i = 0; i < game.getDiceStackSize(); i++)
+            buttons[i].setText(""+game.getDiceValue(i));
+
         RogueState state =  game.getState();
-        if(state instanceof AwaitDiceReroll) {
-
+        if(state instanceof AwaitDiceReroll)
             setVisible(true);
-        }
-
     }
+
     @Override
     protected void paintComponent(Graphics g) {
 

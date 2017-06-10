@@ -85,6 +85,9 @@ public class ObservableGame extends Observable{
     public int getDiceValue(int index){
         return game.getDiceValue(index);
     }
+    public int getMonsterHp(){
+       return game.getMonsterHp();
+    }
 
     //States Handling
     public  void newGame(){
@@ -113,6 +116,23 @@ public class ObservableGame extends Observable{
         setChanged();
         notifyObservers();
     }
+    public void rerrollDice(int dice){
+        game.rerollDiceOption(dice);
 
+        setChanged();
+        notifyObservers();
+    }
+    public void featOption(boolean b, int dice){
+        game.featOption(b,dice);
+
+        setChanged();
+        notifyObservers();
+    }
+    public void skip(){
+        game.skip();
+
+        setChanged();
+        notifyObservers();
+    }
 }
 

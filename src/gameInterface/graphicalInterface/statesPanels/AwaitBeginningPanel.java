@@ -27,8 +27,6 @@ public class AwaitBeginningPanel extends JPanel implements Observer, Constants {
 
     private ObservableGame game;
 
-
-
     public AwaitBeginningPanel(ObservableGame g){
         game = g;
         this.game.addObserver(this);

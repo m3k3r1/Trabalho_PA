@@ -76,4 +76,9 @@ public class Player implements Serializable {
 		public void setFood(int f) {
 			food = f ;
 		}
+		public boolean hasSpell(){
+			if( spells[0] == 0 && spells[1] == 0)
+			    return false;
+			return true;
+		}
 }

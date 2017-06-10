@@ -92,7 +92,6 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
     class Card1Listener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            //if(!game.isTurned(0))
                 game.chooseCard(0);
         }
     }
@@ -127,7 +126,7 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
     class Card6Listener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(game.isTurned(5) )
+           if(game.isTurned(5) )
                 game.chooseCard(5);
         }
     }

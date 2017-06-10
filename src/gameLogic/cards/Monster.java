@@ -6,8 +6,8 @@ import java.awt.image.BufferedImage;
 
 public class Monster extends Card implements Constants{
 	
-	public Monster(BufferedImage l){
-		super(l);
+	public Monster(BufferedImage l, int le){
+		super(l, le);
 		name = "Monster";
 		
 		initializeStats();

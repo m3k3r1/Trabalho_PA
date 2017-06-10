@@ -11,10 +11,12 @@ public class GameData implements Constants, Serializable {
 	
 	private int level;
 	private int area;
-	
+
 	private Player user;
 	private ArrayList<Card> cardStack;
+
 	private ArrayList<Integer> diceStack;
+    private ArrayList<Integer> extraDiceDamage;
 
 	private String buffer;
 	
@@ -25,6 +27,7 @@ public class GameData implements Constants, Serializable {
 	
 		diceStack = new ArrayList<Integer>();
 		cardStack = new ArrayList<Card>();
+        extraDiceDamage = new ArrayList<Integer>();
 
 		generateDiceValues();
 		clearOutputBuffer();
@@ -139,7 +142,7 @@ public class GameData implements Constants, Serializable {
 
         cardStack.add(new Event(GraphicalPanel.getEventCard()));
         cardStack.add(new Merchant(GraphicalPanel.getMerchantCard()));
-        cardStack.add(new Monster(GraphicalPanel.getMonsterCard()));
+        cardStack.add(new Monster(GraphicalPanel.getMonsterCard(),level));
         cardStack.add(new Resting(GraphicalPanel.getRestingCard()));
         cardStack.add(new Trap(GraphicalPanel.getTrapCard()));
         cardStack.add(new Treasure(GraphicalPanel.getTreasureCard()));
@@ -182,7 +185,7 @@ public class GameData implements Constants, Serializable {
         return cardStack.size();
     }
     public void createEventMonster(){
-        cardStack.add(new Monster(GraphicalPanel.getMonsterCard()));
+        cardStack.add(new Monster(GraphicalPanel.getMonsterCard(),level));
     }
     public void createBossMonster(){
         cardStack.add(new Boss(GraphicalPanel.getBossCard()));
@@ -221,9 +224,11 @@ public class GameData implements Constants, Serializable {
         else if(user.getXp() >= 18)
             nDices = 3;
 
-        for(int i = 0; i < nDices; i++)
+        for(int i = 0; i < nDices; i++){
             diceStack.add(throwDice());
-        System.out.println("DADO : " + diceStack.get(0));
+            extraDiceDamage.add(0);
+        }
+
     }
     public void rerollDice(int dice){
         diceStack.set(dice, throwDice());
@@ -231,12 +236,24 @@ public class GameData implements Constants, Serializable {
     public int calculateDiceSum(){
         int sum = 0;
 
+        checkDiceValues();
+
         for(int i = 0; i < getDiceSize(); i++){
-            if(getDiceValue(i) > 0)
-                sum += getDiceValue(i);
+            sum += diceStack.get(i);
         }
 
         return sum;
+    }
+    private void checkDiceValues() {
+        for (int i = 0; i < getDiceSize(); i++) {
+            if (diceStack.get(i) == 1)
+                diceStack.set(i, 0);
+            extraDiceDamage.set(i, 0);
+        }
+    }
+    public void addExtraDamage(int diceIndex){
+        int sum = extraDiceDamage.get(diceIndex) + 6;
+        extraDiceDamage.set(diceIndex, sum);
     }
 
     //Useful Methods
