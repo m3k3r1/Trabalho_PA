@@ -12,7 +12,6 @@ public class ObservableGame extends Observable{
 
     public ObservableGame(Game g){
         game = g;
-
     }
 
     public RogueState getState(){
@@ -130,6 +129,9 @@ public class ObservableGame extends Observable{
 
         setChanged();
         notifyObservers();
+    }
+    public int getMonsterHp() {
+      return game.getMonsterHp();
     }
     public void skip(){
         game.skip();
