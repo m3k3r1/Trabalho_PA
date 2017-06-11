@@ -53,19 +53,21 @@ public class Trap extends Card {
                 data.clearCardStack();
                 data.initializeCardStack();
 
-                if (data.getLevel() > 0 && data.getLevel() <= 2) {
-                    data.setArea(data.getArea() + 2);
-                    data.outputBuffer("You skip 2 Areas");
-                } else if (data.getLevel() >= 3 && data.getLevel() <= 4) {
-                    data.setArea(data.getArea() + 3);
-                    data.outputBuffer("You skip 3 Areas");
-                }
+                if (data.getLevel() != 14) {
+                    if (data.getLevel() > 0 && data.getLevel() <= 2) {
+                        data.setArea(data.getArea() + 2);
+                        data.outputBuffer("You skip 2 Areas");
+                    } else if (data.getLevel() >= 3 && data.getLevel() <= 4) {
+                        data.setArea(data.getArea() + 3);
+                        data.outputBuffer("You skip 3 Areas");
+                    }
 
+                    data.setLevel(data.getLevel() + 1);
+                    data.outputBuffer("You skipped 1 level");
+                }
 
                 data.addHp(-2);
                 data.outputBuffer("Hp: -2");
-                data.setLevel(data.getLevel() + 1);
-                data.outputBuffer("You skipped 1 level");
 
         }
         return 0;
