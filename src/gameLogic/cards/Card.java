@@ -17,16 +17,7 @@ public abstract class Card implements Serializable{
 	protected boolean turned = false;
 	protected boolean used = false;
 	protected ImageIcon image;
-	
-	public Card(){
-		hp = 0;
-		dmg = 0;
-		reward = 0;
-	}
-	
-	public Card(int l){
-		level = l;
-	}
+
 	public Card(BufferedImage i){
 	    image =  new ImageIcon(i.getScaledInstance(215, 290, Image.SCALE_SMOOTH));
     }

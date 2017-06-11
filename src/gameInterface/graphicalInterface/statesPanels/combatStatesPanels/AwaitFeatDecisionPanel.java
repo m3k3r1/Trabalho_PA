@@ -37,7 +37,7 @@ public class AwaitFeatDecisionPanel extends JPanel implements Observer, Constant
     public void  setupComponents(){
         monsterCard = new JLabel(new ImageIcon(GraphicalPanel.getMonsterCard().getScaledInstance(215, 290, Image.SCALE_SMOOTH)));
         for(int i = 0; i < game.getDiceStackSize(); i++){
-            buttons[0] = new JButton("" + game.getDiceValue(0));
+            buttons[i] = new JButton("" + game.getDiceValue(i));
         }
     }
     public void setupLayout(){
@@ -84,8 +84,13 @@ public class AwaitFeatDecisionPanel extends JPanel implements Observer, Constant
         if(!game.getBuffer().equals(""))
             JOptionPane.showMessageDialog(null, game.getBuffer(), "InfoBox: " + "MiniRogue", JOptionPane.INFORMATION_MESSAGE);
 
-        for(int i = 0; i < game.getDiceStackSize(); i++)
+        for(int i = 0; i < game.getDiceStackSize(); i++) {
+            if (game.getDiceValue(i) == 0) {
+                buttons[i].setText(" LOCKED ");
+                continue;
+            }
             buttons[i].setText(""+game.getDiceValue(i));
+        }
 
 
         RogueState state =  game.getState();

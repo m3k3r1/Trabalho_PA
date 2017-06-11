@@ -23,6 +23,18 @@ public interface Constants {
 	static final int BOSS_DAMAGE_3 = 7;
 	static final int BOSS_DAMAGE_4 = 9;
 	static final int BOSS_DAMAGE_5 = 9;
+
+	static final int BOSS_XP_REWARD_1 = 2;
+	static final int BOSS_XP_REWARD_2 = 3;
+	static final int BOSS_XP_REWARD_3 = 4;
+	static final int BOSS_XP_REWARD_4 = 5;
+	static final int BOSS_XP_REWARD_5 = 10;
+
+	static final int BOSS_HP_1 = 10;
+    static final int BOSS_HP_2 = 15;
+    static final int BOSS_HP_3 = 20;
+    static final int BOSS_HP_4 = 25;
+    static final int BOSS_HP_5 = 30;
 	
 	static final int MONSTER_DAMAGE_1 = 2;
 	static final int MONSTER_DAMAGE_2 = 4;

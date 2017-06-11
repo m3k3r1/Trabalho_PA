@@ -24,7 +24,7 @@ public class AwaitSpellDecisionPanel extends JPanel implements Observer, Constan
         game = g;
         this.game.addObserver(this);
 
-        buttons = new JButton[2];
+        buttons = new JButton[game.getSpellsSize() - 2 ];
         start = new JButton("Start Fight");
 
         setupComponents();
@@ -34,7 +34,8 @@ public class AwaitSpellDecisionPanel extends JPanel implements Observer, Constan
     }
     public void  setupComponents(){
         monsterCard = new JLabel(new ImageIcon(GraphicalPanel.getMonsterCard().getScaledInstance(215, 290, Image.SCALE_SMOOTH)));
-        for(int i = 0; i < 2; i++){
+
+        for(int i = 0; i < game.getSpellsSize() - 2; i++){
             buttons[i] = new JButton("");
         }
     }
@@ -87,7 +88,8 @@ public class AwaitSpellDecisionPanel extends JPanel implements Observer, Constan
 
         setVisible(false);
 
-        for(int i = 0 ; i < game.getSpellsSize(); i++)
+        for(int i = 0 ; i < game.getSpellsSize() - 2; i++)
+
             buttons[i].setText(game.getSpell(i));
 
 

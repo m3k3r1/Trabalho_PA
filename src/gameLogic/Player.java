@@ -49,16 +49,6 @@ public class Player implements Serializable {
 		public void buy(int cost){
 			gold -= cost;
 		}
-		public int getSpells() {
-			int num = 0;
-			for(int i = 0; i < 2; i++)
-				if(spells[i] > 0)
-					num++;
-
-			
-			return num;
-		}
-		public int[] getArraySpell(){ return spells; }
 		public void addSpell(int s) {
 				for(int i = 0; i < 2; i++)
 					if(spells[i] == 0) {

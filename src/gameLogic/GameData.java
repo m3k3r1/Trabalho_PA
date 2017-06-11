@@ -28,11 +28,17 @@ public class GameData implements Constants, Serializable {
 		diceStack = new ArrayList<Integer>();
 		diceStack.add(0);
 		diceStack.add(0);
+        diceStack.add(0);
+        diceStack.add(0);
 
 		cardStack = new ArrayList<Card>();
         extraDiceDamage = new ArrayList<Integer>();
+        extraDiceDamage.add(0);
+        extraDiceDamage.add(0);
+        extraDiceDamage.add(0);
+        extraDiceDamage.add(0);
 
-		generateDiceValues();
+		refreshDices();
 		clearOutputBuffer();
 	}
 
@@ -189,36 +195,11 @@ public class GameData implements Constants, Serializable {
                 return a.getHp();
         return 0;
     }
-    public boolean hasHp(int c){
-        if(cardStack.get(c).getHp() >= 0)
-            return true;
-        return false;
-    }
-    public void attackUser(int card){
-        user.addHp(-cardStack.get(card).getDamage());
-        outputBuffer("You attack with " + calculateDiceSum() + " DAMAGE " +
-                "Monster ATTACKED YOU : " + cardStack.get(card).getDamage() + " DAMAGE");
-
-    }
     public void delBoss(){
         cardStack.remove(6);
     }
 
     //Dice
-    public boolean diceStackhas6(){
-        int nDices = 1;
-
-        if(user.getXp() >= 12)
-            nDices = 2;
-        else if(user.getXp() >= 18)
-            nDices = 3;
-
-        for(int i = 0; i < nDices; i++){
-            if(diceStack.get(i) == 6)
-                return true;
-        }
-        return false;
-    }
     public int throwDice(){
         return (int)(Math. random() * 6 + 1);
     }
@@ -227,21 +208,6 @@ public class GameData implements Constants, Serializable {
     }
     public int getDiceValue(int p){
         return diceStack.get(p);
-    }
-    public void generateDiceValues(){
-        diceStack.clear();
-        int nDices = 1;
-
-        if(user.getXp() >= 12)
-            nDices = 2;
-        else if(user.getXp() >= 18)
-            nDices = 3;
-
-        for(int i = 0; i < nDices; i++){
-            diceStack.add(throwDice());
-            extraDiceDamage.add(0);
-        }
-
     }
     public void rerollDice(int dice){
         diceStack.set(dice, throwDice());
@@ -255,6 +221,7 @@ public class GameData implements Constants, Serializable {
             sum += diceStack.get(i) + extraDiceDamage.get(i);
         }
         return sum;
+
     }
     private void checkDiceValues() {
         for (int i = 0; i < getDiceSize(); i++) {

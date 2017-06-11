@@ -23,10 +23,11 @@ public class AwaitFeatDecision extends StateAdapter{
                 return new AwaitDiceReroll(getGameData(),monsterCard);}
             else
                 getGameData().getCard(monsterCard).useCard();
-                return new AwaitCardSelection(getGameData());
+
+			getGameData().getPlayer().addXp(getGameData().getCard(monsterCard).getReward());
+			return new AwaitCardSelection(getGameData());
 		}
 	}
-
 
     @Override
 	public RogueState featOption(boolean option, int dice){

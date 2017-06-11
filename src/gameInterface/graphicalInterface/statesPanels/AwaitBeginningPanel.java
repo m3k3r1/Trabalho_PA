@@ -76,6 +76,10 @@ public class AwaitBeginningPanel extends JPanel implements Observer, Constants {
 
     @Override
     public void update(Observable t, Object o) {
+
+        if(!game.getBuffer().equals(""))
+            JOptionPane.showMessageDialog(null, game.getBuffer(), "InfoBox: " + "MiniRogue", JOptionPane.INFORMATION_MESSAGE);
+
         setVisible(game.getState() instanceof AwaitBeginning);
     }
 

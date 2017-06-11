@@ -44,7 +44,7 @@ public class StateAdapter implements RogueState , gameLogic.Constants {
 	    if(getGameData().getPlayer().getHp() <= 0) {
             getGameData().clearCardStack();
             getGameData().initializeCardStack();
-
+			getGameData().outputBuffer("WASTED");
             return new AwaitBeginning(new GameData(new Player()));
         }
         return this;

@@ -25,9 +25,11 @@ public class AwaitSpellDecision extends StateAdapter {
             getGameData().getPlayer().setHp(getGameData().getPlayer().getHp() - getGameData().getCard(monsterCard).getDamage());
 
         else {
+            getGameData().getPlayer().addXp(getGameData().getCard(monsterCard).getReward());
             getGameData().getCard(monsterCard).useCard();
-            if(getGameData().getCard(monsterCard).isBoss())
+            if(getGameData().getCard(monsterCard).isBoss()) {
                 getGameData().delBoss();
+            }
             return new AwaitCardSelection(getGameData());
         }
 
