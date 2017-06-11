@@ -61,6 +61,7 @@ public class ObservableGame extends Observable{
     }
 
     //Game Info
+    public GameData getGameData(){return game.getGameData();}
     public int getSpellsSize(){
         return game.getDiceSize();
     }
@@ -114,13 +115,30 @@ public class ObservableGame extends Observable{
         setChanged();
         notifyObservers();
     }
-    public void chooseCard(int option){
-        game.chooseCard(option);
+    public void chooseCard(int pos){
+        game.chooseCard(pos);
 
         setChanged();
         notifyObservers();
 
+
+        if(pos == 0 || pos == 3){
+            game.getGameData().getCard(pos + 1).turnCard();
+            game.getGameData().getCard(pos + 2).turnCard();
+        }else if( pos == 1 ) {
+            game.getGameData().getCard(pos + 1).useCard();
+            game.getGameData().getCard(pos + 2).turnCard();
+        }else if (pos == 2 ) {
+            game.getGameData().getCard(pos - 1).useCard();
+            game.getGameData().getCard(pos + 1).turnCard();
+        }else if (pos == 4) {
+            game.getGameData().getCard(pos + 1).useCard();
+        }else if(pos == 5) {
+            game.getGameData().getCard(pos - 1).useCard();
+        }
+
         game.setState(getState().checkNewArea());
+        game.setState(getState().checkHp());
 
         setChanged();
         notifyObservers();
@@ -132,6 +150,7 @@ public class ObservableGame extends Observable{
         notifyObservers();
 
         game.setState(getState().checkNewArea());
+        game.setState(getState().checkHp());
 
         setChanged();
         notifyObservers();
@@ -143,6 +162,7 @@ public class ObservableGame extends Observable{
         notifyObservers();
 
         game.setState(getState().checkNewArea());
+        game.setState(getState().checkHp());
 
         setChanged();
         notifyObservers();
@@ -154,6 +174,7 @@ public class ObservableGame extends Observable{
         notifyObservers();
 
         game.setState(getState().checkNewArea());
+        game.setState(getState().checkHp());
 
         setChanged();
         notifyObservers();
@@ -165,6 +186,7 @@ public class ObservableGame extends Observable{
         notifyObservers();
 
         game.setState(getState().checkNewArea());
+        game.setState(getState().checkHp());
 
         setChanged();
         notifyObservers();
@@ -176,6 +198,7 @@ public class ObservableGame extends Observable{
         notifyObservers();
 
         game.setState(getState().checkNewArea());
+        game.setState(getState().checkHp());
 
         setChanged();
         notifyObservers();

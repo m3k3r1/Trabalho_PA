@@ -26,6 +26,9 @@ public class GameData implements Constants, Serializable {
 		area = 1;
 	
 		diceStack = new ArrayList<Integer>();
+		diceStack.add(0);
+		diceStack.add(0);
+
 		cardStack = new ArrayList<Card>();
         extraDiceDamage = new ArrayList<Integer>();
 
@@ -196,6 +199,9 @@ public class GameData implements Constants, Serializable {
         outputBuffer("You attack with " + calculateDiceSum() + " DAMAGE " +
                 "Monster ATTACKED YOU : " + cardStack.get(card).getDamage() + " DAMAGE");
 
+    }
+    public void delBoss(){
+        cardStack.remove(6);
     }
 
     //Dice

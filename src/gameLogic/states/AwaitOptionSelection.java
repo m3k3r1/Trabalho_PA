@@ -14,8 +14,7 @@ public class AwaitOptionSelection extends StateAdapter{
 	public RogueState playerOption(int option){
 		getGameData().getCard(restingCard).cardEffect(getGameData(), option);
 
-		if(!getGameData().hasHp())
-			return new AwaitBeginning(getGameData());
+		getGameData().getCard(restingCard).useCard();
 
 		return new AwaitCardSelection(getGameData());
 	}

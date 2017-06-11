@@ -50,6 +50,9 @@ public class Trap extends Card {
                 }
                 break;
             case 6:
+                data.clearCardStack();
+                data.initializeCardStack();
+
                 if (data.getLevel() > 0 && data.getLevel() <= 2) {
                     data.setArea(data.getArea() + 2);
                     data.outputBuffer("You skip 2 Areas");

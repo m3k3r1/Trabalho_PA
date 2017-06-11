@@ -20,6 +20,7 @@ public class AwaitTradingPanel extends JPanel implements Observer, Constants {
 
     private JButton buy[];
     private JButton sell[];
+    private JButton skip;
 
     public AwaitTradingPanel(ObservableGame g){
         game = g;
@@ -44,6 +45,8 @@ public class AwaitTradingPanel extends JPanel implements Observer, Constants {
 
         sell[0] = new JButton("Armor Piece");
         sell[1] = new JButton("Spell");
+
+        skip = new JButton("Finish");
     }
     public void setupLayout(){
 
@@ -59,10 +62,13 @@ public class AwaitTradingPanel extends JPanel implements Observer, Constants {
         Box box2 = Box.createVerticalBox();
         box2.add(sell[0]);
         box2.add(sell[1]);
+        Box box3 = Box.createVerticalBox();
+        box3.add(skip);
+
         add(image);
         add(box1);
         add(box2);
-
+        add(box3);
 
         buy[0].addActionListener(new RationListener());
         buy[1].addActionListener(new HealthPotionListener());
@@ -71,6 +77,7 @@ public class AwaitTradingPanel extends JPanel implements Observer, Constants {
         buy[4].addActionListener(new AnySpell());
         sell[0].addActionListener(new AnyPiece());
         sell[1].addActionListener(new AnySpellSell());
+        skip.addActionListener(new SkipListener());
     }
 
     //Listeners
@@ -114,6 +121,12 @@ public class AwaitTradingPanel extends JPanel implements Observer, Constants {
         @Override
         public void actionPerformed(ActionEvent e) {
             game.chooseOption(7);
+        }
+    }
+    class SkipListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            game.skip();
         }
     }
 

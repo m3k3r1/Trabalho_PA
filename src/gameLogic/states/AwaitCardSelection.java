@@ -20,30 +20,25 @@ public class AwaitCardSelection extends StateAdapter {
             switch(getGameData().getCard(card).cardEffect(getGameData(), getGameData().throwDice())) {
                 case 1:
                     getGameData().createEventMonster();
+                    getGameData().getCard(card).useCard();
                     return new AwaitDiceReroll(getGameData(), 6);
-                default: return this;
+                default: getGameData().getCard(card).useCard();return this;
             }
 		}
 		else if(getGameData().getCard(card).isTreasure()){
 			getGameData().getCard(card).cardEffect(getGameData(), getGameData().throwDice());
+            getGameData().getCard(card).useCard();
 			return this;
 		}
 		else if(getGameData().getCard(card).isTrap()){
 			getGameData().getCard(card).cardEffect(getGameData(),getGameData().throwDice());
-
-			if(!getGameData().hasHp())
-				return new AwaitBeginning(getGameData());
-			return this;
-		}/*
-		else if(getGameData().getCard(card).isMonster() || getGameData().getCard(card).isBoss()){
-			if(getGameData().diceStackhas6())
+            getGameData().getCard(card).useCard();
+            return this;
+		}
+		else if(getGameData().getCard(card).isMonster() || getGameData().getCard(card).isBoss())
 			    return new AwaitDiceReroll(getGameData(),card);
 
-            getGameData().refreshDices();
-			return new AwaitFeatDecision(getGameData(), card);
-		}
-		*/
-		
+
 		return new AwaitOptionSelection(getGameData(), card); 
 	}
 

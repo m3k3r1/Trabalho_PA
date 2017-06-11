@@ -1,6 +1,7 @@
 package gameLogic.states;
 
 import gameLogic.GameData;
+import gameLogic.Player;
 
 public class StateAdapter implements RogueState , gameLogic.Constants {
 	private GameData data;
@@ -28,7 +29,9 @@ public class StateAdapter implements RogueState , gameLogic.Constants {
 	public RogueState startGame() {return this;}
 	@Override
 	public RogueState checkNewArea(){
-		if(getGameData().getCard(getGameData().getCardStackSize()-1).isUsed()) {
+		System.out.print("Stack : " + getGameData().getCardStackSize() +
+		"Cards Turned : " + getGameData().nCardsTurned());
+		if(getGameData().getCardStackSize() == getGameData().nCardsTurned()) {
 			getGameData().setArea(getGameData().getArea() + 1);
 			getGameData().clearCardStack();
 			getGameData().initializeCardStack();
@@ -36,6 +39,16 @@ public class StateAdapter implements RogueState , gameLogic.Constants {
 		}
 		return this;
 	}
+	@Override
+    public RogueState checkHp(){
+	    if(getGameData().getPlayer().getHp() <= 0) {
+            getGameData().clearCardStack();
+            getGameData().initializeCardStack();
+
+            return new AwaitBeginning(new GameData(new Player()));
+        }
+        return this;
+    };
 	@Override
 	public RogueState skip() {return this;}
 	@Override

@@ -27,5 +27,6 @@ public interface RogueState extends Serializable {
     //Useful methods
     RogueState skip();
     RogueState checkNewArea();
+    RogueState checkHp();
 
 }

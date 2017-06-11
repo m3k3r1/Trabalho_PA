@@ -24,7 +24,7 @@ public class AwaitSpellDecisionPanel extends JPanel implements Observer, Constan
         game = g;
         this.game.addObserver(this);
 
-        buttons = new JButton[game.getDiceStackSize()];
+        buttons = new JButton[2];
         start = new JButton("Start Fight");
 
         setupComponents();
@@ -34,8 +34,8 @@ public class AwaitSpellDecisionPanel extends JPanel implements Observer, Constan
     }
     public void  setupComponents(){
         monsterCard = new JLabel(new ImageIcon(GraphicalPanel.getMonsterCard().getScaledInstance(215, 290, Image.SCALE_SMOOTH)));
-        for(int i = 0; i < game.getSpellsSize(); i++){
-            buttons[0] = new JButton("");
+        for(int i = 0; i < 2; i++){
+            buttons[i] = new JButton("");
         }
     }
     public void setupLayout(){
@@ -43,13 +43,14 @@ public class AwaitSpellDecisionPanel extends JPanel implements Observer, Constan
         add(monsterCard);
 
         Box box1 = Box.createVerticalBox();
-        for(int i = 0 ; i < game.getSpellsSize(); i++)
+        for(int i = 0 ; i < 2; i++)
             box1.add(buttons[i]);
 
         Box box2 = Box.createVerticalBox();
         box2.add(start);
 
         buttons[0].addActionListener(new Spell1Listener());
+        buttons[1].addActionListener(new Spell2Listener());
         start.addActionListener(new StartListener());
 
         add(box2);
@@ -58,6 +59,14 @@ public class AwaitSpellDecisionPanel extends JPanel implements Observer, Constan
     }
 
     class Spell1Listener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            //if(game.getDiceValue(0) != 1)
+            game.spellOption(0);
+        }
+
+    }
+    class Spell2Listener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             //if(game.getDiceValue(0) != 1)

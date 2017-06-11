@@ -81,12 +81,13 @@ public class AwaitDiceRerrollPanel extends JPanel implements Observer, Constants
     public void update(Observable t, Object o) {
         setVisible(false);
 
-        for(int i = 0; i < game.getDiceStackSize(); i++)
-            buttons[i].setText(""+game.getDiceValue(i));
-
         RogueState state =  game.getState();
-        if(state instanceof AwaitDiceReroll)
+        if(state instanceof AwaitDiceReroll){
             setVisible(true);
+
+            for(int i = 0; i < game.getDiceStackSize(); i++)
+                buttons[i].setText(""+game.getDiceValue(i));
+        }
     }
 
     @Override

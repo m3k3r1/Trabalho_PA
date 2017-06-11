@@ -13,6 +13,7 @@ public class AwaitTrading extends StateAdapter {
 	
 	@Override
 	public RogueState skip(){
+		getGameData().getCard(card).useCard();
 		return new AwaitCardSelection(getGameData());
 	}
 	
@@ -23,7 +24,7 @@ public class AwaitTrading extends StateAdapter {
         getGameData().getCard(card).cardEffect(getGameData(), option);
 
 
-		return new AwaitCardSelection(getGameData());
+		return this;
 		
 	}
 

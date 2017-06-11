@@ -71,11 +71,15 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
         box3.add(Box.createVerticalGlue());
         box3.add(cards[5]);
         box3.add(Box.createHorizontalGlue());
+        Box box4 = Box.createVerticalBox();
 
         add(box);
         add(box1);
         add(box2);
         add(box3);
+
+        box4.add(cards[6]);
+        add(box4);
 
         cards[0].addActionListener(new Card1Listener());
         cards[1].addActionListener(new Card2Listener());
@@ -84,7 +88,6 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
         cards[4].addActionListener(new Card5Listener());
         cards[5].addActionListener(new Card6Listener());
         cards[6].addActionListener(new Card7Listener());
-
 
     }
 
@@ -143,23 +146,9 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
 
     @Override
     public void update(Observable t, Object o) {
-        Box box4 = Box.createVerticalBox();
-        if(game.getArea() == 2
-                ||game.getArea() == 4
-                || game.getArea() == 7
-                || game.getArea() == 10
-                || game.getArea() == 14) {
-
-
-            box4.add(cards[6]);
-            add(box4);}
-        else {
-            box4.remove(cards[6]);
-            remove(box4);
-        }
-
         if (game.getState() instanceof AwaitCardSelection){
             setVisible(true);
+
 
             if(!game.getBuffer().equals(""))
                 JOptionPane.showMessageDialog(null, game.getBuffer(), "InfoBox: " + "MiniRogue", JOptionPane.INFORMATION_MESSAGE);
@@ -176,6 +165,7 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
     }
     @Override
     protected void paintComponent(Graphics g) {
+
 
     }
 }

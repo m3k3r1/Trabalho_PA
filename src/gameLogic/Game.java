@@ -30,6 +30,9 @@ public class Game implements Constants , Serializable {
 	}
 
 	//Game Data
+    public GameData getGameData(){
+	    return data;
+    }
     public String getSpell(int index){
 	    switch (getDiceValue(index)){
             case 1 : return "Fire";
@@ -105,31 +108,6 @@ public class Game implements Constants , Serializable {
 	}
 	public void chooseCard(int pos){
 		setState(getState().setCard(pos));
-        if(pos == 0 || pos == 3){
-            data.getCard(pos).useCard();
-            data.getCard(pos + 1).turnCard();
-            data.getCard(pos + 2).turnCard();
-        }else if( pos == 1 ) {
-            data.getCard(pos).useCard();
-            data.getCard(pos + 1).useCard();
-            data.getCard(pos + 1).useCard();
-            data.getCard(pos + 2).turnCard();
-        }else if (pos == 2 ) {
-            data.getCard(pos).useCard();
-            data.getCard(pos - 1).useCard();
-            data.getCard(pos + 1).turnCard();
-        }else if (pos == 4) {
-            data.getCard(pos).useCard();
-            data.getCard(pos + 1).useCard();
-        }else if(pos == 5) {
-            data.getCard(pos).useCard();
-            data.getCard(pos - 1).useCard();
-        }else if(pos == 6) {
-            data.getCard(pos).useCard();
-        }
-
-        System.out.println("Card pos: " + data.getCard(pos));
-
 	}
 	public void chooseOption(int option){
 		setState(getState().playerOption(option));
