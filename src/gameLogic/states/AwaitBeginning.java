@@ -4,11 +4,8 @@ import gameLogic.GameData;
 
 
 public class AwaitBeginning extends StateAdapter  {
-	
-
 	public AwaitBeginning(GameData data){
 		super(data);
-		getGameData().clearCardStack();
 	}
 	
 	@Override

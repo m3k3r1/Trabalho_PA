@@ -17,53 +17,26 @@ public class AwaitSpellDecision extends StateAdapter {
 		bonusDamage = 0;
 		userDamage = damage;
 		monsterCard = card;
+
+        getGameData().getCard(monsterCard).setHp(getGameData().getCard(monsterCard).getHp() - getGameData().calculateDiceSum());
 	}
-	
-	private void attackMonster(int damage){
-		getGameData().attackMonster(monsterCard, damage);
-	}
-	
-	private void attackUser(){
-		getGameData().attackUser(monsterCard);
-	}
-	
+
 	@Override
 	public RogueState skip(){
-		
-		//USER HAS HP 
-		if(getGameData().hasHp())
-			attackMonster(userDamage);
-		//USER HASN'T HP
-		else
-			return new AwaitBeginning(getGameData());
-		
-		//IF MONSTER HAS HP
-		if(getGameData().hasHp(monsterCard) && !freezeSpell)
-			attackUser();
-		//IF MONSTER HASN'T HP
-		else{
-			
-			if(getGameData().getCard(monsterCard).isBoss())
-				getGameData().nextArea();
+        if(getGameData().getPlayer().hasSpell())
+            return new AwaitSpellDecision(getGameData(), monsterCard,userDamage);
 
-			if(getGameData().checkBossArea())
-				getGameData().nextLevel();
-		
-			bonusDamage = 0;
-			
-			getGameData().addReward(monsterCard);
-			
-			return new AwaitCardSelection(getGameData());
-		}
-		
-		return new AwaitDiceReroll(getGameData(), monsterCard);
+        if(!getGameData().hasHp())
+            return new AwaitBeginning(getGameData());
+
+        if(getGameData().getCard(monsterCard).getHp() > 0)
+            getGameData().getPlayer().setHp(getGameData().getPlayer().getHp() -getGameData().getCard(monsterCard).getDamage());
+
+        return new AwaitDiceReroll(getGameData(), monsterCard);
 	}
 	
 	@Override
 	public RogueState spellOption(boolean option, int spell){
-
-
-		
 		if(option){
 			switch(spell){
 				case 1: 
@@ -84,26 +57,19 @@ public class AwaitSpellDecision extends StateAdapter {
 			
 			getGameData().removeSpell();
 		}
-		
-		if(getGameData().hasHp())
-				attackMonster(userDamage);
+
 		else{
 			bonusDamage = 0;
 			return new AwaitBeginning(getGameData());
 		}
-		
-		if(getGameData().hasHp(monsterCard) && !freezeSpell){
-			attackUser();
-			
+
+		if(getGameData().getCard(monsterCard).getHp() > 0 && !freezeSpell){
+            getGameData().getPlayer().setHp(getGameData().getPlayer().getHp() -getGameData().getCard(monsterCard).getDamage());
+
 			freezeSpell= false;
 			return new AwaitDiceReroll(getGameData() , monsterCard);
 		}
-        if(getGameData().nCardsTurned() == getGameData().getCardStackSize()){
-            getGameData().setArea(getGameData().getArea() + 1);
-            getGameData().clearCardStack();
-            getGameData().initializeCardStack();
-            return this;
-        }
+
 		return new AwaitCardSelection(getGameData());
 	}
 

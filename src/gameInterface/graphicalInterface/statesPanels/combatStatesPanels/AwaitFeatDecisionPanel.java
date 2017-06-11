@@ -19,6 +19,7 @@ public class AwaitFeatDecisionPanel extends JPanel implements Observer, Constant
     JLabel monsterCard;
     JButton buttons[];
     JButton start;
+    JLabel state;
 
     public AwaitFeatDecisionPanel(ObservableGame g) {
         game = g;
@@ -26,6 +27,7 @@ public class AwaitFeatDecisionPanel extends JPanel implements Observer, Constant
 
         buttons = new JButton[game.getDiceStackSize()];
         start = new JButton("Start Fight");
+        state = new JLabel("Feat - You will loose 2hp to rerroll");
 
         setupComponents();
         setupLayout();
@@ -51,7 +53,8 @@ public class AwaitFeatDecisionPanel extends JPanel implements Observer, Constant
 
         buttons[0].addActionListener(new Dice1Listener());
         start.addActionListener(new StartListener());
-
+        state.setForeground(Color.WHITE);
+        add(state);
         add(box2);
         add(box1);
 
@@ -78,6 +81,8 @@ public class AwaitFeatDecisionPanel extends JPanel implements Observer, Constant
 
         setVisible(false);
 
+        if(!game.getBuffer().equals(""))
+            JOptionPane.showMessageDialog(null, game.getBuffer(), "InfoBox: " + "MiniRogue", JOptionPane.INFORMATION_MESSAGE);
 
         for(int i = 0; i < game.getDiceStackSize(); i++)
             buttons[i].setText(""+game.getDiceValue(i));

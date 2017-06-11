@@ -5,56 +5,42 @@ import gameLogic.states.*;
 
 public class AwaitFeatDecision extends StateAdapter{
 	private int monsterCard;
-	private int userDamage;
-	
+
 	public AwaitFeatDecision(GameData d, int card){
 		super(d);
 		monsterCard = card;
+
+		getGameData().getCard(card).setHp(getGameData().getCard(card).getHp() - getGameData().calculateDiceSum());
 	}
 	
 	@Override
 	public RogueState skip(){
-		
-		userDamage = getGameData().calculateDiceSum();
-		
-		return new AwaitSpellDecision(getGameData(), monsterCard, userDamage);
-	}
-    private void attackMonster(int damage){
-        getGameData().attackMonster(monsterCard, damage);
-    }
+	    if(getGameData().getPlayer().hasSpell() && getGameData().calculateDiceSum() > 0)
+            return new AwaitSpellDecision(getGameData(), monsterCard,getGameData().calculateDiceSum());
 
-    private void attackUser(){
-        getGameData().attackUser(monsterCard);
-    }
+        if(!getGameData().hasHp())
+            return new AwaitBeginning(getGameData());
+
+        if(getGameData().getMonsterHp() > 0)
+            getGameData().getPlayer().setHp(getGameData().getPlayer().getHp() - getGameData().getCard(monsterCard).getDamage());
+        else
+            return new AwaitCardSelection(getGameData());
+
+        if(getGameData().diceStackhas6())
+            return new AwaitDiceReroll(getGameData(),monsterCard);
+
+        getGameData().refreshDices();
+        return new AwaitFeatDecision(getGameData(), monsterCard);
+	}
+
 
     @Override
 	public RogueState featOption(boolean option, int dice){
 		if(option){
-			
-			getGameData().takeHp(-2);
-			
-			if(dice >= 0)
-				getGameData().rerollDice(dice);
-
+            getGameData().rerollDice(dice);
 			getGameData().getPlayer().addHp(-2);
 		}
-		
-		
-		userDamage = getGameData().calculateDiceSum();
 
-
-        if(getGameData().hasHp())
-            attackMonster(userDamage);
-
-        else
-            return new AwaitBeginning(getGameData());
-
-
-        if(getGameData().hasHp(monsterCard)) {
-            attackUser();
-            return new AwaitDiceReroll(getGameData(), monsterCard);
-        }else
-            return new AwaitCardSelection(getGameData());
-
+        return this;
 	}
 }

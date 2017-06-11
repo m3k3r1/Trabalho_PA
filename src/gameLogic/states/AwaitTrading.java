@@ -18,14 +18,11 @@ public class AwaitTrading extends StateAdapter {
 	
 	@Override
 	public RogueState playerOption(int option){
+
+
         getGameData().getCard(card).cardEffect(getGameData(), option);
 
-        if(getGameData().nCardsTurned() == getGameData().getCardStackSize()){
-            getGameData().setArea(getGameData().getArea() + 1);
-            getGameData().clearCardStack();
-            getGameData().initializeCardStack();
-            return this;
-        }
+
 		return new AwaitCardSelection(getGameData());
 		
 	}

@@ -19,6 +19,7 @@ public class AwaitDiceRerrollPanel extends JPanel implements Observer, Constants
     JLabel monsterCard;
     JButton buttons[];
     JButton start;
+    JLabel state;
 
     public AwaitDiceRerrollPanel(ObservableGame g) {
         game = g;
@@ -26,6 +27,7 @@ public class AwaitDiceRerrollPanel extends JPanel implements Observer, Constants
 
         buttons = new JButton[game.getDiceStackSize()];
         start = new JButton("Start Fight");
+        state = new JLabel("Do you wanna rerroll ? ");
 
         setupComponents();
         setupLayout();
@@ -51,7 +53,8 @@ public class AwaitDiceRerrollPanel extends JPanel implements Observer, Constants
 
         buttons[0].addActionListener(new Dice1Listener());
         start.addActionListener(new StartListener());
-
+        state.setForeground(Color.WHITE);
+        add(state);
         add(box2);
         add(box1);
 

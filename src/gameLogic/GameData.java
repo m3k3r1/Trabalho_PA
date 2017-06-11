@@ -42,9 +42,6 @@ public class GameData implements Constants, Serializable {
             return true;
         return false;
     }
-    public void takeHp(int h){
-        user.addHp(h);
-    }
     public void setDificulty(int d){
         switch(d){
             case 1 : user.addArmor(CASUAL_ARMOR);
@@ -72,17 +69,11 @@ public class GameData implements Constants, Serializable {
     public void setLevel(int l){
         level = l;
     }
-    public void nextLevel(){
-        level++;
-    }
     public int getArea(){
         return area;
     }
     public void setArea(int a){
         area = a;
-    }
-    public void nextArea(){
-        area++;
     }
     public boolean checkBossArea(){
         if(area == 2 || area == 4 || area == 7 || area == 10 || area == 14){
@@ -133,9 +124,6 @@ public class GameData implements Constants, Serializable {
     public void removeSpell(){
         user.removeSpell();
     }
-    public void attackMonster(int card, int damage){
-        cardStack.get(card).attackMonster(damage);
-    }
 
     //Card
     public void initializeCardStack(){
@@ -168,7 +156,7 @@ public class GameData implements Constants, Serializable {
     public int nCardsTurned() {
         int counter = 0;
         for (Card c : cardStack){
-            if (c.isTurned())
+            if (c.isUsed())
                 counter++;
         }
         return counter;
@@ -205,9 +193,26 @@ public class GameData implements Constants, Serializable {
     }
     public void attackUser(int card){
         user.addHp(-cardStack.get(card).getDamage());
+        outputBuffer("You attack with " + calculateDiceSum() + " DAMAGE " +
+                "Monster ATTACKED YOU : " + cardStack.get(card).getDamage() + " DAMAGE");
+
     }
 
     //Dice
+    public boolean diceStackhas6(){
+        int nDices = 1;
+
+        if(user.getXp() >= 12)
+            nDices = 2;
+        else if(user.getXp() >= 18)
+            nDices = 3;
+
+        for(int i = 0; i < nDices; i++){
+            if(diceStack.get(i) == 6)
+                return true;
+        }
+        return false;
+    }
     public int throwDice(){
         return (int)(Math. random() * 6 + 1);
     }
@@ -241,9 +246,8 @@ public class GameData implements Constants, Serializable {
         checkDiceValues();
 
         for(int i = 0; i < getDiceSize(); i++){
-            sum += diceStack.get(i);
+            sum += diceStack.get(i) + extraDiceDamage.get(i);
         }
-
         return sum;
     }
     private void checkDiceValues() {
@@ -256,6 +260,18 @@ public class GameData implements Constants, Serializable {
     public void addExtraDamage(int diceIndex){
         int sum = extraDiceDamage.get(diceIndex) + 6;
         extraDiceDamage.set(diceIndex, sum);
+    }
+    public void refreshDices(){
+        int nDices = 1;
+
+        if(user.getXp() >= 12)
+            nDices = 2;
+        else if(user.getXp() >= 18)
+            nDices = 3;
+
+        for(int i = 0; i < nDices; i++){
+            diceStack.set(i, throwDice());
+        }
     }
 
     //Useful Methods

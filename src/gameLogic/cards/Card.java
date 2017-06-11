@@ -15,7 +15,7 @@ public abstract class Card implements Serializable{
 	protected int level;
 	protected String name;
 	protected boolean turned = false;
-	protected boolean used = false
+	protected boolean used = false;
 	protected ImageIcon image;
 	
 	public Card(){
@@ -50,7 +50,7 @@ public abstract class Card implements Serializable{
     }
 	
 	//Setter's
-	protected void setHp(int h){
+	public void setHp(int h){
 		hp = h;
 	}
 	protected void setDamage(int d){

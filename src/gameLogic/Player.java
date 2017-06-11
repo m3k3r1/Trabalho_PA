@@ -28,15 +28,15 @@ public class Player implements Serializable {
 		public int getArmor() { return armor; }
 		public int getFood() { return food; }
 		public int getGold() { return gold; }
-		public void addHp(int h) { hp += h; }
-		public void addArmor(int a) { armor += a; }
-		public void addFood(int f) { food += f; }
-		public void addGold(int g) { gold += g; }
+		public void addHp(int h) { if(hp + h < 21) hp += h; }
+		public void addArmor(int a) { if(armor + a < 6) armor += a; }
+		public void addFood(int f) { if(food + f < 7) food += f; }
+		public void addGold(int g) { if(gold + g < 21) gold += g; }
 		public void setHp(int h){
 			hp = h;
 		}
 		public int getXp() { return xp; }
-		public void addXp(int x) { xp += x; }
+		public void addXp(int x) { if(xp + x < 37) xp += x; }
 		public int getSpellValue(int p){
 			return spells[p];
 		}
@@ -61,8 +61,10 @@ public class Player implements Serializable {
 		public int[] getArraySpell(){ return spells; }
 		public void addSpell(int s) {
 				for(int i = 0; i < 2; i++)
-					if(spells[i] == 0)
-						spells[i] = s;
+					if(spells[i] == 0) {
+                        spells[i] = s;
+                        break;
+                    }
 		}
 		public boolean removeSpell() {
 				for(int i = 0; i < 2; i++){

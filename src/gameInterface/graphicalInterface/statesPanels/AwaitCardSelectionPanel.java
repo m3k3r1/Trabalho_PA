@@ -72,15 +72,10 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
         box3.add(cards[5]);
         box3.add(Box.createHorizontalGlue());
 
-
-
-
         add(box);
         add(box1);
         add(box2);
         add(box3);
-
-
 
         cards[0].addActionListener(new Card1Listener());
         cards[1].addActionListener(new Card2Listener());
@@ -97,62 +92,71 @@ public class AwaitCardSelectionPanel extends JPanel implements Observer, Constan
     class Card1Listener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
+            if(!game.isUsed(0))
                 game.chooseCard(0);
         }
     }
     class Card2Listener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(game.isTurned(1) )
+            if(game.isTurned(1)  && !game.isUsed(1) )
                 game.chooseCard(1);
         }
     }
     class Card3Listener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(game.isTurned(2) )
+            if(game.isTurned(2) && !game.isUsed(2))
                 game.chooseCard(2);
         }
     }
     class Card4Listener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(game.isTurned(3) )
+            if(game.isTurned(3) && !game.isUsed(3))
                 game.chooseCard(3);
         }
     }
     class Card5Listener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(game.isTurned(4) )
+            if(game.isTurned(4) && !game.isUsed(4))
                 game.chooseCard(4);
+
         }
     }
     class Card6Listener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-           if(game.isTurned(5) )
+           if(game.isTurned(5) && !game.isUsed(5))
                 game.chooseCard(5);
+
         }
     }
     class Card7Listener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            game.chooseCard(6);
+            if(!game.isUsed(6))
+                game.chooseCard(6);
         }
     }
 
     @Override
     public void update(Observable t, Object o) {
+        Box box4 = Box.createVerticalBox();
         if(game.getArea() == 2
                 ||game.getArea() == 4
                 || game.getArea() == 7
                 || game.getArea() == 10
                 || game.getArea() == 14) {
 
-            Box box4 = Box.createVerticalBox();
+
             box4.add(cards[6]);
             add(box4);}
+        else {
+            box4.remove(cards[6]);
+            remove(box4);
+        }
 
         if (game.getState() instanceof AwaitCardSelection){
             setVisible(true);

@@ -19,7 +19,7 @@ public class ObservableGame extends Observable{
     }
 
     //Save/Load Handling
-    private void loadGameInstace(){
+    private void loadGameInstance(){
         Game aux = game ;
         try {
 
@@ -37,7 +37,7 @@ public class ObservableGame extends Observable{
         }
 
     }
-    private void saveGameInstace(){
+    private void saveGameInstance(){
         try{
             FileOutputStream fo = new FileOutputStream("game.bin");
             ObjectOutputStream oo = new ObjectOutputStream(fo);
@@ -48,22 +48,29 @@ public class ObservableGame extends Observable{
         }
     }
     public void loadGame(){
-        loadGameInstace();
+        loadGameInstance();
 
         setChanged();
         notifyObservers();
     }
     public void saveGame(){
-        saveGameInstace();
+        saveGameInstance();
 
         setChanged();
         notifyObservers();
     }
 
     //Game Info
+    public int getSpellsSize(){
+        return game.getDiceSize();
+    }
+    public String getSpell(int index){
+        return game.getSpell(index);
+    }
     public String getBuffer(){
         return game.getBuffer();
     }
+    public void clearBuffer() { game.clearBuffer();}
     public int getArea() {
         return game.getArea();
     }
@@ -71,8 +78,6 @@ public class ObservableGame extends Observable{
         return game.getPlayer();
     }
     public final ImageIcon getCardImage(int index){
-        if(game.getCard(index) == null)
-            game.initialcizeCards();
         return game.getCard(index);
     }
     public Boolean isTurned(int index){
@@ -89,6 +94,9 @@ public class ObservableGame extends Observable{
     }
     public int getCardStackSize(){
         return game.getCardStackSize();
+    }
+    public boolean isUsed(int index){
+        return  game.cardIsUsed(index);
     }
 
     //States Handling
@@ -111,9 +119,19 @@ public class ObservableGame extends Observable{
 
         setChanged();
         notifyObservers();
+
+        game.setState(getState().checkNewArea());
+
+        setChanged();
+        notifyObservers();
     }
     public void chooseOption(int option){
         game.chooseOption(option);
+
+        setChanged();
+        notifyObservers();
+
+        game.setState(getState().checkNewArea());
 
         setChanged();
         notifyObservers();
@@ -123,18 +141,41 @@ public class ObservableGame extends Observable{
 
         setChanged();
         notifyObservers();
+
+        game.setState(getState().checkNewArea());
+
+        setChanged();
+        notifyObservers();
     }
     public void featOption(boolean b, int dice){
         game.featOption(b,dice);
 
         setChanged();
         notifyObservers();
+
+        game.setState(getState().checkNewArea());
+
+        setChanged();
+        notifyObservers();
     }
-    public int getMonsterHp() {
-      return game.getMonsterHp();
+    public void spellOption(int spell){
+        game.spellOption(true, spell);
+
+        setChanged();
+        notifyObservers();
+
+        game.setState(getState().checkNewArea());
+
+        setChanged();
+        notifyObservers();
     }
     public void skip(){
         game.skip();
+
+        setChanged();
+        notifyObservers();
+
+        game.setState(getState().checkNewArea());
 
         setChanged();
         notifyObservers();

@@ -43,8 +43,7 @@ public class DungeonPanel extends JPanel implements Observer, Constants {
     public void update(Observable t, Object o){
         if( game.getState() instanceof AwaitBeginning ||
                 game.getState() instanceof AwaitTrading ||
-                game.getState() instanceof AwaitOptionSelection ||
-                game.getState() instanceof AwaitDiceReroll)
+                game.getState() instanceof AwaitOptionSelection )
             setVisible(false);
         else
             setVisible(true);
@@ -67,13 +66,14 @@ public class DungeonPanel extends JPanel implements Observer, Constants {
         if (game.getArea() >= 11)
             g.drawImage(GraphicalPanel.getToken(), 30 + (game.getArea() - 11) * 40, 440, 30, 30, this);
 
-        if (game.getState() instanceof AwaitDiceReroll || game.getState() instanceof AwaitSpellDecision || game.getState() instanceof AwaitFeatDecision)
-            if(game.getMonsterHp() < 11)
-                g.drawImage(GraphicalPanel.getToken(), 305, 462 + (game.getMonsterHp() * 40), 30, 30, this);
-            if(game.getMonsterHp() > 10 && game.getMonsterHp() < 21)
-                g.drawImage(GraphicalPanel.getToken(), 263, 422 + (game.getMonsterHp() * 40) - 11, 30, 30, this);
-            if(game.getMonsterHp() > 20)
-                g.drawImage(GraphicalPanel.getToken(), 221, 422 + (game.getMonsterHp() * 40) - 21, 30, 30, this);
+        if (game.getState() instanceof AwaitDiceReroll || game.getState() instanceof AwaitSpellDecision || game.getState() instanceof AwaitFeatDecision) {
+            if (game.getMonsterHp() < 11)
+                g.drawImage(GraphicalPanel.getToken(), 305, 462 - (game.getMonsterHp() * 41), 30, 30, this);
+            if (game.getMonsterHp() > 10 && game.getMonsterHp() < 21)
+                g.drawImage(GraphicalPanel.getToken(), 263, 422 - (game.getMonsterHp() * 41) - 11, 30, 30, this);
+            if (game.getMonsterHp() > 20)
+                g.drawImage(GraphicalPanel.getToken(), 221, 422 - (game.getMonsterHp() * 41) - 21, 30, 30, this);
+        }
         else
             g.drawImage(GraphicalPanel.getToken(), 305, 462, 30, 30, this);
     }

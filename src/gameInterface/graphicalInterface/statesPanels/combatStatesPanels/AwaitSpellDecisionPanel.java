@@ -34,8 +34,8 @@ public class AwaitSpellDecisionPanel extends JPanel implements Observer, Constan
     }
     public void  setupComponents(){
         monsterCard = new JLabel(new ImageIcon(GraphicalPanel.getMonsterCard().getScaledInstance(215, 290, Image.SCALE_SMOOTH)));
-        for(int i = 0; i < game.getDiceStackSize(); i++){
-            buttons[0] = new JButton("" + game.getDiceValue(0));
+        for(int i = 0; i < game.getSpellsSize(); i++){
+            buttons[0] = new JButton("");
         }
     }
     public void setupLayout(){
@@ -43,7 +43,7 @@ public class AwaitSpellDecisionPanel extends JPanel implements Observer, Constan
         add(monsterCard);
 
         Box box1 = Box.createVerticalBox();
-        for(int i = 0 ; i < game.getDiceStackSize(); i++)
+        for(int i = 0 ; i < game.getSpellsSize(); i++)
             box1.add(buttons[i]);
 
         Box box2 = Box.createVerticalBox();
@@ -61,7 +61,7 @@ public class AwaitSpellDecisionPanel extends JPanel implements Observer, Constan
         @Override
         public void actionPerformed(ActionEvent e) {
             //if(game.getDiceValue(0) != 1)
-            game.featOption(true, 0);
+            game.spellOption(0);
         }
 
     }
@@ -78,10 +78,14 @@ public class AwaitSpellDecisionPanel extends JPanel implements Observer, Constan
 
         setVisible(false);
 
+        for(int i = 0 ; i < game.getSpellsSize(); i++)
+            buttons[i].setText(game.getSpell(i));
 
-        for(int i = 0; i < game.getDiceStackSize(); i++)
-            buttons[i].setText(""+game.getDiceValue(i));
 
+        if(!game.getBuffer().equals("")) {
+            JOptionPane.showMessageDialog(null, game.getBuffer(), "InfoBox: " + "MiniRogue", JOptionPane.INFORMATION_MESSAGE);
+            game.clearBuffer();
+        }
 
         RogueState state =  game.getState();
         if(state instanceof AwaitSpellDecision)

@@ -27,7 +27,15 @@ public class StateAdapter implements RogueState , gameLogic.Constants {
 	@Override
 	public RogueState startGame() {return this;}
 	@Override
-	public RogueState quit() {return this;}
+	public RogueState checkNewArea(){
+		if(getGameData().getCard(getGameData().getCardStackSize()-1).isUsed()) {
+			getGameData().setArea(getGameData().getArea() + 1);
+			getGameData().clearCardStack();
+			getGameData().initializeCardStack();
+		    return new AwaitCardSelection(getGameData());
+		}
+		return this;
+	}
 	@Override
 	public RogueState skip() {return this;}
 	@Override

@@ -17,12 +17,6 @@ public class AwaitOptionSelection extends StateAdapter{
 		if(!getGameData().hasHp())
 			return new AwaitBeginning(getGameData());
 
-		if(getGameData().nCardsTurned() == getGameData().getCardStackSize()){
-            getGameData().setArea(getGameData().getArea() + 1);
-            getGameData().clearCardStack();
-            getGameData().initializeCardStack();
-            return this;
-        }
 		return new AwaitCardSelection(getGameData());
 	}
 	

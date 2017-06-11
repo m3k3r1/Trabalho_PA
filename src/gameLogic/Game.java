@@ -30,16 +30,29 @@ public class Game implements Constants , Serializable {
 	}
 
 	//Game Data
+    public String getSpell(int index){
+	    switch (getDiceValue(index)){
+            case 1 : return "Fire";
+            case 2 : return "Ice";
+            case 3 : return "Poison";
+            case 4 : return "Heal";
+        }
+
+        return "NULL";
+    }
 	public String getBuffer(){
 		return data.getBuffer();
 	}
-	public final Player getPlayer(){
-	    return data.getPlayer();
+	public void clearBuffer(){
+	    data.clearOutputBuffer();
     }
-    public void initialcizeCards(){
-	    data.initializeCardStack();
+	public final Player getPlayer() {
+        return data.getPlayer();
     }
 	public ImageIcon getCard(int index){return data.getCard(index).getImage();}
+	public boolean cardIsUsed(int index){
+		return data.getCard(index).isUsed();
+	}
     public int getLevel(){
         return data.getLevel();
     }
@@ -69,7 +82,6 @@ public class Game implements Constants , Serializable {
 	public int getMonsterHp(){
 		return data.getMonsterHp();
 	}
-	public String getOutputBuffer(){return data.getBuffer();}
     public Boolean isTurned(int index){
 	    return data.getCard(index).isTurned();
     }
@@ -78,7 +90,7 @@ public class Game implements Constants , Serializable {
     public RogueState getState(){
         return state;
     }
-    private void setState(RogueState s){
+    public void setState(RogueState s){
         this.state = s;
     }
 
@@ -92,32 +104,49 @@ public class Game implements Constants , Serializable {
 		setState(getState().setStartingArea(a));
 	}
 	public void chooseCard(int pos){
+		setState(getState().setCard(pos));
         if(pos == 0 || pos == 3){
             data.getCard(pos).useCard();
             data.getCard(pos + 1).turnCard();
             data.getCard(pos + 2).turnCard();
-        }else if( pos == 1 || pos == 4) {
-			data.getCard(pos).useCard();
-			data.getCard(pos + 1).useCard();
-			data.getCard(pos + 2).turnCard();
-		}else if (pos == 2 || pos == 5) {
-			data.getCard(pos).useCard();
-			data.getCard(pos + 1).turnCard();
-		}
+        }else if( pos == 1 ) {
+            data.getCard(pos).useCard();
+            data.getCard(pos + 1).useCard();
+            data.getCard(pos + 1).useCard();
+            data.getCard(pos + 2).turnCard();
+        }else if (pos == 2 ) {
+            data.getCard(pos).useCard();
+            data.getCard(pos - 1).useCard();
+            data.getCard(pos + 1).turnCard();
+        }else if (pos == 4) {
+            data.getCard(pos).useCard();
+            data.getCard(pos + 1).useCard();
+        }else if(pos == 5) {
+            data.getCard(pos).useCard();
+            data.getCard(pos - 1).useCard();
+        }else if(pos == 6) {
+            data.getCard(pos).useCard();
+        }
 
-		setState(getState().setCard(pos));
+        System.out.println("Card pos: " + data.getCard(pos));
+
 	}
 	public void chooseOption(int option){
 		setState(getState().playerOption(option));
+
+
 	}
 	public void rerollDiceOption(int option){
 		setState(getState().rerollDice(option));
+
 	}
 	public void featOption(boolean option, int dice){
 		setState(getState().featOption(option, dice));
+
 	}
 	public void spellOption(boolean option, int spell){
 		setState(getState().spellOption(option, spell));
+
 	}
 	public void skip(){
 		setState(getState().skip());

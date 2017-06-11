@@ -148,6 +148,21 @@ public class GraphicalUi extends JFrame implements Observer, Constants {
 
     @Override
     public void update(Observable o, Object arg) {
+        if(observableGame.getState() instanceof AwaitBeginning)
+            System.out.println("AwaitBeggining");
+        if(observableGame.getState() instanceof AwaitCardSelection)
+            System.out.println("AwaitCardSelection");
+        if(observableGame.getState() instanceof AwaitOptionSelection)
+            System.out.println("AwaitOptionSelection");
+        if(observableGame.getState() instanceof AwaitTrading)
+            System.out.println("AwaitTrading");
+        if(observableGame.getState() instanceof AwaitDiceReroll)
+            System.out.println("AwaitDiceReroll");
+        if(observableGame.getState() instanceof AwaitFeatDecision)
+            System.out.println("AwaitFeatDecision");
+        if(observableGame.getState() instanceof AwaitSpellDecision)
+            System.out.println("AwaitSpellDecision");
+
         System.out.println("Player -> H : " + observableGame.getPlayer().getHp() + "| A : " + observableGame.getPlayer().getArmor() + "| F : " + observableGame.getPlayer().getFood() + "| G : " + observableGame.getPlayer().getGold() + "| Xp : " + observableGame.getPlayer().getXp());
         System.out.println("Monster HP : " + observableGame.getMonsterHp());
         System.out.print("Spells: ");
