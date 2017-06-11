@@ -35,7 +35,7 @@ public class AwaitTradingPanel extends JPanel implements Observer, Constants {
         update(game, this);
     }
     public void setupComponents(){
-        merchantImage = new JLabel(new ImageIcon(GraphicalPanel.getMerchantCard().getScaledInstance(215, 290, Image.SCALE_SMOOTH)));
+        merchantImage = new JLabel(new ImageIcon(GraphicalPanel.getMerchantCard().getScaledInstance(360, 505, Image.SCALE_SMOOTH)));
 
         buy[0] = new JButton("Ration");
         buy[1] = new JButton("Health Potion");

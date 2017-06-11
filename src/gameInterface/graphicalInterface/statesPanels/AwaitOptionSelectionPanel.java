@@ -32,7 +32,7 @@ public class AwaitOptionSelectionPanel extends JPanel implements Observer, Const
         update(game, this);
     }
     public void setupComponents(){
-        restingImage = new JLabel(new ImageIcon(GraphicalPanel.getRestingCard().getScaledInstance(215, 290, Image.SCALE_SMOOTH)));
+        restingImage = new JLabel(new ImageIcon(GraphicalPanel.getRestingCard().getScaledInstance(360, 505, Image.SCALE_SMOOTH)));
         button1 = new JButton("Reinforce Weapon");
         button2 = new JButton("Search Ration");
         button3 = new JButton("Heal");
