@@ -65,6 +65,27 @@ public class Merchant extends Card implements Constants {
                     return 1;
                 }
                 break;
+
+            case 6:
+                if(data.getPlayer().getArmor() > 0){
+                    data.getPlayer().addArmor(-1);
+                    data.getPlayer().addGold(3);
+                    data.outputBuffer("Sold 1 armor piece! Gold: +3");
+                }
+                else
+                    data.outputBuffer("You have no armor pieces to sell!");
+                break;
+
+            case 7:
+                if(data.getPlayer().hasSpell()){
+                    data.getPlayer().removeSpell();
+                    data.getPlayer().addGold(4);
+                    data.outputBuffer("Spell sold. Gold: +4");
+                }
+                else
+                    data.outputBuffer("No spells to sell!");
+                break;
+
         }
 
         return 0;
