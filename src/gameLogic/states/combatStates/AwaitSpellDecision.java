@@ -19,7 +19,7 @@ public class AwaitSpellDecision extends StateAdapter {
 
     @Override
     public RogueState skip() {
-        getGameData().getCard(monsterCard).setHp(getGameData().getCard(monsterCard).getHp() - getGameData().calculateDiceSum() + bonusDamage);
+        getGameData().getCard(monsterCard).setHp(getGameData().getCard(monsterCard).getHp() - getGameData().calculateDiceSum());
 
         if (getGameData().getCard(monsterCard).getHp() > 0 && freezeSpell == false)
             getGameData().getPlayer().setHp(getGameData().getPlayer().getHp() - getGameData().getCard(monsterCard).getDamage());
@@ -28,6 +28,7 @@ public class AwaitSpellDecision extends StateAdapter {
             getGameData().getPlayer().addXp(getGameData().getCard(monsterCard).getReward());
             getGameData().getCard(monsterCard).useCard();
             if(getGameData().getCard(monsterCard).isBoss()) {
+                getGameData().moveLevel();
                 getGameData().delBoss();
             }
             return new AwaitCardSelection(getGameData());
@@ -56,6 +57,8 @@ public class AwaitSpellDecision extends StateAdapter {
                     getGameData().addHp(8);
         }
 
+
+        getGameData().getCard(monsterCard).setHp(getGameData().getCard(monsterCard).getHp() - bonusDamage);
         getGameData().removeSpell();
         return this;
     }

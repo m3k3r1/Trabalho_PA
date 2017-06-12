@@ -21,11 +21,16 @@ public class AwaitFeatDecision extends StateAdapter{
             if(getGameData().getCard(monsterCard).getHp() > 0){
                 getGameData().getPlayer().setHp(getGameData().getPlayer().getHp() - getGameData().getCard(monsterCard).getDamage());
                 return new AwaitDiceReroll(getGameData(),monsterCard);}
-            else
+            else {
+                getGameData().getPlayer().addXp(getGameData().getCard(monsterCard).getReward());
                 getGameData().getCard(monsterCard).useCard();
-
-			getGameData().getPlayer().addXp(getGameData().getCard(monsterCard).getReward());
-			return new AwaitCardSelection(getGameData());
+                if(getGameData().getCard(monsterCard).isBoss()) {
+                    getGameData().moveLevel();
+                    getGameData().delBoss();
+                }
+                return new AwaitCardSelection(getGameData());
+			}
+            
 		}
 	}
 

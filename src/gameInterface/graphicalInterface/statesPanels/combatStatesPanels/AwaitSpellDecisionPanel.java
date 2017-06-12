@@ -62,16 +62,14 @@ public class AwaitSpellDecisionPanel extends JPanel implements Observer, Constan
     class Spell1Listener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            //if(game.getDiceValue(0) != 1)
-            game.spellOption(0);
+            game.spellOption(game.getPlayer().getSpellValue(0));
         }
 
     }
     class Spell2Listener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            //if(game.getDiceValue(0) != 1)
-            game.spellOption(0);
+            game.spellOption(game.getPlayer().getSpellValue(1));
         }
 
     }
@@ -89,7 +87,6 @@ public class AwaitSpellDecisionPanel extends JPanel implements Observer, Constan
         setVisible(false);
 
         for(int i = 0 ; i < game.getSpellsSize() - 2; i++)
-
             buttons[i].setText(game.getSpell(i));
 
 

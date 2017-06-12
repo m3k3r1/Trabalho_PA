@@ -73,7 +73,7 @@ public class UserStatsPanel extends JPanel implements Observer, Constants{
                 a++;
 
             if(game.getPlayer().getSpellValue(i) != 0)
-                g.drawImage(GraphicalPanel.getToken(), 310 + (40 * (game.getPlayer().getSpellValue(i) - 1 + a)), 287, 30, 30, this);
+                g.drawImage(GraphicalPanel.getToken(), 310 + a * 40 + ((80) * (game.getPlayer().getSpellValue(i) - 1 )), 287, 30, 30, this);
         }
 
         // FOOD

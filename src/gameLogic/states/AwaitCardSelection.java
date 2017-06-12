@@ -31,7 +31,9 @@ public class AwaitCardSelection extends StateAdapter {
 			return this;
 		}
 		else if(getGameData().getCard(card).isTrap()){
-			getGameData().getCard(card).cardEffect(getGameData(),getGameData().throwDice());
+			if(getGameData().skillCheck(getGameData().throwDice())) {
+				getGameData().getCard(card).cardEffect(getGameData(), getGameData().throwDice());
+			}
             getGameData().getCard(card).useCard();
             return this;
 		}

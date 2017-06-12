@@ -43,6 +43,20 @@ public class GameData implements Constants, Serializable {
 	}
 
 	//Game
+    public void moveLevel(){
+        level++;
+    }
+    public boolean skillCheck(int dice){
+          outputBuffer("SkillCheck Trap evaded");
+          if((user.getXp() < 12) && dice <= 1)
+                return false;
+          if((user.getXp() >= 12) && dice <= 3 )
+              return false;
+          if((user.getXp() >= 18)&& dice <= 4)
+              return false;
+
+          return true;
+	}
     public Player getPlayer(){
         return user;
     }

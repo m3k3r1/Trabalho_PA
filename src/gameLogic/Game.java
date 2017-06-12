@@ -34,7 +34,7 @@ public class Game implements Constants , Serializable {
 	    return data;
     }
     public String getSpell(int index){
-	    switch (getDiceValue(index)){
+	    switch (getPlayer().getSpellValue(index)){
             case 1 : return "Fire";
             case 2 : return "Ice";
             case 3 : return "Poison";
