@@ -162,7 +162,7 @@ public class GraphicalUi extends JFrame implements Observer, Constants {
             System.out.println("AwaitFeatDecision");
         if(observableGame.getState() instanceof AwaitSpellDecision)
             System.out.println("AwaitSpellDecision");
-
+        System.out.println("Area "+ observableGame.getGameData().getArea() + " Level  " + observableGame.getGameData().getLevel());
         System.out.println("Player -> H : " + observableGame.getPlayer().getHp() + "| A : " + observableGame.getPlayer().getArmor() + "| F : " + observableGame.getPlayer().getFood() + "| G : " + observableGame.getPlayer().getGold() + "| Xp : " + observableGame.getPlayer().getXp());
         System.out.println("Monster HP : " + observableGame.getMonsterHp());
         if(observableGame.getCardStackSize() == 7)

@@ -69,10 +69,10 @@ public class DungeonPanel extends JPanel implements Observer, Constants {
         if (game.getState() instanceof AwaitDiceReroll || game.getState() instanceof AwaitSpellDecision || game.getState() instanceof AwaitFeatDecision) {
             if (game.getMonsterHp() < 11)
                 g.drawImage(GraphicalPanel.getToken(), 305, 462 - (game.getMonsterHp() * 41), 30, 30, this);
-            if (game.getMonsterHp() > 10 && game.getMonsterHp() < 21)
-                g.drawImage(GraphicalPanel.getToken(), 263, 422 - (game.getMonsterHp() * 41) - 11, 30, 30, this);
-            if (game.getMonsterHp() > 20)
-                g.drawImage(GraphicalPanel.getToken(), 221, 422 - (game.getMonsterHp() * 41) - 21, 30, 30, this);
+            else if (game.getMonsterHp() > 10 && game.getMonsterHp() < 21)
+                g.drawImage(GraphicalPanel.getToken(), 263, 422 - ((game.getMonsterHp() - 11) * 41), 30, 30, this);
+            else if (game.getMonsterHp() > 20)
+                g.drawImage(GraphicalPanel.getToken(), 221, 422 - ((game.getMonsterHp() - 21) * 41), 30, 30, this);
         }
         else
             g.drawImage(GraphicalPanel.getToken(), 305, 462, 30, 30, this);

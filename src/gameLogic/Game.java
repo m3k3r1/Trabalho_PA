@@ -124,7 +124,6 @@ public class Game implements Constants , Serializable {
 	}
 	public void spellOption(boolean option, int spell){
 		setState(getState().spellOption(option, spell));
-
 	}
 	public void skip(){
 		setState(getState().skip());

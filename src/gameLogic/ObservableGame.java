@@ -102,7 +102,6 @@ public class ObservableGame extends Observable{
 
     //States Handling
     public  void newGame(){
-        //game.newGame();
         game = new Game(new Player());
         setChanged();
         notifyObservers();

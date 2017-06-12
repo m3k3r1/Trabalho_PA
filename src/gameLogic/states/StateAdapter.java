@@ -33,6 +33,11 @@ public class StateAdapter implements RogueState , gameLogic.Constants {
 		"Cards Turned : " + getGameData().nCardsTurned());
 		if(getGameData().getCardStackSize() == getGameData().nCardsTurned()) {
 			getGameData().setArea(getGameData().getArea() + 1);
+			if(getGameData().getArea() == 15){
+			    getGameData().outputBuffer("YOU WIN !!!");
+                return new AwaitBeginning(data);
+            }
+
 			getGameData().getPlayer().addFood(-2);
 			getGameData().clearCardStack();
 			getGameData().initializeCardStack();

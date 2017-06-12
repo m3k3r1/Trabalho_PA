@@ -37,10 +37,12 @@ public class AwaitCardSelection extends StateAdapter {
             getGameData().getCard(card).useCard();
             return this;
 		}
-		else if(getGameData().getCard(card).isMonster() || getGameData().getCard(card).isBoss())
-			    return new AwaitDiceReroll(getGameData(),card);
+		else if(getGameData().getCard(card).isMonster() || getGameData().getCard(card).isBoss()) {
+            if(getGameData().getCard(card).isMonster())
+                getGameData().getCard(card).setHp(getGameData().getArea() + getGameData().throwDice());
+            return new AwaitDiceReroll(getGameData(), card);
 
-
+        }
 		return new AwaitOptionSelection(getGameData(), card); 
 	}
 

@@ -50,8 +50,8 @@ public class Trap extends Card {
                 }
                 break;
             case 6:
-                data.clearCardStack();
-                data.initializeCardStack();
+                //data.clearCardStack();
+                //data.initializeCardStack();
 
                 if (data.getLevel() != 14) {
                     if (data.getLevel() > 0 && data.getLevel() <= 2) {
